@@ -2,7 +2,7 @@
  * @module lofty/kernel/alicn
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130422
+ * @date 130506
  * */
 
 
@@ -44,12 +44,7 @@ lofty( 'alicn', ['global','event'],
         hasStamp: true,
         resolve: resolve,
         debug: function(){
-            var isDebug = false,
-                href = global.location.href;
-            
-            href.indexOf('lofty.debug=true') > 0 && ( isDebug = true );
-            
-            return isDebug;
+            return global.location.href.indexOf('lofty.debug=true') > 0;
         }()
     });
     
