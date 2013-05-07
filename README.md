@@ -98,16 +98,25 @@ lang -> unit -> zone -> mod -> region -> grid -> layout -> district -> layer
 
 # lang
 
-1. domready.js
+1. domready.js del
 1. 常用函数：extendIf、substitute etc.
-1. exposure.js 曝光
-1. observer.js 观察者
-1. class.js 类
-1. mvc.js MVC
-1. log.js 日志打印
 
-1. module.js
+1. exposure.js 曝光 去掉one
+1. observer.js 观察者 不提供全局
+1. class.js 类     ok  必须写new
+
+1. mvc.js MVC 改个名字
+
+1. log.js 日志打印，由各应用框架按需扩展
+
+1. module.js/widget.js    初稿
+1. context.js   模块上下文处理
+
 1. cookie.js
 
-#Roadmap
+
+
+# 考虑
+
+1. 如果有节点的时候， 入参只两个，首为节点，次为options
 
