@@ -1059,7 +1059,7 @@ lofty( 'appframe', ['global','event','config'],
  * @module lofty/kernel/log
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130422
+ * @date 130510
  * */
 
 
@@ -1074,8 +1074,7 @@ lofty( 'log', ['global','console','request','require'],
     var log = {
         create: function( isDebug ){
             _this.log = isDebug ? ( global.console ? function( message, level ){
-                level = level || 'log';
-                global.console[level]( message );
+                global.console[ level || 'log' ]( message );
             } : function( message, level ){
                 if ( console ){
                     console( message, level );
