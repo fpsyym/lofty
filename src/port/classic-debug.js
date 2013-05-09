@@ -1102,7 +1102,7 @@ lofty( 'log', ['global','console','request','require'],
  * @module lofty/kernel/debug
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130422
+ * @date 130509
  * */
 
 
@@ -1145,7 +1145,7 @@ lofty( 'debug', ['config','log','event'],
     
     event.on( 'requireFail', function( meta ){
         
-        log.warn( meta.id + ': failed to require.' );
+        log.warn( meta.id + ': does not exist.' );
     } );
     
     event.on( 'requested', function( asset ){
