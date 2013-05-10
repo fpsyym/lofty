@@ -11,7 +11,7 @@ describe( 'lofty/kernel/appframe', function(){
             lofty.appframe('alpha');
             
             expect(alpha.define).toEqual(lofty.define);
-            expect(alpha.log).toEqual(lofty.log);
+            //expect(alpha.log).toEqual(lofty.log);
             expect(alpha.config).toEqual(lofty.config);
             expect(alpha.on).toEqual(lofty.cache.parts.event.on);
             expect(alpha.off).toEqual(lofty.cache.parts.event.off);
