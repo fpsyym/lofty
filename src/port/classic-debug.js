@@ -195,7 +195,7 @@ lofty( 'config', ['lang'], function( lang ){
             
             if ( !applyRules( target, key, val ) ){
                 configCache[key] = val;
-            };
+            }
         }
     },
     
@@ -800,7 +800,7 @@ lofty( 'request', ['global','event','loader','id2url'],
         
         while ( call = queue.shift() ){
             call();
-        };
+        }
         
     },
     
@@ -874,8 +874,8 @@ lofty( 'deferred', function(){
         
         complete = function(){
             _this.then = !rejected ?
-                function( resolved, rejected ){ resolved && resolved() } :
-                function( resolved, rejected ){ rejected && rejected() };
+                function( resolved, rejected ){ resolved && resolved(); } :
+                function( resolved, rejected ){ rejected && rejected(); };
                 
             complete = noop;
             
@@ -951,7 +951,7 @@ lofty( 'use', ['lang','event','module','request','deferred'],
                         mod ? use.fetch( mod.deps, function(){
                             promise.resolve();
                         } ) : promise.resolve();
-                    }
+                    };
                 } ) ).then( callback );
             } );
         },
@@ -970,7 +970,7 @@ lofty( 'use', ['lang','event','module','request','deferred'],
                             promise.reject();
                         } );
                     }
-                }
+                };
             } ) ).then( callback, errorback );
         }
     };

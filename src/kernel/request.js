@@ -54,7 +54,7 @@ lofty( 'request', ['global','event','loader','id2url'],
         
         while ( call = queue.shift() ){
             call();
-        };
+        }
         
     },
     
