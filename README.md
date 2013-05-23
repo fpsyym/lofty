@@ -38,7 +38,8 @@ lofty/ecma 语言相关
 
     deferred
     callbacks
-    observer
+    observer 观察者 ok
+    class 类 ok
     
     util-date
     util-json
@@ -50,6 +51,11 @@ lofty/device 设备相关，浏览器，鼠标，键盘，屏幕，and etc.
     util-histroy 浏览器历史
     web-browser
     util-storage
+    exposure 曝光 ok
+    
+lofty/solutions 解决方案
+    
+    simplemvc 简易的mvc ok
 
 lofty/dhtml 
 
