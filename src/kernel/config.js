@@ -22,7 +22,7 @@ lofty( 'config', ['lang'], function( lang ){
             
             if ( !applyRules( target, key, val ) ){
                 configCache[key] = val;
-            };
+            }
         }
     },
     

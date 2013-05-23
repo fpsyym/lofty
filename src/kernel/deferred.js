@@ -34,8 +34,8 @@ lofty( 'deferred', function(){
         
         complete = function(){
             _this.then = !rejected ?
-                function( resolved, rejected ){ resolved && resolved() } :
-                function( resolved, rejected ){ rejected && rejected() };
+                function( resolved, rejected ){ resolved && resolved(); } :
+                function( resolved, rejected ){ rejected && rejected(); };
                 
             complete = noop;
             

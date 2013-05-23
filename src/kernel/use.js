@@ -21,7 +21,7 @@ lofty( 'use', ['lang','event','module','request','deferred'],
                         mod ? use.fetch( mod.deps, function(){
                             promise.resolve();
                         } ) : promise.resolve();
-                    }
+                    };
                 } ) ).then( callback );
             } );
         },
@@ -40,7 +40,7 @@ lofty( 'use', ['lang','event','module','request','deferred'],
                             promise.reject();
                         } );
                     }
-                }
+                };
             } ) ).then( callback, errorback );
         }
     };
