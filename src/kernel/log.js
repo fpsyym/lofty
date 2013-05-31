@@ -2,7 +2,7 @@
  * @module lofty/kernel/log
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130510
+ * @date 130531
  * */
 
 
@@ -12,12 +12,13 @@ lofty( 'log', ['global','console','request','require'],
     
     var _this = this;
     
-    var noop = _this.log = function(){};
+    var noop = _this.log = function(){},
+        sysConsole = global.console;
     
     var log = {
         create: function( isDebug ){
-            _this.log = isDebug ? ( global.console ? function( message, level ){
-                global.console[ level || 'log' ]( message );
+            _this.log = isDebug ? ( sysConsole && sysConsole.warn ? function( message, level ){
+                sysConsole[ level || 'log' ]( message );
             } : function( message, level ){
                 if ( console ){
                     console( message, level );
