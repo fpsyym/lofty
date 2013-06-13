@@ -21,7 +21,7 @@ layout: api
 
 # Import
 
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/float.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/float.css);
 
 # Unit Testing
 

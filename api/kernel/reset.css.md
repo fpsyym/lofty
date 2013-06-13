@@ -19,11 +19,11 @@ Thanks to: YUI yuilibrary.com
 
 # Import
 
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/classic.css);
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/wide.css);
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/op.css);
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/flying.css);
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/float.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/classic.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/wide.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/op.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/flying.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/float.css);
 
 **不允许单独引用本模块使用，只允许通过上述模块择一来使用之**
 

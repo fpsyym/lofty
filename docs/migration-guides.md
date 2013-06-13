@@ -23,10 +23,10 @@ Lofty CSS基本上继承了fdev4 CSS，把四个基本不用的class删掉了，
 
 若没有用到`.fd-inline`、`.fd-lump`、`.fd-visible`、`.fd-hidden`这个class，可以用相应Lofty CSS版本直接替换
 
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/float.css);
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/wide.css);
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/flying.css);
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/op.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/float.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/wide.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/flying.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/op.css);
 
 # 使用Lofty JS {#use-lofty-js}
 

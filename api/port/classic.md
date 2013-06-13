@@ -32,7 +32,7 @@ layout: api
 
 # Import
 
-    ImportJavscript.url('http://style.china.alibaba.com/fdevlib/js/lofty/port/classic.js');
+    ImportJavscript.url('http://style.c.aliimg.com/fdevlib/js/lofty/port/classic.js');
 
 # Unit Testing
 

@@ -20,7 +20,7 @@ layout: api
 
 # Import
 
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/classic.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/classic.css);
 
 # Unit Testing
 

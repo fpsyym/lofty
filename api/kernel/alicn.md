@@ -13,7 +13,7 @@ layout: api
 
 # Import
 
-    ImportJavscript.url('http://style.china.alibaba.com/fdevlib/js/lofty/port/classic.js');
+    ImportJavscript.url('http://style.c.aliimg.com/fdevlib/js/lofty/port/classic.js');
 
 **不允许单独引用本模块使用，只允许通过上述模块使用之**
 

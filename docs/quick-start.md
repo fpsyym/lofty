@@ -14,13 +14,13 @@ layout: docs
 
 直接在页面中通过标签引用：
 
-    <script src="http://style.china.alibaba.com/fdevlib/js/lofty/port/classic.js"></script>
-    <link href="http://style.china.alibaba.com/fdevlib/css/lofty/port/classic.css" rel="stylesheet"/>
+    <script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/classic.js"></script>
+    <link href="http://style.c.aliimg.com/fdevlib/css/lofty/port/classic.css" rel="stylesheet"/>
     
 或者，加入到merge文件中：
 
-    ImportJavscript.url('http://style.china.alibaba.com/fdevlib/js/lofty/port/classic.js');
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/classic.css);
+    ImportJavscript.url('http://style.c.aliimg.com/fdevlib/js/lofty/port/classic.js');
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/classic.css);
 
 # 模块书写 {#module-write}
 

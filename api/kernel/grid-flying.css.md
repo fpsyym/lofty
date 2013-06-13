@@ -21,7 +21,7 @@ Thanks to: lifesigner lifesigner.github.com
 
 # Import
 
-    @import url(http://style.china.alibaba.com/fdevlib/css/lofty/port/flying.css);
+    @import url(http://style.c.aliimg.com/fdevlib/css/lofty/port/flying.css);
 
 **不允许单独引用本模块使用，只允许通过`lofty/port/flying.css`来使用之，且`lofty/port/flying.css`已含需require的模块**
 
