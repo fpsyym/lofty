@@ -205,12 +205,18 @@ factory，模块构造方法，可以是函数、对象、数组
 
 ### lofty.config( options ) {#lofty-config}
 
-`lofty.config`是个函数，用来定义或更新相关配置项，其只有一个对象入参
+`lofty.config`是个函数，用来定义或更新或取得相关配置项，其只有一个入参
+
+当入参为对象时，是定义或更新
 
     lofty.config({
         'configItem1': 'value1',
         '...': '...'
     });
+
+当入参为字符串时，是取得当前字符串所代表的配置项
+
+    lofty.config('debug');//true or false
 
 #### alias\<object\>
 
@@ -257,7 +263,7 @@ factory，模块构造方法，可以是函数、对象、数组
         hasStamp: true
     });
 
-**在阿里巴巴中文站，`hasStamp`默认为`true`**
+**在阿里巴巴中文站，目前`hasStamp`默认为`false`，若上线后异步的文件在CDN，必须将此值设为`true`**
 
 #### stamp\<object\>
 
@@ -291,6 +297,10 @@ factory，模块构造方法，可以是函数、对象、数组
     lofty.config({
         charset: 'utf-8'
     });
+
+#### hasCatch\<boolean\>
+
+`hasCatch`是个布尔值，代表是否吞没模块的错误，默认为`false`，即抛出
 
 ### lofty.debug {#lofty-debug}
 
@@ -332,7 +342,7 @@ factory，模块构造方法，可以是函数、对象、数组
     
 这样就定义了一个全局对象`alpha`作为一个应用框架的承载者。若定义前已存在全局变量`alpha`，则被覆盖
 
-`alpha`拥有四个子对象`define`、`log`、`config`、`on`，其中`alpha.define`等同于`lofty.define`，`alpha.log`等同于`lofty.log`、`alpha.config`等同于`lofty.config`
+`alpha`拥有五个子对象`define`、`log`、`config`、`on`、`off`，分别等同于`lofty.define`、`lofty.log`、`lofty.config`、`lofty.on`、`lofty.off`
 
 ## 侦听Lofty事件 {#lofty-on}
 
