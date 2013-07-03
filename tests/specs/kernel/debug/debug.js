@@ -1,7 +1,7 @@
 /**
  * @fileoverview unit testing for lofty/kernel/debug
  * @author Edgar
- * @build 130325
+ * @build 130703
  * */
 
 describe( 'lofty/kernel/debug', function(){
@@ -31,7 +31,7 @@ describe( 'lofty/kernel/debug', function(){
         define( 'specs/kernel/debug/a', function(){ return 'a'; } );
         define( 'specs/kernel/debug/a', function(){ return 'aa'; } );
         define( 'specs/kernel/debug/b', function(){ return 'b'; } );
-        define( 'specs/kernel/debug/c', function(a){ a(); return 'c'; } );
+        //define( 'specs/kernel/debug/c', function(a){ a(); return 'c'; } );
         define(['specs/kernel/debug/a','specs/kernel/debug/b'], function(A,B){
             a = A + B;
         } );
@@ -63,5 +63,10 @@ describe( 'lofty/kernel/debug', function(){
         });
         
     } );
-    
+        
 } );
+
+if ( location.pathname.indexOf('kernel/debug') > 0 ){
+    define( 'specs/kernel/debug/f', function(a){ a(); alert(1); return 'c'; } );
+    define(['specs/kernel/debug/f'],function(A){});
+}

@@ -2,12 +2,12 @@
  * @module lofty/kernel/appframe
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130510
+ * @date 130703
  * */
 
 
-lofty( 'appframe', ['global','event','config'],
-    function( global, event, config ){
+lofty( 'appframe', ['global','config'],
+    function( global, config ){
     'use strict';
     
     var _this = this;
@@ -20,8 +20,8 @@ lofty( 'appframe', ['global','event','config'],
                 _this.log.apply( null, arguments );
             },
             config: _this.config,
-            on: event.on,
-            off: event.off
+            on: _this.on,
+            off: _this.off
         },
         
         cfg = frame.config;

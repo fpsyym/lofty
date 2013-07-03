@@ -82,4 +82,9 @@ describe( 'lofty/kernel/event', function(){
         expect(c).toEqual(5);
     } );
     
+    it( 'lofty.on, lofty.off', function(){
+        expect(lofty.on).toEqual(event.on);
+        expect(lofty.off).toEqual(event.off);
+    } );
+    
 } );
