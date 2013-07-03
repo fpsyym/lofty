@@ -260,7 +260,7 @@ factory，模块构造方法，可以是函数、对象、数组
 `hasStamp`是个布尔值，为`true`时给每个需要异步取的url加上默认时间戳，为`false`时不加
 
     lofty.config({
-        hasStamp: true
+        hasStamp: false
     });
 
 **在阿里巴巴中文站，目前`hasStamp`默认为`false`，若上线后异步的文件在CDN，必须将此值设为`true`**
@@ -295,12 +295,16 @@ factory，模块构造方法，可以是函数、对象、数组
 `charset`为字符串，即指定加载资源的字符集
 
     lofty.config({
-        charset: 'utf-8'
+        charset: 'gbk'
     });
 
 #### hasCatch\<boolean\>
 
 `hasCatch`是个布尔值，代表是否吞没模块的错误，默认为`false`，即抛出
+
+    lofty.config({
+        hasCatch: flase
+    });
 
 ### lofty.debug {#lofty-debug}
 
