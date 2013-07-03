@@ -2,7 +2,7 @@
  * @module lofty/kernel/config
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130403
+ * @date 130703
  * */
 
 
@@ -15,6 +15,10 @@ lofty( 'config', ['lang'], function( lang ){
     
     
     var realize = function( options ){
+        
+        if ( lang.isString( options ) ){
+            return configCache[options];
+        }
         
         for ( var key in options ){
             var target = configCache[key],

@@ -1,7 +1,7 @@
 /**
  * @fileoverview unit testing for lofty/kernel/alicn
  * @author Edgar
- * @build 130422
+ * @build 130703
  * */
 
 describe( 'lofty/kernel/alicn', function(){
@@ -11,7 +11,7 @@ describe( 'lofty/kernel/alicn', function(){
     
     describe( 'config配置', function(){
         
-        it( '时间戳hasStamp为true', function(){
+        xit( '时间戳hasStamp为true', function(){
             var a = { id: 'jioje/wwfdfe' };
             id2url(a);
             

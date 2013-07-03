@@ -1,7 +1,7 @@
 /**
  * @fileoverview unit testing for lofty/kernel/appframe
  * @author Edgar
- * @build 130422
+ * @build 130703
  * */
 
 describe( 'lofty/kernel/appframe', function(){
@@ -13,8 +13,8 @@ describe( 'lofty/kernel/appframe', function(){
             expect(alpha.define).toEqual(lofty.define);
             //expect(alpha.log).toEqual(lofty.log);
             expect(alpha.config).toEqual(lofty.config);
-            expect(alpha.on).toEqual(lofty.cache.parts.event.on);
-            expect(alpha.off).toEqual(lofty.cache.parts.event.off);
+            expect(alpha.on).toEqual(lofty.on);
+            expect(alpha.off).toEqual(lofty.off);
         } );
     } );
 } );

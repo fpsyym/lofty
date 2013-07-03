@@ -132,7 +132,7 @@ lofty( 'lang', function(){
  * @module lofty/kernel/event
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130422
+ * @date 130703
  * */
 
 
@@ -168,6 +168,9 @@ lofty( 'event', function(){
         }
     };
     
+    this.on = exports.on;
+    this.off = exports.off;
+    
     return exports;
     
 } );
@@ -175,7 +178,7 @@ lofty( 'event', function(){
  * @module lofty/kernel/config
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130403
+ * @date 130703
  * */
 
 
@@ -188,6 +191,10 @@ lofty( 'config', ['lang'], function( lang ){
     
     
     var realize = function( options ){
+        
+        if ( lang.isString( options ) ){
+            return configCache[options];
+        }
         
         for ( var key in options ){
             var target = configCache[key],
@@ -1030,12 +1037,12 @@ lofty( 'amd', ['module','use'],
  * @module lofty/kernel/appframe
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130510
+ * @date 130703
  * */
 
 
-lofty( 'appframe', ['global','event','config'],
-    function( global, event, config ){
+lofty( 'appframe', ['global','config'],
+    function( global, config ){
     'use strict';
     
     var _this = this;
@@ -1048,8 +1055,8 @@ lofty( 'appframe', ['global','event','config'],
                 _this.log.apply( null, arguments );
             },
             config: _this.config,
-            on: event.on,
-            off: event.off
+            on: _this.on,
+            off: _this.off
         },
         
         cfg = frame.config;
@@ -1106,7 +1113,7 @@ lofty( 'log', ['global','console','request','require'],
  * @module lofty/kernel/debug
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130509
+ * @date 130703
  * */
 
 
@@ -1122,9 +1129,12 @@ lofty( 'debug', ['config','log','event'],
     .addItem( 'debug', 'debug' );
     
     
-    var getId = function( mod ){
+    var configCache = this.cache.config,
+    
+    getId = function( mod ){
         return mod._id ? mod._id : mod.id;
     };
+    
     
     event.on( 'existed', function( meta ){
         
@@ -1138,7 +1148,9 @@ lofty( 'debug', ['config','log','event'],
     
     event.on( 'compileFail', function( ex, mod ){
         
-        log.warn( getId( mod ) + ': ' + ex.message );
+        if ( !configCache.hasCatch || configCache.debug ){
+            throw ex;
+        }
     } );
     
     event.on( 'required', function( mod ){
@@ -1167,7 +1179,7 @@ lofty( 'debug', ['config','log','event'],
  * @module lofty/kernel/alicn
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130506
+ * @date 130702
  * */
 
 
@@ -1206,7 +1218,7 @@ lofty( 'alicn', ['global','event'],
     
     this.config({
         amd: false,
-        hasStamp: true,
+        //hasStamp: true,
         resolve: resolve,
         debug: function(){
             return global.location.href.indexOf('lofty.debug=true') > 0;

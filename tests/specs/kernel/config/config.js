@@ -1,7 +1,7 @@
 /**
  * @fileoverview unit testing for lofty/kernel/config
  * @author Edgar
- * @build 130322
+ * @build 130703
  * */
 
 describe( 'lofty/kernel/config', function(){
@@ -91,5 +91,13 @@ describe( 'lofty/kernel/config', function(){
         expect(a).toEqual(undefined);
         expect(b).toEqual(['1thj6y']);
         expect(c).toEqual(['1thj6y','5tyhgyu']);
+    } );
+    
+    it( 'lofty.config', function(){
+        lofty.config({
+            resolve2: 'thj3'
+        });
+        
+        expect(lofty.config('resolve2')).toEqual(configCache.resolve2);
     } );
 } );

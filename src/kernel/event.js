@@ -2,7 +2,7 @@
  * @module lofty/kernel/event
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130422
+ * @date 130703
  * */
 
 
@@ -37,6 +37,9 @@ lofty( 'event', function(){
             eventsCache[name] && delete eventsCache[name];
         }
     };
+    
+    this.on = exports.on;
+    this.off = exports.off;
     
     return exports;
     

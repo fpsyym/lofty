@@ -2,7 +2,7 @@
  * @module lofty/kernel/debug
  * @author Edgar <mail@edgarhoo.net>
  * @version v0.1
- * @date 130509
+ * @date 130703
  * */
 
 
@@ -18,9 +18,12 @@ lofty( 'debug', ['config','log','event'],
     .addItem( 'debug', 'debug' );
     
     
-    var getId = function( mod ){
+    var configCache = this.cache.config,
+    
+    getId = function( mod ){
         return mod._id ? mod._id : mod.id;
     };
+    
     
     event.on( 'existed', function( meta ){
         
@@ -34,7 +37,9 @@ lofty( 'debug', ['config','log','event'],
     
     event.on( 'compileFail', function( ex, mod ){
         
-        log.warn( getId( mod ) + ': ' + ex.message );
+        if ( !configCache.hasCatch || configCache.debug ){
+            throw ex;
+        }
     } );
     
     event.on( 'required', function( mod ){
