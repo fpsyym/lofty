@@ -133,6 +133,16 @@ define( 'lofty/lang/observer', function(){
             
             return this;
             
+        },
+        
+        on: function(){
+            return this.attach.apply( this, arguments );
+        },
+        trigger: function(){
+            return this.notify.apply( this, arguments );
+        },
+        off: function(){
+            return this.detach.apply( this, arguments );
         }
     };
     
