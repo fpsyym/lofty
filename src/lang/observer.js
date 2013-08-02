@@ -1,11 +1,11 @@
 /**
- * @module lofty/ecma/observer
+ * @module lofty/lang/observer
  * @from just/lang/observer
  * @author Edgar
  * @date 130521
  * */
  
-define( 'lofty/ecma/observer', function(){
+define( 'lofty/lang/observer', function(){
     
     'use strict';
     

@@ -1,12 +1,12 @@
 /**
- * @module lofty/solutions/simplemvc
+ * @module lofty/lang/simplemvc
  * @from just/lang/mvc
  * @require jquery, lofty/ecma/observer
  * @author Edgar
  * @date 130522
  * */
 
-define( 'lofty/solutions/simplemvc', [
+define( 'lofty/lang/simplemvc', [
         'jquery',
         'lofty/ecma/observer'
     ], function( $, observer ){
