@@ -2,7 +2,7 @@
  * @module lofty/lang/class
  * @from just/lang/class butterfly.lang.class
  * @author Edgar
- * updated terence.wangt 20130701  add muliple class inherit support
+ * @updated terence.wangt 2013.07.01  增加多类扩展函数Class.extend
  * @build 120628
  * */
 
