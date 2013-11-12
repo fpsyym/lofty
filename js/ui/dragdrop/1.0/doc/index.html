@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>dragdrop doc</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+	
+		
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>dragdrop : 拖拽
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=shuiniuer27&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">贺万里</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'任意拖拽', 'href':'../examples/dragdrop1.html'},
+								{'txt':'设置拖拽范围', 'href':'../examples/dragdrop2.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>拖放组件</p>
+				
+<h2>使用方法一：传入要被拖拽的节点元素的选择器（推荐）</h2>
+				
+<pre class="prettyprint linenums">
+define(['fui/dragdrop/1.0'], function(Dragdrop){
+	//不设置拖放区域，任意拖放
+	var dragdrop1 = new Dragdrop({
+		targetSelector:'.targetSelector',
+		bridgeSelector:'.bridgeSelector'
+	});
+
+	//设置拖放区域
+	var dragdrop2 = new Dragdrop({
+		targetSelector:'.targetSelector',
+		bridgeSelector:'.bridgeSelector',
+		area:[minX,maxX,minY,maxY]
+	});
+});
+</pre>
+
+<h2>使用方法二：直接传入要被拖拽的节点元素（不推荐）</h2>
+				
+<pre class="prettyprint linenums"> 
+var dragdrop = new Dragdrop({
+	target:Dom节点,
+	bridgeSelector:'.bridgeSelector'
+});
+</pre>			
+				
+			  <h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>targetSelector </td>
+						  <td>String(<em style="color:red;">targetSelector和target有且只能有一个</em>)</td>
+						  <td>无</td>
+						  <td>被拖动的元素的选择器</td>
+					  </tr>
+					  <tr>
+						  <td>target(<em style="color:red;">不推荐使用</em>)</td>
+						  <td>Dom节点(<em style="color:red;">target和targetSelector有且只能有一个</em>)</td>
+						  <td>无</td>
+						  <td>被拖放的元素节点</td>
+					  </tr>
+					  <tr>
+						  <td>bridgeSelector </td>
+						  <td>String/可选</td>
+						  <td>无</td>
+						  <td>指定鼠标按下哪个元素时开始拖拽 (<em style="color:green;">默认是按下整个需要被拖拽的元素</em>)</td>
+					  </tr>
+					  <tr>
+						  <td>dragable</td>
+						  <td>Boolean/可选</td>
+						  <td>true</td>
+						  <td>是否可以拖拽</td>
+					  </tr>					  
+					  <tr>
+						  <td>dragX</td>
+						  <td>boolean/可选</td>
+						  <td>true</td>
+						  <td>是否可以沿X轴拖拽</td>
+					  </tr>
+					  <tr>
+						  <td>dragY</td>
+						  <td>Boolean/可选</td>
+						  <td>true</td>
+						  <td>是否可以沿着Y轴拖拽</td>
+					  </tr>
+					  <tr>
+						  <td>area</td>
+						  <td>Array/可选[minX,maxX,minY,maxY]</td>
+						  <td>无</td>
+						  <td>指定拖拽范围 (<em style="color:green;">默认任意拖拽</em>)</td>
+					  </tr>		
+					  <tr>
+						  <td>callback </td>
+						  <td>Function/可选</td>
+						  <td>无</td>
+						  <td>移动过程中的回调函数 </td>
+					  </tr>		  
+                 </tbody>
+			  </table>
+				
+
+			<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>dragX ()  </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>设置只能沿X轴拖拽</td>
+					  </tr>
+					  <tr>
+						  <td>dragY ()  </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>设置只能沿Y轴拖放</td>
+					  </tr>
+					  <tr>
+						  <td>dragAll () </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>设置任意方向拖放</td>
+					  </tr>			  
+					  <tr>
+						  <td>setArea([minX,maxX,minY,maxY])</td>
+						  <td>Array/[minX,maxX,minY,maxY]</td>
+						  <td>/</td>
+						  <td>设置拖动范围</td>
+					  </tr>
+					  <tr>
+						  <td>setDragable(b)</td>
+						  <td>boolean</td>
+						  <td>/</td>
+						  <td>设置是否可以被拖动</td>
+					  </tr>
+					  <tr>
+						  <td>getDragX()</td>
+						  <td>/</td>
+						  <td>boolean</td>
+						  <td>获取是否可以沿着X轴拖动</td>
+					  </tr>
+					  <tr>
+						  <td>getDragY()</td>
+						  <td>/</td>
+						  <td>boolean</td>
+						  <td>获取是否可以沿着Y轴拖动</td>
+					  </tr>
+                 </tbody>
+			  </table>		
+				
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

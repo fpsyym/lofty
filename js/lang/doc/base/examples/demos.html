@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+	
+		<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+		<link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+
+        <script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+    </head>
+	
+    <body>
+	  <p>请打开 console 看log 输出</p>
+	  <script type=text/javascript>
+	  
+			lofty.config({
+				amd: true
+			});
+			
+			/**
+			 * 定义一个空类，测试base类的基本功能。
+			 */
+			define('test/baseDemo', ['lofty/lang/class', 'lofty/lang/base'], function(Class, Base){
+				
+				var baseDemo = Class( Base, {
+					options: {
+						isAutoPlay: true,
+						count: {
+							value:99,
+							getter:function(s){
+								return s + 1;
+							},
+							setter:function(val, key){
+								console.log('演示1：getter、setter功能 ||||| count 值被更改为 ' + val);
+							}
+						}
+					},
+					
+					show:function(){
+						console.log('演示4：我来自宿主类的show方法');
+					}
+				});
+				return baseDemo;
+			});
+			
+			
+			/**
+			 * 定义一个简单的plugin
+			 */
+			define('test/pluginDemo', ['lofty/lang/class', 'lofty/lang/plugin'], function(Class, Plugin){
+				
+				var pluginDemo = Class( Plugin, {
+					
+					//默认的入口函数
+					setUp:function(config){
+						//this.beforeHost("show", this._beforeShow);
+						this.beforeHost("show", this._overrideShow);
+					},
+					
+					_beforeShow:function(){
+						console.log('演示4：安装plugin ||||| 我在宿主类show方法之前被调用。');
+					},
+					
+					_overrideShow:function(){
+						console.log('演示4：安装plugin ||||| 我可以覆盖宿主类的show方法。');
+						return false;
+					}
+				});
+				
+				pluginDemo.Name = 'pluginDemo';
+				return pluginDemo;
+			});
+			
+			
+			/**
+			 * 具体的功能测试代码，define中无id，所以该模块会被立即执行
+			 */
+			define(['test/baseDemo','test/pluginDemo'], function(baseDemo, pluginDemo){
+				
+				var obj = new baseDemo({});
+				
+				////////////演示:1：getter、setter功能///////////////////////
+				console.log( '演示1：getter、setter功能 ||||| count的实际值 = ' + obj.get('count'));
+				obj.set('count', 9999);
+				
+				
+				////////////演示2：属性变化后的自动事件触发///////////////
+				obj.on('isAutoPlayChanged', function(){
+					console.log('演示2：属性变化事件 ||||| isAutoPlay属性值变化后，自动调用该事件，现在isAutoPlay = ' + obj.get('isAutoPlay'));
+				});
+				obj.set('isAutoPlay', false);
+				
+				
+				///////////演示3：组件的自定义事件//////////////////////////
+				obj.on('myCustomEvent', function(data){
+					console.log('演示3：自定义事件 ||||| myCustomEvent has been triggered! ' + data.yes);
+				});
+				//obj.off();
+				obj.trigger('myCustomEvent',{yes:'~~~yes~~~'});
+				
+				
+				///////////演示4：安装plugin的两种方式//////////////////////
+				//1、动态安装
+				obj.install(pluginDemo);
+				obj.show();
+				
+				//2、初始化时安装
+				var obj2 = new baseDemo({ 
+					plugins:{ plg:pluginDemo, cfg:{}}
+				});
+				obj2.show();
+			});
+			
+        </script>
+
+		<pre class="prettyprint language-js">
+	/**
+	 * 定义一个空类，测试base类的基本功能。
+	 */
+	define('test/baseDemo', ['lofty/lang/class', 'lofty/lang/base'], function(Class, Base){
+		
+		var baseDemo = Class( Base, {
+			options: {
+				isAutoPlay: true,
+				count: {
+					value:99,
+					getter:function(s){
+						return s + 1;
+					},
+					setter:function(val, key){
+						console.log('演示1：getter、setter功能 ||||| count 值被更改为 ' + val);
+					}
+				}
+			},
+			
+			show:function(){
+				console.log('演示4：我来自宿主类的show方法');
+			}
+		});
+		return baseDemo;
+	});
+
+
+	/**
+	 * 定义一个简单的plugin
+	 */
+	define('test/pluginDemo', ['lofty/lang/class', 'lofty/lang/plugin'], function(Class, Plugin){
+		
+		var pluginDemo = Class( Plugin, {
+			
+			//默认的入口函数
+			setUp:function(config){
+				//this.beforeHost("show", this._beforeShow);
+				this.beforeHost("show", this._overrideShow);
+			},
+			
+			_beforeShow:function(){
+				console.log('演示4：安装plugin ||||| 我在宿主类show方法之前被调用。');
+			},
+			
+			_overrideShow:function(){
+				console.log('演示4：安装plugin ||||| 我可以覆盖宿主类的show方法。');
+				return false;
+			}
+		});
+		
+		pluginDemo.Name = 'pluginDemo';
+		return pluginDemo;
+	});
+
+
+	/**
+	 * 具体的功能测试代码，define中无id，所以该模块会被立即执行
+	 */
+	define(['test/baseDemo','test/pluginDemo'], function(baseDemo, pluginDemo){
+		
+		var obj = new baseDemo({});
+		
+		////////////演示:1：getter、setter功能///////////////////////
+		console.log( '演示1：getter、setter功能 ||||| count的实际值 = ' + obj.get('count'));
+		obj.set('count', 9999);
+		
+		
+		////////////演示2：属性变化后的自动事件触发///////////////
+		obj.on('isAutoPlayChanged', function(){
+			console.log('演示2：属性变化事件 ||||| isAutoPlay属性值变化后，自动调用该事件，现在isAutoPlay = ' + obj.get('isAutoPlay'));
+		});
+		obj.set('isAutoPlay', false);
+		
+		
+		///////////演示3：组件的自定义事件//////////////////////////
+		obj.on('myCustomEvent', function(data){
+			console.log('演示3：自定义事件 ||||| myCustomEvent has been triggered! ' + data.yes);
+		});
+		//obj.off();
+		obj.trigger('myCustomEvent',{yes:'~~~yes~~~'});
+		
+		
+		///////////演示4：安装plugin的两种方式//////////////////////
+		//1、动态安装
+		obj.install(pluginDemo);
+		obj.show();
+		
+		//2、初始化时安装
+		var obj2 = new baseDemo({ 
+			plugins:{ plg:pluginDemo, cfg:{}}
+		});
+		obj2.show();
+   });
+
+		</pre>
+		
+		<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+		<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+		<script>
+			prettyPrint();
+		</script>
+    </body>
+</html>

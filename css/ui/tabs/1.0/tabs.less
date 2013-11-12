@@ -1,0 +1,266 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @file fui-tab.css
+* @brief 
+* @author terence.wangt@alibaba-inc.com
+* @version 1.0.0 
+* @date 2013-05-13
+*/
+
+.fui-tab{
+	.fui-t{
+		position: relative;
+		display: block;
+		height: @tabHeaderHeight;
+		border-bottom: 1px solid @tabHeaderBorderBottomColor;
+		
+		.fui-tab-current{
+			border: 1px solid @tabHeaderCurrentBorderColor;
+			border-width: @tabHeaderCurrentBorderWidth;
+			margin-top: @tabHeaderTabMarginTop;
+			margin-left: @tabHeaderCurrentMarginLeft;
+			height: @tabHeaderHeight - 1;
+			a{
+				&:link,&:visited,&:hover{
+					padding: 3px 13px 0;
+					margin-top: 0;
+					background-color: #FFF;
+					color: #444;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+	.fui-tab-ul{
+		position: absolute;
+		top: 0;
+		height: @tabHeaderHeight + 1;
+		border-left: @tabHeaderBorderLeftWidth solid #d9d9d9;
+	}
+	.fui-tab-t{
+		float: left;
+		display: inline;
+		border: 1px solid @tabHeaderBorderColor;
+		border-bottom-width: 0;
+		border-left-width: @tabHeaderLiLeftWidth;
+
+		margin: 0px 4px 0 0;
+		margin-right:@tabHeaderCurrentMarginRight;
+		a{
+			&:link,&:visited,&:hover{
+				float:left;
+				display: inline;
+				height: @tabHeaderHeight - 3;
+				line-height: @tabHeaderHeight - 4;
+				padding: 0 13px 1px;
+				margin-top: 1px;
+				background-color: @tabHeaderBgColor;
+				color: @tabHeaderFontColor;
+				text-decoration: none;
+
+			}
+			&:hover{
+				background-color: #F9F9F9;	
+			}
+		}
+	}
+
+	.fui-d{
+		overflow: hidden;
+	}
+}
+
+.fui-tab-l{
+	.fui-t{
+		height: @tabHeaderLargeHeight - 1;
+		
+		.fui-tab-current {
+			height:@tabHeaderLargeHeight - 2 ;
+			margin-top: 0;
+			a{
+				&:link,&:visited,&:hover{
+					padding:@tabHeaderLargePadding;
+					font-size:14px;
+				}
+			}
+		}
+	}
+	.fui-tab-ul{
+		height: @tabHeaderLargeHeight;
+	}
+	.fui-tab-t{
+		margin-top: @tabHeaderLargeTabMarginTop;
+		a{
+			&:link,&:visited,&:hover{
+				height: @tabHeaderLargeHeight - 4;
+				line-height: @tabHeaderLargeHeight - 4;
+				padding:0 13px 0;
+				font-size:@tabHeaderFontSize;
+			}
+		}
+	}
+}
+.fui-tab-gray{
+	.fui-t .fui-tab-current {
+		a{
+			&:link,&:visited,&:hover{
+				background-color:#f8f8f8;
+			}
+		}
+	}
+	.fui-d{
+		background-color:#f8f8f8;
+	}
+}
+
+.fui-tab-pink{
+	.fui-tab-t{
+		border:1px solid #D9B9AA;
+		border-bottom-width: 0;
+		border-left-width: @tabHeaderLiLeftWidth;
+		a{
+			&:link,&:visited,&:hover{
+				background-color: #FBF3EE;
+			}
+			&:hover{
+				background-color: #FFFAF7;	
+			}
+		}
+		
+	}
+	.fui-t .fui-tab-current{
+		border: 1px solid #A04B23;
+		border-bottom-width: 0;
+		a{
+			&:link,&:visited,&:hover{
+				background-color: #FFF;
+				color: #444;
+			}
+		}
+	}
+	.fui-tab-ul{
+		border-left: @tabHeaderBorderLeftWidth solid #D9B9AA;
+	}
+	.fui-t{
+		border-bottom: 1px solid #A04B23;
+	}
+}
+
+.fui-tab-box {
+	background-color: @tabBoxBgColor;
+	.fui-t {
+		position:static;
+		height:28px;
+		padding:2px 4px 0 16px;
+		border-width:0;
+		h3 {
+			float:left;
+			display:inline;
+			line-height:2;
+			font-size:14px;
+			font-weight:bold;
+		}
+		
+		.fui-tab-current {
+			border-width:0;
+			height:@tabHeaderHeight;
+			a{
+				&:link,&:visited,&:hover{
+					padding:5px 12px;
+					background-color:@tabBoxCurrentBgColor;
+					color:@tabBoxCurrentFontColor;
+				}
+			}
+		}
+	}
+	.fui-tab-ul {
+		position:static;
+		float:right;
+		display:inline;
+		height:28px;
+	}
+	.fui-tab-t {
+		margin:0 0 0 8px;
+		border-width:0;
+		a{
+			&:link,&:visited,&:hover{
+				background-color:@tabBoxBgColor;
+				margin-top:0;
+				padding:5px 12px;
+				color:@tabBoxFontColor;
+			}
+		}
+	}
+	
+	.fui-d {
+		background-color:#fff;
+	}
+}
+
+
+.fui-tab-bar {
+	.fui-t{
+		background-color: @tabBoxBgColor;
+		
+		.fui-tab-current{
+			border: 1px solid #ccc;
+			border-top: 2px solid #666;
+			border-bottom-width: 0;
+			margin-top: 0px;
+			background-color: #fff;
+			background-position: -9999px -9999px;
+		}
+	}
+	.fui-tab-t{
+		border:none;
+		margin-left:-1px;
+		background: @fuiSpriteUrl;
+		background-position: right -465px;
+		a{
+			&:link,&:visited,&:hover{
+				font-size:12px;
+				background-color: transparent;
+
+			}
+			&:hover{
+				text-decoration: underline;		
+			}
+		}
+	}
+	.fui-tab-current.first a{
+		_border-left:1px solid #ccc;
+	}
+	.fui-tab-ul{
+		border-left: none;
+		overflow: visible;
+	}
+
+}
+
+.fui-bar-pink {
+	.fui-t{
+		background-color: @tabBoxBgColorPink;
+		border-bottom: 1px solid #D9B9AA;
+		.fui-tab-current{
+			border: 1px solid #D9B9AA;
+			border-top: 2px solid #A04B23;
+			border-bottom-width: 0;
+			margin-top: -1px;
+			background-color: #fff;
+			background-position: -9999px -9999px;
+		}
+	}
+	.fui-tab-t{
+		background-position: right -258px;
+	}
+	.fui-tab-current.first a{
+		_border-left:1px solid #D9B9AA;
+	}
+	
+	.fui-tab-ul{
+		border-left: none;
+		overflow: visible;
+	}
+}
+

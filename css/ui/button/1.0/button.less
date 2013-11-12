@@ -1,0 +1,192 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @file btn.less
+* @brief
+* @author yefei.niuyf 2013-05-13 created
+* @updated 
+*/
+
+
+.fui-btn,
+.fui-btn-action,
+.fui-btn-important,
+.fui-btn-hint,
+.fui-btn-disabled{
+	display: inline-block;
+	border: 1px solid @btnBorderColor;
+	border-bottom-color: @btnBorderBottomColor;
+	padding: 3px 13px;
+   	color: @btnFontColor;
+   	vertical-align: middle;
+   	cursor: pointer;
+   	overflow: visible;
+	.linear-graident(@btnGraidentStart, @btnGraidentEnd);
+   	border-radius: 3px;
+	*padding: 0 12px;
+   	*height: 26px;
+}
+.fui-btn-s{
+	padding: 1px 9px; 
+	border-radius: 2px;
+	*padding: 0 8px;
+   	*height: 22px;
+   	*margin-top: 1px;
+}			
+.fui-btn-l{
+	padding: 4px 19px 5px;
+   	font-size: 14px;
+   	font-weight: bold;
+	*padding: 0 18px;
+   	*height: 32px; 
+}
+.fui-btn-h{
+	padding: 6px 19px 5px;
+   	font-size: 14px;
+   	font-weight: bold;
+	*padding: 0 18px;
+   	*height: 36px; 
+}
+.fui-btn{
+	&:hover{
+		color:@btnFontColor;
+		text-decoration: none;
+		.linear-graident(@btnHoverGraidentStart, @btnHoverGraidentEnd);
+	}
+	&:active{
+		color: #505050;
+		text-decoration: none;
+		.linear-graident(@btnActiveGraidentStart, @btnActiveGraidentEnd);
+	}
+}
+.fui-btn-action {
+	border: solid 1px @btnActionBorderColor;
+	border-bottom-color: @btnActionBorderBottomColor;
+	color: @btnActionFontColor;
+	.linear-graident(@btnActionGraidentStart, @btnActionGraidentEnd);
+	&:hover{
+		color: @btnActionFontColor;
+		text-decoration: none;
+		.linear-graident(@btnActionHoverGraidentStart, @btnActionHoverGraidentEnd);
+	}
+	&:active{
+		.linear-graident(@btnActionActiveGraidentStart, @btnActionActiveGraidentEnd);
+	}
+}
+.fui-btn-important {
+	border: solid 1px @btnImportantBorderColor;
+	border-bottom-color: @btnimportantBorderBottomColor;
+	color: @btnImportantFontColor;
+
+	.linear-graident(@btnImportantGraidentStart, @btnImportantGraidentEnd);
+	&:hover{
+		color: @btnImportantFontColor;
+		text-decoration: none;
+		.linear-graident(@btnImportantHoverGraidentStart, @btnImportantHoverGraidentEnd);
+	}
+	&:active{
+		.linear-graident(@btnImportantActiveGraidentStart, @btnImportantActiveGraidentEnd);
+	}
+}
+.fui-btn-hint {
+	border: solid 1px @btnHintBorderColor;
+	border-bottom-color: @btnHintBorderBottomColor;
+	color: @btnHintFontColor;
+	.linear-graident(@btnHintGraidentStart, @btnHintGraidentEnd);
+	&:hover{
+		color: @btnHintFontColor;
+		text-decoration: none;
+		.linear-graident(@btnHintHoverGraidentStart, @btnHintHoverGraidentEnd);
+	}
+	&:active{
+		.linear-graident(@btnHintActiveGraidentStart, @btnHintActiveGraidentEnd);
+	}
+}
+.fui-btn-disabled,
+.fui-btn-disabled:hover,
+.fui-btn-disabled:active {
+	border: solid 1px @btnDisableBorderColor;
+	border-bottom-color: @btnDisableBorderBottomColor;
+	color: @btnDisableFontColor;
+	text-decoration: none;
+	cursor: default;
+	.linear-graident(@btnDisableGraidentStart, @btnDisableGraidentEnd);
+}
+/* botton group*/
+.fui-btn-group {
+	height: 26px;
+	.fui-btn{
+		float: left;
+		display: inline;
+		border-width: 1px 1px 1px 0;
+		border-radius: 0;
+		*border-width: 1px;
+	}
+	.fui-btn-first{
+		border-left-width: 1px;
+		border-radius: 3px 0 0 3px;
+	}
+	.fui-btn-last{
+		border-radius: 0 3px 3px 0;
+	}
+	.fui-btn-select{
+		.linear-graident(@btnGroupSelectGraidentStart, @btnGroupSelectGraidentEnd);
+		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+	}
+}
+a.fui-btn,
+a.fui-btn-action,
+a.fui-btn-important,
+a.fui-btn-hint,
+a.fui-btn-disabled {
+	padding: 3px 13px;
+	height: 18px;
+}
+a.fui-btn-s {
+	padding: 1px 9px;
+	height: 18px;
+}
+a.fui-btn-l {
+	padding: 4px 19px;
+	height: 22px;
+}
+a.fui-btn-h {
+	padding: 6px 19px;
+	height: 22px;
+}
+.fui-btn-img {
+	padding: 1px 7px 1px 6px;
+	*padding: 1px 6px 1px 5px;
+}
+a.fui-btn-img {
+	padding: 1px 7px 1px 6px;
+}
+.fui-btn-notxt {
+	padding: 1px 2px;
+	border-radius: 0 2px 2px 0;
+	*padding: 1px 0;
+	*height: 22px;
+	overflow: hidden;
+}
+a.fui-btn-notxt {
+	padding: 1px 2px;
+}
+.fui-btn-img .fui-ico-search,
+.fui-btn-action .fui-ico-search,
+.fui-btn-notxt .fui-ico-search {
+	background: @fuiSpriteUrl;
+	display: inline-block;
+	background-position: -120px -20px;
+	width: 16px;
+	height: 16px;
+	margin-right: 2px;
+	overflow: hidden;
+	vertical-align: bottom;
+	*vertical-align: middle;
+}
+.fui-btn-action .fui-ico-search{
+	background-position: -120px 0;
+}
+.fui-btn-notxt .fui-ico-search {
+	margin-right: 0;
+} 

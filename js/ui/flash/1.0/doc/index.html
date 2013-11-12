@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>flash : flash基础组件
+					<div class="authorInfo">
+						<a href="aliim:sendmsg?touid=cntaobaoqcp%E5%B1%88%E4%BC%A0%E9%B9%8F&amp;siteid=cntaobao&amp;fenliu=1&amp;status=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">屈传鹏</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'flash', 'href':'../examples/config.html'},								
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>flash组件的基类，此类也可以完成加载一个flash</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> +
+define(['fui/flash/1.0'], function(Flash){
+	//所有的参数配置都将反映到flash的param上
+	var flash = new Flash({
+		container:"#test",
+		swf: 'test_flashvars.swf',
+		flashvars: {
+			name1: 'jQuery',
+			name2: 'jQuery.ui.flash',
+			name3: 'Denis'
+		}
+	});
+});
+</pre>			
+
+				<h2>静态接口</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">接口名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>Flash.util.available</td>
+						  <td>/</td>
+						  <td>boolean</td>
+						  <td>只读属性，返回浏览器是否安装flash插件</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.activeX</td>
+						  <td>/</td>
+						  <td>boolean</td>
+						  <td>只读属性，返回是否有activeX对象</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.version.original</td>
+						  <td>/</td>
+						  <td>string</td>
+						  <td>原生的flash版本的描述信息</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.version.array</td>
+						  <td>/</td>
+						  <td>array</td>
+						  <td>数组格式的版本信息</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.version.string</td>
+						  <td>/</td>
+						  <td>string</td>
+						  <td>字符串格式的版本信息</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.version.major</td>
+						  <td>/</td>
+						  <td>number</td>
+						  <td>数字格式的版本信息</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.version.minor</td>
+						  <td>/</td>
+						  <td>number</td>
+						  <td>数字格式的版本信息</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.version.release</td>
+						  <td>/</td>
+						  <td>number</td>
+						  <td>数字格式的版本信息</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.version.hasVersion()</td>
+						  <td>版本号</td>
+						  <td>boolean</td>
+						  <td>静态全局方法：判断浏览器Flash版本是否符合传入的版本要求</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.version.encodeParams</td>
+						  <td>boolean</td>
+						  <td>boolean</td>
+						  <td>静态全局方法：设置/返回是否对参数进行encodeURI操作</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.version.expressInstall</td>
+						  <td>string:expressInstall的swf文件路径</td>
+						  <td>boolean</td>
+						  <td>静态全局方法：设置/返回expressInstall的swf文件路径</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.version.expressInstallIsActive</td>
+						  <td>boolean</td>
+						  <td>boolean</td>
+						  <td>静态全局方法：设置/返回是否激活expressInstall</td>
+					  </tr>
+					  <tr>
+						  <td>Flash.util.version.expressInstallIsActive</td>
+						  <td>boolean</td>
+						  <td>boolean</td>
+						  <td>设置/返回是否激活expressInstall</td>
+					  </tr>
+					  <tr>
+						  <td>.getFlash()</td>
+						  <td>/</td>
+						  <td>object</td>
+						  <td>获取flash对象</td>
+					  </tr>
+					  <tr>
+						  <td>.callMethod()</td>
+						  <td>调用的flash的方法和参数</td>
+						  <td>调用flash的方法所返回的值</td>
+						  <td>javascript调用flash提供的接口</td>
+					  </tr>
+                 </tbody>
+			  </table>
+
+
+				
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>Geoinfo: 地区选择组件
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=holyful&amp;site=cnalichn&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">佘达轩</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'Geoinfo Demo', 'href':'../examples/geoinfo.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>地区选择组件</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+
+define(['alicn/geoinfo/1.0', 'jquery'],function(Geoinfo, $){
+				var geoinfo = new Geoinfo({
+					container : $("div#container"),
+					data: ["CN","浙江"]
+				});
+				geoinfo.on("change",function(data){
+					var selectedArea = "";
+					for(var nameIndex in data.name){
+						selectedArea += data.name[nameIndex] + "&nbsp";
+					}
+					$('div.selected-area').html(selectedArea);
+				})
+			});
+</pre>			
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>data</td>
+						  <td>Array</td>
+						  <td>| 地区数据预设 | </td>
+						  <td>对于某些场景限制选择如“中国”下的地区，则使用该项</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+						  <th class="name">方法名称</th>
+						  <th class="param">入参说明</th>
+						  <th class="return">返回值</th>
+						  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>setData (data:Array) </td>
+						  <td>地区预设数据</td>
+						  <td>/</td>
+						  <td>地区预设数据的另外一种设置方法，同直接配置</td>
+					  </tr>
+					  <tr>
+						  <td>setDataSource (source:String) </td>
+						  <td>数据源路径</td>
+						  <td>/</td>
+						  <td>对于某些场景，数据源不是默认的</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  <h2>事件</h2>
+				
+			<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>change </td>
+						  <td>当下拉框内容改变时触发该事件，返回值带上所有选中的地区，以及当前是否最后一级</td>
+					  </tr>
+					  
+                 </tbody>
+			  </table>
+				
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

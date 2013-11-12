@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>dialog doc</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+	
+		
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>dialog : 对话框
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=shuiniuer27&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">贺万里</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'普通弹出框DPL', 'href':'../examples/dialog.html'},
+								{'txt':'弹出框无按钮DPL', 'href':'../examples/dialog-nobtn.html'},
+								{'txt':'弹出消息浮层DPL', 'href':'../examples/dialog-tips.html'},
+								{'txt':'传入选择器', 'href':'../examples/dialog1.html'},
+								{'txt':'传入代码片段', 'href':'../examples/dialog2.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>对话框组件</p>
+				
+<h2>使用方法：单独使用buttons回调【实例：普通弹出框DPL】</h2>
+				
+<pre class="prettyprint linenums">
+define(['fui/dialog/1.0'], function(Dialog){
+	var dialog = new Dialog({
+			isModal:true,
+			dragAble:true,
+			dragSelector:".d-header",
+			buttons:[
+				{
+					'event':'click',//事件类型
+					'selector':'.fui-btn1',//要绑定事件的元素
+					'callback':function(paramObj){//事件的回调函数
+						alert(paramObj.name);
+						console.log(this);//这里的this指向的是当前的dialog
+					},
+					'paramObj':{//回调函数要传入的参数(封装成对象便于管理)
+						'name':'按钮1'
+					}
+				},
+				{
+					'event':'click',
+					'selector':'.fui-btn2',
+					'callback':function(paramObj){
+						alert(paramObj.name);
+					},
+					'paramObj':{
+						'name':'按钮2'
+					}
+				},
+				{
+					'event':'click',
+					'selector':'.d-close',
+					'callback':function(paramObj){
+						this.hide();
+					}
+				}
+			]
+	});
+	//dialog显示
+	dialog.show({
+			selector:'.fui-dialog-body'
+	});
+});
+</pre>	
+
+
+<h2>使用方法：单独使用timers回调【实例：弹出消息浮层DPL】</h2>
+				
+<pre class="prettyprint linenums">
+define(['fui/dialog/1.0'], function(Dialog){
+	var dialog = new Dialog({
+			isModal:true,
+			dragAble:true,
+			dragSelector:".d-header",
+			timers:[
+				{
+					'time':2000,//延迟时间单位毫秒
+					'callback':function(paramObj){
+						this.hide();//this指向的是当前dialog组件
+					},
+					'paramObj':{//回调函数要传入的参数(封装成对象便于管理)
+						'name':'timer'
+					}
+				}
+			]
+	});
+	//dialog显示
+	dialog.show({
+			selector:'.fui-dialog-body'
+	});
+});
+</pre>	
+
+<h2>使用方法：buttons回调和timers回调同时使用【实例：弹出框无按钮DPL】</h2>
+				
+<pre class="prettyprint linenums">
+define(['fui/dialog/1.0'], function(Dialog){
+	var dialog = new Dialog({
+			isModal:true,
+			dragAble:true,
+			dragSelector:".d-header",
+			buttons:[
+				{
+					'event':'click',//事件类型
+					'selector':'.fui-btn1',//要绑定事件的元素
+					'callback':function(paramObj){//事件的回调函数
+						alert(paramObj.name);
+						console.log(this);//这里的this指向的是当前的dialog
+					},
+					'paramObj':{//回调函数要传入的参数(封装成对象便于管理)
+						'name':'按钮1'
+					}
+				}
+			],
+			timers:[
+				{
+					'time':2000,//延迟时间单位毫秒
+					'callback':function(paramObj){
+						this.hide();//this指向的是当前dialog组件
+					},
+					'paramObj':{//回调函数要传入的参数(封装成对象便于管理)
+						'name':'timer'
+					}
+				}
+			]
+	});
+	//dialog显示
+	dialog.show({
+			selector:'.fui-dialog-body'
+	});
+});
+</pre>	
+
+	
+			  <h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+				  	  <tr>
+						  <td>x</td>
+						  <td>number/可选</td>
+						  <td>无</td>
+						  <td>弹出框X轴的位置</td>
+					  </tr>
+					  <tr>
+						  <td>y</td>
+						  <td>number/可选</td>
+						  <td>无</td>
+						  <td>弹出框Y轴的位置</td>
+					  </tr>  
+					  <tr>
+						  <td>zindex </td>
+						  <td>Number</td>
+						  <td>1688</td>
+						  <td>弹出层的z-index</td>
+					  </tr>
+					  <tr>
+						  <td>isModal</td>
+						  <td>boolean</td>
+						  <td>false</td>
+						  <td>是否锁屏</td>
+					  </tr>
+					  <tr>
+						  <td>dragAble</td>
+						  <td>boolean</td>
+						  <td>false</td>
+						  <td>是否可以被拖拽</td>
+					  </tr>
+					  <tr>
+						  <td>dragSelector</td>
+						  <td>string/可选</td>
+						  <td>false</td>
+						  <td>dragAble为true时，指定按下哪一个元素开始拖拽</td>
+					  </tr>
+					  <tr>
+						  <td>buttons</td>
+						  <td>[<em style="color:red">{object}</em>,{object},...]</td>
+						  <td>无</td>
+						  <td>给组件内部的元素绑定事件和回调【详细情况，见使用方法】</td>
+					  </tr>
+					  <tr>
+						  <td>timers</td>
+						  <td>[<em style="color:red">{object}</em>,{object},...]</td>
+						  <td>无</td>
+						  <td>给组件设置延时回调的函数【详细情况，见使用方法】
+						  </td>
+					  </tr>
+                 </tbody>
+			  </table>
+
+			<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>show ({object})  </td>
+						  <td>{config}</td>
+						  <td>/</td>
+						  <td>设置dialog显示，有两种调用方式:<br/>
+						  	1、show({txt:'html代码片段'});<br/>
+						  	2、show({selector:'.selector'});
+						  </td>
+					  </tr>
+					  <tr>
+						  <td>hide ()  </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>隐藏dialog</td>
+					  </tr>
+					  <!--<tr>
+						  <td>position ({x:Number,y:Number}) </td>
+						  <td>{x:Number,y:Number}</td>
+						  <td>/</td>
+						  <td>动态设置dialog的位置</td>-->
+					  </tr>
+                 </tbody>
+			  </table>		
+				
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

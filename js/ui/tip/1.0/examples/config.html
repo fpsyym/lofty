@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>lofty 前端基础框架</title>
+
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	<link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+	
+	<!-- 组件依赖的DPL样式文件列表 (实际项目中请将$SkinType变量替换为 "back" 或 "front") --->
+	<script type="text/javascript">
+		var cssUrls = [
+			"http://style.c.aliimg.com/fdevlib/css/lofty/ui/tip/1.0/$SkinType/tip-min.css"
+		];
+	</script>
+
+	<script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+
+</head>
+
+<body>
+<script>
+	lofty.config({
+		amd: true
+	});
+</script>
+<div class="demo-content">
+	<div class="demo-title">最基础的配置</div>
+	<div class="demo-widget">
+		<div class="demo-widget-dom">
+			<input type="text" id="test1"></input>
+			<script type="text/javascript">
+				define(['fui/tip/1.0'], function(Tip){
+					var tip = new Tip({
+						target:"#test1",
+						content:"message"
+					});
+				});
+				
+			</script>
+		
+		</div>		
+	</div>	
+</div>
+
+<div class="demo-content">
+	<div class="demo-title">不带圆角</div>
+	<div class="demo-widget">
+		<div class="demo-widget-dom">
+			<input type="text" id="test2"></input>
+			<script type="text/javascript">
+				define(['fui/tip/1.0'], function(Tip){
+					var tip = new Tip({
+						target:"#test2",
+						content:"message",
+						isRoundedCorner:false
+						
+					});
+				});
+				
+			</script>
+		
+		</div>		
+	</div>	
+</div>
+
+<div class="demo-content">
+	<div class="demo-title">有关闭按钮，配置关闭前的处理方法，当方法返回true时，关闭tip</div>
+	<div class="demo-widget">
+		<div class="demo-widget-dom">
+			<input type="text" id="test3"></input>
+			<script type="text/javascript">
+				
+				define(['fui/tip/1.0'], function(Tip){
+					function fn(){
+						if(!confirm("确认关闭？")){
+							return false;
+						}
+					}
+					var tip = new Tip({
+						target:"#test3",
+						content:"message",
+						hasCloseButton:true,
+						onCloseButtonClick:fn,
+						hideListener:"",
+						isAutoHide:false
+					});
+				});
+				
+			</script>
+		
+		</div>		
+	</div>	
+</div>
+
+<div class="demo-content">
+	<div class="demo-title">设置tip提示框与目标元素的相对方位:<br />1:top left 2:top right 3:bottom left 4:bottom right 5:left top 6:left bottom 7:right top 8:right bottom</div>
+	<div class="demo-widget">
+		<div class="demo-widget-dom">
+			<input type="text" id="test4"></input>
+			<script type="text/javascript">
+				
+				define(['fui/tip/1.0'], function(Tip){
+					var tip = new Tip({
+						target:"#test4",
+						content:"message",
+						local:2
+					});
+				});
+				
+			</script>
+		
+		</div>		
+	</div>	
+</div>
+<div class="demo-content">
+	<div class="demo-title">设置宽度300px</div>
+	<div class="demo-widget">
+		<div class="demo-widget-dom">
+			<input type="text" id="test6"></input>
+			<script type="text/javascript">
+				
+				define(['fui/tip/1.0'], function(Tip){
+					var tip = new Tip({
+						target:"#test6",
+						content:"messagefda发大水放大师傅放大师傅爱的发顺丰的说法阿范德萨范德萨风发的萨芬啊",
+						width:300
+					});
+				});
+				
+			</script>
+		
+		</div>		
+	</div>	
+</div>
+
+<div class="demo-content">
+	<div class="demo-title">微调位置(向上10px,向右20px)</div>
+	<div class="demo-widget">
+		<div class="demo-widget-dom">
+			<input type="text" id="test7"></input>
+			<script type="text/javascript">
+				
+				define(['fui/tip/1.0'], function(Tip){
+					var tip = new Tip({
+						target:"#test7",
+						content:"message",
+						dLeft:-20,
+						dTop:10
+					});
+				});
+				
+			</script>
+		
+		</div>		
+	</div>	
+</div>
+
+<div class="demo-content">
+	<div class="demo-title">isAnim:设置是否在显示和隐藏的时候有动画效果，默认为true，animTime可以设定动画持续的时间，默认为50毫秒</div>
+	<div class="demo-widget">
+		<div class="demo-widget-dom">
+			<input type="text" id="test8"></input>
+			<script type="text/javascript">
+				
+				define(['fui/tip/1.0'], function(Tip){
+					var tip = new Tip({
+						target:"#test8",
+						content:"message",
+						isAnim:true,
+						animTime:1000
+					});
+				});
+				
+			</script>
+		
+		</div>		
+	</div>	
+</div>
+<div class="demo-content">
+	<div class="demo-title">isOnloadShow：true页面加载完成tip自动显示，onloadHold可配置显示的时间，不配置时间时默认一直显示（除非其他触发消失的事件被触发时关闭）</div>
+	<div class="demo-widget">
+		<div class="demo-widget-dom">
+			<input type="text" id="test9"></input>
+			<script type="text/javascript">
+				
+				define(['fui/tip/1.0'], function(Tip){
+					var tip = new Tip({
+						target:"#test9",
+						content:"message",
+						isOnloadShow:true,
+						onloadHold:2000,
+						isAutoHide:false
+					});
+				});
+				
+			</script>
+		
+		</div>		
+	</div>	
+</div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

@@ -1,0 +1,498 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @file fui-tip.less
+* @brief 
+* @author yefniu, yefei.niuyf@alibaba-inc.com
+* @updated quchuanpeng 2013-07-02  dom structure changed
+* @version 1.0.2
+* @date 2013-04-23
+*/
+
+
+/** .fui-tip-simple 普通消息框 */
+.fui-tip-simple {
+	border:solid 1px @tipBorderColor;
+	background-color:@tipBgColor;
+	position:relative;
+	color:@tipFontColor;
+	a{
+		color: @LinkFontColor2;
+	}
+
+	.fui-ico-speaker,.fui-ico-bubble{
+		background: @fuiSpriteUrl;
+		position:absolute;
+		top:@tipSimpleIconT;
+		left:@tipSimpleIconL;
+		display:inline;
+		background-position:-40px -68px;
+		width:16px;
+		height:18px;
+
+	}
+	.fui-ico-bubble{
+		background-position:-80px -65px;
+	}
+	.fui-tip-closeButton{
+		background: @fuiSpriteUrl;
+		float:right;
+		display:inline;
+		width:12px;
+		height:12px;
+		margin:@tipCloseMargin;
+		overflow:hidden;
+		
+		&:link,&:visited{
+			background-position:0 -20px;
+		}
+		&:hover{
+			background-position:-20px -20px;
+		}
+		&:active{
+			opacity:0.6;
+		}
+	}
+	.fui-t {
+		font-weight:700;
+		color:#444;
+		margin-bottom:3px;
+	}
+	.fui-tip-content {
+		padding:@tipSimplePadding;
+		line-height:1.5;
+		font-size:12px;
+		.fui-title {
+			display:block;
+			color:#f27800;
+		}
+		.fui-btn,.fui-lnk {
+			margin-left:6px;
+		}
+		.fui-p {
+			display:block;
+			margin-top:4px;
+		}
+	}
+	.fui-ico-serious,.fui-ico-success,.fui-ico-general {
+		background: @fuiSpriteUrl;
+		position:absolute;
+		top:@tipSimpleIconT;
+		left:@tipSimpleIconL;
+		display:inline;
+		width:12px;
+		height:18px;
+		background-position:-40px -111px;
+	}
+	.fui-ico-success {
+		background-position:-100px -111px;
+	}
+	.fui-ico-general {
+		background-position:-40px -171px;
+	}
+}
+.fui-tip-icon{
+	.fui-tip-content{
+		padding-left:32px;
+	}
+}
+
+
+.fui-tip-block {
+	background-color:@tipBlockBgColor;
+	border:solid 1px @tipBlockBorderColor;
+	padding:18px 40px;
+	.fui-tip-content {
+		height:54px;
+		text-align:center;
+		.fui-txt {
+			display:inline-block;
+			margin-left:16px;
+			vertical-align:middle;
+			text-align:left;
+			padding-bottom:0;
+		}
+	}
+	.fui-ico-serious,.fui-ico-success,.fui-ico-general,.fui-ico-doubt {
+		background: @fuiSpriteUrl;
+		display:inline-block;
+		width:32px;
+		height:52px;
+		overflow:hidden;
+		background-position:0 -104px;
+		vertical-align:middle;
+		padding-bottom:0;
+	}
+	.fui-ico-success {
+		background-position:-60px -104px;
+	}
+	.fui-ico-general {
+		background-position:0 -164px;
+	}
+	.fui-ico-doubt {
+		background-position:-60px -164px;
+	}
+
+}
+.fui-tip-block-warning {
+	border:solid 1px @tipBorderColor;
+	background-color:@tipBgColor;
+}
+
+/* 气泡提示样式定义 START*/
+.fui-tip {
+	width:150px;
+	position:absolute;
+	.fui-tip-top{
+		.fui-tip-top-1{
+			margin:0 3px;
+			height:0;
+			border-top:solid 1px @tipBorderColor;
+			overflow:hidden;
+		}
+		.fui-tip-top-2{
+			margin:0 2px;
+			height:1px;
+			background-color:@tipBgColor;
+			border-left:solid 1px @tipBorderColor;
+			border-right:solid 1px @tipBorderColor;
+			overflow:hidden;
+		}
+		.fui-tip-top-3{
+			margin:0 1px;
+			height:1px;
+			background-color:@tipBgColor;
+			border-left:solid 1px @tipBorderColor;
+			border-right:solid 1px @tipBorderColor;
+			overflow:hidden;
+		}
+	}
+	
+	
+	.fui-tip-center{
+		background-color:@tipBgColor;
+		border:solid 1px @tipBorderColor;
+		.fui-tip-closeButton{
+			float:right;
+			margin:@tipCloseMargin;
+			background: @fuiSpriteUrl;
+			display:inline;
+			width:12px;
+			height:12px;
+			overflow:hidden;
+			&:link,&:visited{
+				background-position:0 -20px;
+			}
+			&:hover{
+				background-position:-20px -20px;
+			}
+			&:active{
+				opacity:0.6;
+			}
+			
+		}
+
+		.fui-tip-content{
+			padding:@tipPadding;
+			word-wrap:break-word;
+			.fui-ico-bulb {
+				background: @fuiSpriteUrl;
+				display:inline-block;
+				width:32px;
+				height:32px;
+				overflow:hidden;
+				margin:2px 6px 2px 0;
+				background-position:-100px -60px;
+				vertical-align:top;
+			}
+			.fui-txt {
+				display:inline-block;
+				padding:0 4px;
+				vertical-align:top;
+			}
+		}
+		
+	}
+	
+	.fui-tip-bottom{
+		.fui-tip-bottom-3{
+			margin:0 1px;
+			height:1px;
+			background-color:@tipBgColor;
+			border-left:solid 1px @tipBorderColor;
+			border-right:solid 1px @tipBorderColor;
+			overflow:hidden;
+		}
+		.fui-tip-bottom-2{
+			margin:0 2px;
+			height:1px;
+			background-color:@tipBgColor;
+			border-left:solid 1px @tipBorderColor;
+			border-right:solid 1px @tipBorderColor;
+			overflow:hidden;
+		}
+		.fui-tip-bottom-1{
+			margin:0 3px;
+			height:0;
+			border-top:solid 1px @tipBorderColor;
+			overflow:hidden;
+		}
+	}
+	.fui-tip-arrow-t-l,.fui-tip-arrow-t-r,.fui-tip-arrow-b-r,.fui-tip-arrow-b-l {
+		position:absolute;
+		top:-6px;
+		left:@tipArrowXAjust;
+		width:14px;
+		height:7px;
+		i{
+			display:block;
+			height:1px;
+			overflow:hidden;
+			background-color:@tipBgColor;
+			border:solid 1px @tipBorderColor;
+			border-width:0 1px;
+			margin:0 auto;
+		}
+	}
+	.fui-tip-arrow-t-r,.fui-tip-arrow-b-r {
+		left:auto;
+		right:@tipArrowXAjust;
+	}
+	.fui-tip-arrow-t-l,.fui-tip-arrow-t-r{
+		.fui-tip-arrow-1{
+			width:2px;
+			background-color:@tipBorderColor;
+			border-width:0;
+		}
+		.fui-tip-arrow-2{
+			width:2px;
+		}
+		.fui-tip-arrow-3{
+			width:4px;
+		}
+		.fui-tip-arrow-4{
+			width:6px;
+		}
+		.fui-tip-arrow-5{
+			width:8px;
+		}
+		.fui-tip-arrow-6{
+			width:10px;
+		}
+		.fui-tip-arrow-7{
+			width:12px;
+		}
+	}
+	.fui-tip-arrow-b-r,.fui-tip-arrow-b-l{
+		top:auto;
+		bottom:-6px;
+		.fui-tip-arrow-7{
+			width:2px;
+			background-color:@tipBorderColor;
+			border-width:0;
+		}
+		.fui-tip-arrow-6{
+			width:2px;
+		}
+		.fui-tip-arrow-5{
+			width:4px;
+		}
+		.fui-tip-arrow-4{
+			width:6px;
+		}
+		.fui-tip-arrow-3{
+			width:8px;
+		}
+		.fui-tip-arrow-2{
+			width:10px;
+		}
+		.fui-tip-arrow-1{
+			width:12px;
+		}
+	}
+	.fui-tip-arrow-r-t,.fui-tip-arrow-r-b,.fui-tip-arrow-l-b,.fui-tip-arrow-l-t {
+		position:absolute;
+		top:@tipArrowYAjust;
+		left:230px;
+		width:7px;
+		height:14px;
+		overflow:hidden;
+		i{
+			float:left;
+			display:inline;
+			width:1px;
+			overflow:hidden;
+			background-color:@tipBgColor;
+			border:solid 1px @tipBorderColor;
+			border-width:1px 0;
+			margin:0;
+		}
+	}
+	.fui-tip-arrow-r-t,.fui-tip-arrow-r-b{
+		left:auto;
+		right:-6px;
+		.fui-tip-arrow-1{
+			height:12px;
+		}
+		.fui-tip-arrow-2{
+			height:10px;
+			margin-top:1px;
+		}
+		.fui-tip-arrow-3{
+			height:8px;
+			margin-top:2px;
+		}
+		.fui-tip-arrow-4{
+			height:6px;
+			margin-top:3px;
+		}
+		.fui-tip-arrow-5{
+			height:4px;
+			margin-top:4px;
+		}
+		.fui-tip-arrow-6{
+			height:2px;
+			margin-top:5px;
+		}
+		.fui-tip-arrow-7{
+			height:2px;
+			background-color:@tipBorderColor;
+			border-width:0;
+			margin-top:6px;
+		}
+	}
+	.fui-tip-arrow-l-b,.fui-tip-arrow-l-t{
+		left:-6px;
+		.fui-tip-arrow-7{
+			height:12px;
+		}
+		.fui-tip-arrow-6{
+			height:10px;
+			margin-top:1px;
+		}
+		.fui-tip-arrow-5{
+			height:8px;
+			margin-top:2px;
+		}
+		.fui-tip-arrow-4{
+			height:6px;
+			margin-top:3px;
+		}
+		.fui-tip-arrow-3{
+			height:4px;
+			margin-top:4px;
+		}
+		.fui-tip-arrow-2{
+			height:2px;
+			margin-top:5px;
+		}
+		.fui-tip-arrow-1{
+			height:2px;
+			background-color:@tipBorderColor;
+			border-width:0;
+			margin-top:6px;
+		}
+	}
+	.fui-tip-arrow-r-b,.fui-tip-arrow-l-b{
+		top:auto;
+		bottom:@tipArrowYAjust;
+	}
+	
+}
+.fui-tip-rounded-corner{
+	.fui-tip-center{
+		border-top:none;
+		border-bottom:none;
+	}
+}
+/* 气泡提示样式定义 END*/
+
+
+.fui-tip-multi{
+	padding:8px 12px;
+}
+.fui-tip-close{
+	.fui-tip-content{
+		margin-right:16px;
+	}
+}
+.fui-tip-inline {
+	display:inline-block;
+	font-size:12px;
+	line-height:1.5;
+	height:18px;
+	color:@tipFontColor;
+	vertical-align:middle;
+	.fui-ico-serious,.fui-ico-success,.fui-ico-general {
+		background: @fuiSpriteUrl;
+		display:inline-block;
+		width:12px;
+		height:18px;
+		overflow:hidden;
+		margin:0 4px 0 0;
+		background-position:-40px -112px;
+		vertical-align:middle;
+	}
+	.fui-ico-success {
+		background-position:-100px -112px;
+	}
+	.fui-ico-general {
+		background-position:-40px -172px;
+	}
+}
+
+.fui-tip-light {
+	border:solid 1px @tipLightBorderColor;
+	background-color:@tipLightBgColor;
+	.fui-tip-arrow-t-l,.fui-tip-arrow-t-r,.fui-tip-arrow-b-r,.fui-tip-arrow-b-l{
+		i{
+			border:solid 1px @tipLightBorderColor;
+			background-color:@tipLightBgColor;
+			border-width:0 1px;
+		}
+	}
+	.fui-tip-arrow-r-t,.fui-tip-arrow-r-b,.fui-tip-arrow-l-b,.fui-tip-arrow-l-t{
+		i{
+			border:solid 1px @tipLightBorderColor;
+			background-color:@tipLightBgColor;
+			border-width:1px 0;
+		}
+	}
+}
+
+.fui-tip-primary {
+	border:solid 1px @tipPrimaryBorderColor;
+	background-color:@tipPrimaryBgColor;
+	.fui-tip-arrow-t-l,.fui-tip-arrow-t-r,.fui-tip-arrow-b-r,.fui-tip-arrow-b-l{
+		i{
+			border:solid 1px @tipPrimaryBorderColor;
+			background-color:@tipPrimaryBgColor;
+			border-width:0 1px;
+		}
+	}
+	.fui-tip-arrow-r-t,.fui-tip-arrow-r-b,.fui-tip-arrow-l-b,.fui-tip-arrow-l-t{
+		i{
+			border:solid 1px @tipPrimaryBorderColor;
+			background-color:@tipPrimaryBgColor;
+			border-width:1px 0;
+		}
+	}
+}
+
+.fui-tip-inline-warning {
+	color:@tipWarnFontColor;
+}
+
+.fui-tip-shadow{
+	box-shadow:1px 2px 4px #999;
+	.fui-tip-arrow-b-r,.fui-tip-arrow-b-l{
+		i{
+			box-shadow:0px 2px 2px #999;
+		}
+	}
+	.fui-tip-arrow-r-t,.fui-tip-arrow-r-b{
+		i{
+			box-shadow:2px 0px 3px #999;
+		}
+	}
+}

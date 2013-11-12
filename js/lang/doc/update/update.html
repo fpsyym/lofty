@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+		<link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+			   <div class="content">
+				<h1>Fdev4 迁移指南</h1>
+				<h2 id="step1">引言</h2>
+				<p>1688 有大量基于 Fdev4 构建的页面，新框架的使用将是一个逐步替代的过程。<br/>对于新的产品及页面，我们推荐<b>直接使用</b> lofty ，新框架提供了搭建应用所需的各模块和丰富组件，在使用中有任何问题可随时提建议给我们。<br/>
+				对于基于 Fdev4 构建的老页面，我们推荐按照如下步骤逐步进行迁移：
+				</p>
+				
+				<h2 id="step1">一：引入 CSS 基础文件</h2>
+				<p>
+					lofty 的 CSS 基础文件（reset、type、grid）基本与 Fdev4 保持一致。唯一不同的是 lofty 将 Fdev4 reset 文件
+					中四个不常用的 class 做了删除，分别为：<br/></p>
+					<pre style="margin-left: 24px;" class="prettyprint">  .fd-inline 
+  .fd-lump  
+  .fd-visible  
+  .fd-hidden</pre><br/>
+				<p>如果在 Fdev4 应用中并未使用到这几个 class， 恭喜你！你可以直接将 fdev-4 目录下的基础文件引用更新为 lofty 目录下的对应文件。 如 <a href="http://style.c.aliimg.com/fdevlib/css/fdev-v4/core/fdev-flying.css" target="_blank">fdev-v4/core/fdev-flying.css</a> 更改为 <a href="http://style.c.aliimg.com/fdevlib/css/lofty/port/flying.css" target="_blank">lofty/port/flying.css</a>。<br/>
+				</p>
+				<p>
+				注： lofty/port/lofty.css 没有对应 Fdev4 版本的文件，它的内容是 reset 与 type 的合集，没有添加栅格定义的 css。
+				</p>
+				
+				
+				<h2 id="step2">二：引入 JS 种子文件</h2>
+				<p>
+					将 <a href="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js" target="_blank"> lofty.js </a>文件引入到已引用有 fdev4-min.js 的老页面上（<b>需要在 fdev4-min.js之前引入</b>）。该文件很小，gzip 后只有4.5k。内容只包含 AMD loader 及 各组件的 alias 定义，性能发烧友可放心引用 :)
+				</p>
+				
+				<p>
+					该文件的引入，并不影响原来的 Fdev4 模块功能，而你便可以开始 AMD 模块化编程之旅，享用 lofty 提供的源源不断的丰富组件！ <a href="http://wd.alibaba-inc.com/fdevlib/index.html#lofty.loader.home" target="_blank">如何开始 AMD 模块化编程？</a>
+				</p>
+				
+				<h2 id="step3">三：创建 app.config.js 文件</h2>
+				<p>
+					在style根目录下创建<a href="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/resolve/resolve.html" target="_blank"> app.config.js </a>，该文件的详细使用，请参考文档。
+				</p>
+
+				<h2 id="step4">四：需要注意的问题</h2>
+				<p>
+					1、当 Fdev4基础库 与 lofty 种子文件同时引入的情况下，应用中的 jQuery 对象代表的是<b> 1.7.2 </b>版本的 jQuery （Fdev4默认版本）。由于 Fdev4 中扩展了 jQuery 对象自身，故所有的扩展属性和方法在这种情况下依然可用。
+					
+				</p>
+				<p>
+					2、为了更快的度过兼容期，在新编写的 AMD 模块中，<b>不允许再使用</b> Fdev4 扩展在 $、$.util、$.fn 下的所有属性和方法！
+				</p>
+				<p>
+					&nbsp;&nbsp;&nbsp;&nbsp; Fdev4 扩展的属性和方法列表请参考<a href="http://wd.alibaba-inc.com/fdevlib/index.html#fdev4.js.core" target="_blank"> 这里</a>。lofty 已将这些方法按照功能分部移植到 util/misc、alicn/aliuser 等模块中，如需使用，可在代码中添加对此模块的依赖。
+				</p>
+				<p>
+					3、当所有的模块都改造完成后，方可移除对 Fdev4 基础库 的引用。 
+				</p>
+			</div>
+			</div>
+		</div>
+
+			
+	<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+	<script>
+		prettyPrint();
+	</script>
+
+    </body>
+</html>

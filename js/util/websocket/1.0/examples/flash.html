@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>lofty 前端基础框架</title>
+
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	<link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+
+</head>
+
+<body>
+	<div class="demo-content">
+	<style>
+		#message-show{
+			margin:8px;
+			width:600px;height:200px;
+			border:1px solid #eee;
+			padding:4px;
+			color:#ff7300;
+		}
+		.panel-b{
+			border:1px solid #eee;
+			height:32px;
+			margin:8px;
+			background:#eef4f5;
+			line-height:32px;
+			padding:0 0 0 16px;
+			color:red;
+		}
+
+	</style>
+
+	<div class="panel-b">注明：在不支持websocket的情况下，采用flash通讯，demo服务为1688提供，即需要登录1688.com之后，且当前域名为*.1688.com(flash限制)才能看到效果。2分钟之后将关闭连接</div>
+	<h2>  接收到的消息</h2>
+	<textarea style="" id="message-show">
+	
+	</textarea>
+	
+
+	<script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+	
+	
+	<script type="text/javascript">
+		lofty.config({
+			amd: true
+		});
+		
+     define(['jquery','util/websocket/1.0'],function($,WebSocket){
+
+		var config = {};
+		$.ajax({
+			url : 'http://ww2.1688.com/init',
+			type : 'get',
+			dataType : 'script'
+		});
+		
+	    config.onopen = function () {  
+			$('#message-show').html('websocket opened.....\n');
+	
+		};  
+	   
+		config.onmessage = function (data) { 
+		
+			
+			$('#message-show').html($('#message-show').html() + 'websocket message .....\n');		
+
+			var message = JSON.stringify( data );
+			
+			$('#message-show').html($('#message-show').html() + 'websoket receive msg : ' + message + '\n');  
+		  
+		};  
+		  
+		config.onclose = function (event) {  
+			$('#message-show').html($('#message-show').html() + 'websocket closed  1 min .....\n');
+		};  
+		
+		function defaultLoginCallBack( data ) {
+			//{"data":{"w_s_id":"cnalichnjianxiameii|325786962","loginCode":0},"success":true}
+			var w_id = data.data.w_s_id;
+			
+				config.url = 'ws://ww2.1688.com:80/fc;' + w_id + '|0.0.1C';
+			
+			
+		var conn = new WebSocket(config); 
+			WebSocket.ready(function(){
+			
+				setTimeout(function(){
+					
+					conn.close();	
+				
+				},1200000);			
+				
+			});
+		}
+		window.defaultLoginCallBack = defaultLoginCallBack;
+
+});
+	</script>
+
+	
+  </div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+					
+				<h1> Observer（Event） : 消息管理类
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=edgarhoo&amp;site=cnalichn&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">冯汉军</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'简单事件通信', 'href':'../examples/event.html?debug-log-level=info'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p> Observer/Event 是 lofty 的基础组件，当页面上的两个模块/组件之间需要进行数据或行为的通信时，可以通过这个类实现模块间逻辑/代码的解耦。</p>
+				<p> 在应用框架中，通常会维护 observer 类的一个单例，来建立各模块间的事件通信机制。建议应用框架层面规范对自定义事件的命名机制，避免事件命名冲突。</p>
+				
+				
+				<h2>使用方法</h2>			
+<pre class="prettyprint linenums"> 
+define(['lofty/lang/observer'], function(observer) {
+    var evt = observer.create();
+	
+  // 模块外部监听自定义事件
+    evt.on('customEvent', function() {
+        alert('customEvent');
+    });
+	
+   // 模块内部触发自定义事件
+    evt.trigger('customEvent');
+});
+</pre>			
+ 
+ <br/>
+可以将 observer 的方法扩展至其它类：
+ <pre class="prettyprint linenums"> 
+define(['lofty/lang/observer', 'myClass'], function(observer, myClass) {
+    observer.mixin(myClass);
+});
+</pre>	
+
+		  <h2>公共方法</h2>
+				
+		  <table class="table table-striped">
+			<thead>
+				  <tr>
+				  <th class="name">方法名称</th>
+				  <th class="param">入参说明</th>
+				  <th class="return">返回值</th>
+				  <th class="function">作用说明</th>
+				  </tr>
+			  </thead>
+			  <tbody>
+				  <tr>
+					  <td>on ( names, listener, context ) </td>
+					  <td> 
+						<ul>
+							<li><b>names</b>: String|Array 事件名称，可以是字符串或字符串数组 </li>
+							<li><b>listener</b>: Function 事件回调函数 </li>
+							<li><b>context</b>: Object（optinal） 回调函数的执行域 </li>
+						</ul>
+					  </td>
+					  <td>observer实例自身</td>
+					  <td>事件监听，为事件绑定执行函数。可以批量绑定多个事件，也可以一个事件绑定多个函数（顺序执行）</td>
+				  </tr>
+				  <tr>
+					  <td>off ( names, listener, context ) </td>
+					  <td> 
+						<ul>
+							<li><b>names</b>: String|Array 事件名称，可以是字符串或字符串数组 </li>
+							<li><b>listener</b>: Function（optinal） 事件回调函数，若为空，则指定事件下的所有回调函数解除绑定。 </li>
+							<li><b>context</b>: Object（optinal） 回调函数的执行域 </li>
+						</ul>
+					  </td>
+					  <td>observer实例自身</td>
+					  <td>解除事件监听，为事件解绑执行函数。</td>
+				  </tr>
+				  <tr>
+					  <td>trigger ( names ) </td>
+					  <td>
+						<ul>
+							<li><b>names</b>: String|Array 事件名称，可以是字符串或字符串数组 </li>
+						</ul>
+					  </td>
+					  <td>observer实例自身</td>
+					  <td>触发事件，可以单个触发，亦可批量触发</td>
+				  </tr>			  
+			 </tbody>
+		  </table>
+
+
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

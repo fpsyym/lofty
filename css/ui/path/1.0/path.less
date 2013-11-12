@@ -1,0 +1,64 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @file fui-path.less
+* @brief
+* @author yefei.niuyf 2013-05-13 created
+* @updated 
+*/
+
+.fui-path {
+	height: @crumbsHeight;
+	border:1px solid @crumbsBorderColor;
+	background-color:#fafafa;
+	color:@crumbsFontColor;
+	.fui-l,.fui-c,.fui-r {
+		float:left;
+		display:inline;
+		padding:5px 11px;
+	}
+	.fui-l {
+		background-color:@crumbsBackBgColor;
+		border-right:1px solid @crumbsBorderColor;
+	}
+	.fui-r {
+		float:right;
+	}
+	.fui-path-common();
+}
+/* path style 2 */
+.fui-path-simple {
+	height:@crumbsSimpleHeight;
+	color:@crumbsFontColor;
+	.fui-c{
+		float:left;
+		display:inline;
+		padding:0 12px;
+	}
+	.fui-path-common();
+}
+
+.fui-path-common(){
+	.fui-lnk,
+	.fui-lnk:link,
+	.fui-lnk:visited{
+		color:#369;
+	}
+	.fui-lnk:hover{
+		color:@LinkHoverColor;
+		text-decoration:none;
+	}
+	.fui-c * {
+		float:left;
+		display:inline;
+	}
+	.fui-c .fui-arrow{
+		background: @fuiSpriteUrl;
+		display:inline-block;
+		width:12px;
+		height:12px;
+		overflow:hidden;
+		margin:3px 7px;
+		vertical-align:middle;
+	}
+}

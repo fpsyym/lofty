@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+
+					
+				<h1>AOP : 切面编程类
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=weiqijun2010&amp;site=cnalichn&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">魏琪君</span>
+						</a>
+				    </div>
+				</h1>
+									
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'before', 'href':'../examples/before.html'},
+								{'txt':'after', 'href':'../examples/after.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>AOP为Aspect Oriented Programming的缩写，意为：面向切面编程（也叫面向方面），可以通过预编译方式和运行期动态代理实现在不修改源代码的情况下给程序动态统一添加功能的一种技术。AOP实际是GoF设计模式的延续，设计模式孜孜不倦追求的是调用者和被调用者之间的解耦，AOP可以说也是这种目标的一种实现。</p>
+				<br/>
+				<p>在分析web性能、分析用户行为时，我们常常去修改前端代码，比如在前端DOM元素上插入大量监听事件，修改已有的JS文件。这样操作虽然能够达到目的，但是为代码管理带来很多问题。如何在不影响现有代码的基础上优雅的达到前端监控的目的呢。我们知道在Java中会使用AspecJ去监控系统异常、用户访问日志，系统性能监控等工作。那么在前端是否可以这么做呢？答案是肯定的，而且要比AspectJ更简单可依赖。因为JS是动态脚本语言，而且可以方便地使用代理模式。无需AspectJ对源代码的重新编译过程。对前端开发人员、后端开发人员和用户都是透明的，我们只需要在合适的地方插入一个JS文件即可达到目的。能想到的作用：
+				</p>
+				<br/>
+				<ul>
+				<li>a . 动态选择监听对象、方法、类。使用灵活方便。</li>
+
+				<li>b. 可以应用到前端mvc模型，解构mvc三层结构。统一使用aop提供的事件消息调度各层方法。</li>
+
+				<li>c. 前端异常处理，与Java类似，对exception处理函数的监控，记录用户操作中产生的一场。这需要FE对前端Exception的良好定义。</li>
+
+				<li>d. 用户行为分析, 用户的操作行为表现为对象、函数、类的创建或者调用。对这些元素的监控能够在前端产生用户日志，降低用户行为采集的难度。采集的数据可以Ajax实时提交到Server中</li>
+				</ul>
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums">define(['lofty/lang/aop'], function(AOP){
+
+	var aop = new AOP();
+	
+	aop.before(window, 'alert', function(o) {
+        var text = o.args[0];
+        return ['before ' + text];
+    });
+ });
+</pre>	
+<br/>
+切入的回调函数入参 o 中含有以下信息：
+<pre class="prettyprint linenums">
+{
+    target: {object}  // 目标对象
+    name:    {string}    // 方法名
+    args: {array}     // 参数
+    result: {any}     // 只在after pointcut时有效，表示方法返回值
+    method: {function} // 目标方法
+}
+</pre>			
+<br/>
+支持静态方法使用 before、after：
+<pre class="prettyprint linenums">
+define(['lofty/lang/aop'], function(AOP){
+
+	AOP.before(window, 'alert', function(o) {
+        var text = o.args[0];
+        return ['before ' + text];
+    });
+ });
+</pre>
+
+			<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>before ( target, pointcut, fn, context ) </td>
+						  <td>
+						  <ul>
+							<li><b>target</b>: Object 目标对象，可以是window</li>
+							<li><b>pointcut</b>: string | array<string> | pattern 切入点 </li>
+							<li><b>fn</b>: Function 要插入的函数</li>
+							<li><b>context</b>: Object {optional} 插入函数的执行作用域对象</li>
+						  </ul>
+						  </td>
+						  <td> aop 实例</td>
+						  <td>切入到指定方法执行之前执行某函数</td>
+					  </tr>
+					  <tr>
+						  <td>after ( target, pointcut, fn, context ) </td>
+						  <td>
+						  <ul>
+							<li><b>target</b>: Object 目标对象，可以是window</li>
+							<li><b>pointcut</b>: string | array<string> | pattern 切入点 </li>
+							<li><b>fn</b>: Function 要插入的函数</li>
+							<li><b>context</b>: Object {optional} 插入函数的执行作用域对象</li>
+						  </ul>
+						  </td>
+						  <td> aop 实例</td>
+						  <td>切入到指定方法执行之后执行某函数</td>
+					  </tr>		  
+					  
+                 </tbody>
+			  </table>
+			
+			
+			
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

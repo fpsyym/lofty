@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>websocket : socket通信
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=jianxiameii&amp;&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">简鲜霞</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'正常示例', 'href':'../examples/index.html'},
+								{'txt':'flashsocket示例', 'href':'../examples/flash.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>
+					<ul>
+						 <li>
+							在支持 websocket 的浏览器上，使用原生的 websocket。不支持的浏览器使用 flash　既不支持 flash 也不支持 websocket 的浏览器不兼容。
+						</li>
+						<li>
+							整合websocket的属性，方法及监听事件。
+						</li>
+						<li>
+							flash 有域名限制，验证规则　/((taobao|alipay|alibaba|yahoo|alisoft|alimama|koubei|aliimg)\.(com|net|cn|com\.cn)|1688\.com)$/i 　 
+						</li>
+					</ul>
+				</p>
+				
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['util/websocket/1.0'],function( WebSocket ){
+	
+	var mysocket = new Websocket({
+		url : 'ws://node.remysharp.com:8001',//建立连接url
+		cid : '',//flash容器cid ,生成#flash-websocket-$cid dom
+		onopen : function (){//todo},//打开连接事件
+		onmessage : function (event){//event = {type:'message',data:'your data'}},//接收到消息事件
+		onclose : function (){//todo}//关闭连接事件
+	});
+	WebSocket.ready( function (){
+		mysocket.send( 'i am a message~!' );
+	});
+});
+
+</pre>			
+
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>readyState </td>
+						  <td>Number</td>
+						  <td>/</td>
+						  <td>当前连接的状态： 0 : 正在连接  1：打开状态 2：正在关闭  3：已关闭</td>
+					 
+					  </tr>				  
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>open() </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>打开连接</td>
+					  </tr>
+					  <tr>
+						  <td>send( data ) </td>
+						  <td>String | object | Number....</td>
+						  <td>/</td>
+						  <td>发送消息</td>
+					  </tr>
+					  <tr>
+						  <td>close( ) </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>关闭连接</td>
+					  </tr>
+					 
+					  
+                 </tbody>
+			  </table>
+
+
+				<h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>onopen </td>
+						  <td>打开连接监听到的事件</td>
+					  </tr>
+					  <tr>
+						  <td>onmessage </td>
+						  <td>接收到消息监听到的事件</td>
+					  </tr> 
+					   <tr>
+						  <td>onclose </td>
+						  <td>关闭连接监听到的事件</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

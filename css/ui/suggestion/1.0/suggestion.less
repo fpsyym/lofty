@@ -1,0 +1,86 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @brief
+* @author kevin.lixd 2013-09-22 created
+* @updated 
+*/
+
+.fui-suggestion{
+	position:absolute;
+	display:none;
+	border:1px solid @suggestionBorderColor;
+	background-color:#fff;
+	.fui-suggestion-item{
+		color: #999;
+		line-height: 23px;
+		height: 23px;
+		cursor: pointer;
+	}
+	.fui-suggestion-current-item{
+		background-color:@currentItemBgColor;
+	}
+}
+
+.fui-suggestion-t{
+	height: 30px;
+	line-height: 30px;
+	padding: 0 8px;
+	color: #888;
+}
+.fui-suggestion-cont{
+	max-height: 176px;
+	_height: 176px;
+	overflow-y: auto;
+	line-height: 1.8;
+	dl{
+		zoom: 1;
+		overflow: hidden;
+	}
+	dt{
+		float: left;
+		display: inline;
+		width: 16px;
+		padding-left: 8px;
+		overflow: hidden;
+		color: #888;
+		font-weight: bold;
+	}
+	dd{
+		float: left;
+		display: inline;
+		width: 315px;
+		overflow: hidden;
+		color: #333;
+	}
+	span{
+		float: left;
+		display: inline;
+		width: 100px;
+		height: 22px;
+		padding-left: 5px;
+		cursor: pointer;
+		word-wrap: break-word;
+		word-break: break-all;
+		overflow: hidden;
+	}
+}
+.fui-suggestion-onecol{
+	.fui-suggestion-t{
+		display: none;
+	}
+	.fui-suggestion-cont{
+		height: auto;
+		max-height: none;
+		overflow: hidden;
+	}
+	dt{
+		display: none;
+	}
+	dd{
+		width: 100%;
+	}
+	span{
+		width: 100%;
+	}
+}

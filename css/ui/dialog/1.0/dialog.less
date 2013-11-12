@@ -1,0 +1,153 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @file fui-dialog.less
+* @brief 
+* @author yefniu, yefei.niuyf@alibaba-inc.com
+* @version 1.0.0
+* @date 2013-04-22
+*/
+
+.fui-dialog{
+	
+}
+
+.fui-dialog-body{
+		float:left;
+		display:none;
+		border:@dialogBorderWidth solid @dialogBorderColor;
+		border:@dialogBorderWidth solid rgba(0,0,0,@dialogBorderOpacity);	
+	.d-header{
+		height: @dialogHeaderHeight;
+		padding:@dialogHeaderPadding;
+		background-color: @dialogHeaderBgColor;
+		border:@dialogHeaderBorderWidth solid @dialogContentBorderColor;
+		cursor:move;
+	}
+	.d-title{
+		float:left;
+		display:inline;
+		color: @dialogFontColor;
+		font-size:14px;
+		line-height:2;
+		font-weight:bold;
+	}
+	.d-close{
+		background: @fuiSpriteUrl;
+		&:link,&:visited{
+			float:right;
+			display:inline;
+			margin-top:6px;
+			width:15px;
+			height:15px;
+			overflow:hidden;
+			background-position:0 -40px;
+		}
+		&:hover{
+			background-position:-20px -40px;
+		}
+	}
+	.d-detail{
+		background-color: @dialogContentBgColor;
+		border:@dialogContentBorderWidth solid @dialogContentBorderColor;
+		border-top-width: @dialogContentBorderTopWidth;
+		padding:@dialogDPadding;
+		color: @dialogFontColor;
+		.fui-ico-serious,.fui-ico-success,.fui-ico-general,.fui-ico-doubt{
+			background: @fuiSpriteUrl;
+			display:inline-block;
+			width:16px;
+			height:18px;
+			margin-right:8px;
+			overflow:hidden;
+			background-position:0 -234px;
+			vertical-align:middle;
+		}
+		.fui-ico-success {
+			background-position:-20px -234px;
+		}
+		.fui-ico-general {
+			background-position:-40px -234px;
+		}
+		.fui-ico-doubt {
+			background-position:-60px -234px;
+		}
+	}
+	.d-content{
+		padding:@dialogMPadding;
+	}
+	.d-footer{
+		.clearFloat();
+		padding:@dialogBPadding;
+		margin:@dialogBMargin;
+		border-top:solid 1px #f0f0f0;
+		text-align:right;
+		.d-btn-group{
+			.fui-btn{
+				margin-left:8px;
+				_margin-top:-1px;
+			}
+		}
+	}
+	.d-alert{
+		padding: 26px 0;
+		font-size: 14px;
+		font-weight:700;
+		text-align: center;
+		.detail {
+			margin-top: 8px;
+			font-size: 12px;
+			font-weight: normal;
+			text-align: center;	
+		}
+		i {
+			display: inline-block;
+			height: 24px;
+			width: 24px;
+			margin-right: 10px;
+			background: @fuiSpriteUrl;
+			background-position: 0 -100px;
+			vertical-align: middle;
+		}
+	}
+	 .d-alert-error i {
+		background-position: 0 -340px;	
+	}
+	 .d-alert-info i {
+		background-position: 0 -419px;
+	}
+	 .d-alert-success i {
+		background-position: 0 -380px;	
+	}
+
+}
+.fui-dialog-l{
+	.d-detail{
+		padding:@dialogLargeDPadding;
+	}
+	.d-content{
+		padding:@dialogLargeMPadding;
+	}
+	.d-footer {
+		padding:@dialogLargeBPadding;
+	}
+}
+.fui-dialog-simple {
+	border:solid @dialogSimplateBorderWidth rgba(0,0,0,0.1);
+	.d-detail {
+		background-color: @dialogContentBgColor;
+		border:@dialogSimplateContentBorderWidth solid @dialogSimplateContentBorderColor;
+		padding:8px 8px 4px;
+		text-align:center;
+		white-space:nowrap;
+	}
+	.d-content {
+		padding:8px 12px 12px;
+	}
+	.d-footer {
+		padding:0 0 4px;
+		border-width:0;
+		text-align:center;
+	}
+}
+

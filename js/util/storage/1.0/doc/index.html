@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>storage : 标签
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=jianxiameii&amp;&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">简鲜霞</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'示例', 'href':'../examples/index.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>
+					<ul>
+						<li>在支持localStorage的浏览器上，使用原生的localStorage。 不支持的浏览器使用flash作为fallback的方案，级不支持flash也不支持localStorage的浏览器不兼容。</li>  
+						<li>在原生的setItem和getItem的基础上，提供setJson,getJson的方法，方便存储和读取复杂数据。</li>  
+						<li>为了支持flash这个fallback的方案，所有的操作必须放在ready()这个方法里，并且是异步执行的。原生本地存储到存储上限的时候，抛出的异常也在组件内被转换成error事件。</li>  
+						<li>flash存储有域名限制，验证规则 /((taobao|alipay|alibaba|yahoo|alisoft|alimama|koubei|aliimg)\.(com|net|cn|com\.cn)|1688\.com)$/i</li>  
+					</ul>
+				</p>
+				
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['util/storage/1.0'],function($,Storage){
+	Storage.ready(function(){
+	   // Storage.setItem('foo','i\'m a string');
+	   // console.log(Storage.getItem('foo'));
+	});
+
+	Storage.ready(function(){
+	   // Storage.setJson('jsonTest',{a:'json test'});
+	   // console.log(Storage.getJson('jsonTest'));
+	});
+});
+
+</pre>			
+
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td> </td>
+						  <td></td>
+						  <td></td>
+						  <td></td>
+					 
+					  </tr>				  
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>setItem( key, value ) </td>
+						  <td>key:存储的字段名{string}&nbsp;&nbsp; value:值</td>
+						  <td>/</td>
+						  <td>设置某个字段的值</td>
+					  </tr>
+					  <tr>
+						 <td>getItem( key ) </td>
+						  <td>key:存储的字段名{string} </td>
+						  <td> String </td>
+						  <td>获取本地存储中，此key对应的值</td>
+					  </tr>
+					  <tr>
+						 <td>setJson( key, value ) </td>
+						
+						  <td>key:存储的字段名 {string} &nbsp;&nbsp; value:值 {object}</td>
+						  <td>/</td>
+						  <td>设置某个字段的json值</td>
+					  </tr>		
+					   <tr>
+						 <td>getJson( key ) </td>
+						
+						  <td>key:存储的字段名 {string} </td>
+						  <td> object </td>
+						  <td>获取本地存储中，此key对应的json值</td>
+					  </tr>	
+					 				  
+					   <tr>
+						 <td>removeItem( key ) </td>
+						
+						  <td>key:存储的字段名 {string} </td>
+						  <td> / </td>
+						  <td>删除存储中的某字段</td>
+					  </tr>	
+					  <tr>
+						  <td>clear()</td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>清除所有已经存储的数据，慎用</td>
+					  </tr>
+					  <tr>
+						  <td>getLength()</td>
+						  <td>/</td>
+						  <td>Number</td>
+						  <td> 获取存储空间键值对的个数。HTML5中length是作为属性存在的，这里为了兼容flash的模式</td>
+					  </tr>
+					  <tr>
+						  <td>key()</td>
+						  <td> 第n个键值对{Number}</td>
+						  <td>string | null</td>
+						  <td> 获取已经存储的第n个键名，从0开始，如果第n个不存在，返回null</td>
+					  </tr>
+					   <tr>
+						  <td>ready(func)</td>
+						  <td> func:引擎准备好后要执行的函数 {Function}</td>
+						  <td> / </td>
+						  <td> 把所有操作都包成一个funciton的形式，传入ready()，确保引擎初始化完毕，此方式是为了兼容flash的方式。注意传入的function是异步执行的</td>
+					  </tr>
+					  
+                 </tbody>
+			  </table>
+
+
+				<h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>error </td>
+						  <td>存储失败，可能已经达到客户端存储上限</td>
+					  </tr>
+					  <tr>
+						  <td>securityError </td>
+						  <td>安全错误，你可能使用了不能通过验证的域名</td>
+					  </tr> 
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

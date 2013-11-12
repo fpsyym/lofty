@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>combobox : 选择下拉框
+					<div class="authorInfo">
+						<a href="aliim:sendmsg?touid=cntaobaoqcp%E5%B1%88%E4%BC%A0%E9%B9%8F&amp;siteid=cntaobao&amp;fenliu=1&amp;status=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">屈传鹏</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'属性配置', 'href':'../examples/config.html'},
+								{'txt':'对外接口', 'href':'../examples/interface.html'}
+								
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>代替html默认的combobox组件</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+&lt;div id="test10" style="width:30%;"&gt;&lt;/div&gt;
+&lt;select id="selectId" name="aaa" style="display:none;"&gt;
+	&lt;option value="111"&gt;111111111&lt;/option&gt;
+	&lt;option value="222" selected="selected"&gt;222222222&lt;/option&gt;
+	&lt;option value="333"&gt;333333333&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;script type="text/javascript"&gt;
+	define(['fui/combobox/1.0'], function(Combobox){
+		var combobox = new Combobox({
+			container:"#test10",
+			itemList:"#selectId"
+		});
+		
+	});
+	
+&lt;/script&gt;
+
+</pre>			
+
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>readonly </td>
+						  <td>boolean</td>
+						  <td>false</td>
+						  <td>文本框是否只读，默认可以编辑</td>
+					  </tr>
+					  <tr>
+						  <td>disabled </td>
+						  <td>boolean</td>
+						  <td>false</td>
+						  <td>整个组件是否禁用</td>
+					  </tr>
+					  <tr>
+						  <td>name </td>
+						  <td>string</td>
+						  <td>""</td>
+						  <td>当组件是表单元素时，设置提交表单所用的name属性</td>
+					  </tr>			  
+					  <tr>
+						  <td>itemList</td>
+						  <td>array | 自定义数据源 | 原生select元素的选择器字符串</td>
+						  <td>空数组</td>
+						  <td>下拉框选项的内容，数组格式为[{val:"xx",txt:"xx",selected:"selected"},{val:"xxx",txt:"xxx"}..]</td>
+					  </tr>
+					  <tr>
+						  <td>height</td>
+						  <td>number：26 | 22</td>
+						  <td>26</td>
+						  <td>文本框的高度</td>
+					  </tr>
+					  <tr>
+						  <td>showListener</td>
+						  <td>string："click" | "mouseenter"</td>
+						  <td>"click"</td>
+						  <td>显示下拉框的触发事件</td>
+					  </tr>
+					  <tr>
+						  <td>classPrefix</td>
+						  <td>string</td>
+						  <td>'fui-combobox'</td>
+						  <td>class前缀</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>updateItemList(array)</td>
+						  <td>array:下拉框选项的数据源</td>
+						  <td>组件实例本身</td>
+						  <td>显示tip</td>
+					  </tr>
+					  <tr>
+						  <td>addItem (index,o) </td>
+						  <td>index:要插入的位置，o:下拉框中一项</td>
+						  <td>组件实例本身</td>
+						  <td>在下拉框中指定位置增加一项，如果没有index参数，默认插入到最后</td>
+					  </tr>
+					  <tr>
+						  <td>removeItem (index) </td>
+						  <td>index：要删除的项目的索引</td>
+						  <td>组件实例本身</td>
+						  <td>删除指定位置的选项</td>
+					  </tr>			  
+					  <tr>
+						  <td>getItemList()</td>
+						  <td>/</td>
+						  <td>itemList</td>
+						  <td>获取下拉框选项的列表</td>
+					  </tr>
+					  <tr>
+						  <td>getText()</td>
+						  <td>/</td>
+						  <td>string</td>
+						  <td>返回当前选择的选项的txt的值</td>
+					  </tr>
+					  <tr>
+						  <td>getValue()</td>
+						  <td>/</td>
+						  <td>string</td>
+						  <td>返回当前选择的选项的val的值</td>
+					  </tr>
+					  <tr>
+						  <td>setIndex(index)</td>
+						  <td>number</td>
+						  <td>组件实例本身</td>
+						  <td>选中索引为index的选项</td>
+					  </tr>
+					  <tr>
+						  <td>setReadonly(boolean)</td>
+						  <td>boolean</td>
+						  <td>组件实例本身</td>
+						  <td>改变文本框的只读属性</td>
+					  </tr>
+					  <tr>
+						  <td>setDisabled(boolean)</td>
+						  <td>boolean</td>
+						  <td>组件实例本身</td>
+						  <td>改变组件的禁用状态</td>
+					  </tr>
+					  
+					  
+                 </tbody>
+			  </table>
+
+
+				<h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>change </td>
+						  <td>当下拉框内容改变时触发该事件</td>
+					  </tr>
+					  
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

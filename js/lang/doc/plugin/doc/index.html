@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+
+					
+				<h1>plugin : 插件类
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+				    </div>
+				</h1>
+									
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'PluginDemo', 'href':'../examples/plugin.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>Plugin 实现了对切面编程 <a target="_blank" href="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/aop/doc/index.html">AOP</a> 的一种类封装，以便于把 AOP 的编程模式模块化，对象化。</p>
+				<br/>
+				<p>Plugin 通常不会直接实例化，而是作为基类被新类所继承，并以插件的形态、 AOP 的方式去改变 pluginHost 的默认行为。</p>
+			
+				<h2>创建一个 Plugin</h2>
+				
+<pre class="prettyprint linenums">define('test/pluginDemo', ['lofty/lang/class', 'lofty/lang/plugin'], function(Class, Plugin){
+				
+	var pluginDemo = Class( Plugin, {
+		
+		//默认的入口函数
+		setUp:function(config){
+		   this.beforeHost("show", this._beforeShow);
+		   this.beforeHost("show", this._overrideShow);
+		   this.afterHost("show", this._afterShow);
+		},
+		
+		_beforeShow:function(){
+		   console.log('我在宿主类show方法之前被调用。');
+		},
+		
+		_overrideShow:function(){
+		   console.log(' 我可以覆盖宿主类的show方法。');
+		   return false;
+		},
+		
+		_afterShow:function(){
+		   console.log('我在宿主类show方法之后被调用。');
+		}
+	});
+	
+	// 注意：必须指定 Name 属性，并保证全局唯一性。
+	pluginDemo.Name = 'pluginDemo';
+	return pluginDemo;
+ });
+</pre>	
+
+<p><b>注意</b>：必须显性指定 Name 属性，并保证全局唯一性</p>
+
+<br/>
+<br/>
+
+		<h2>使用Plugin</h2>
+		<p>Plugin既然是插件，自然要找到插件的宿主类方能施展身手，在 lofty 框架中，所有派生自 Base、Widget 类的组件或模块都是天然的宿主对象（当然，你可以创建继承自 pluginHost 的新宿主类）。</p><br/>
+		<p>让我们来创建一个宿主类：</p>				
+<pre class="prettyprint linenums">
+/**
+ * 定义一个空类，测试base类的基本功能。
+ */
+define('test/baseDemo', ['lofty/lang/class', 'lofty/lang/base'], function(Class, Base){
+	
+	var baseDemo = Class( Base, {
+		options: {
+		  isAutoPlay: true
+		},
+		show:function(){
+		  console.log('我来自宿主类的show方法');
+		}
+	});
+	return baseDemo;
+});
+</pre>
+<br/>
+<p>使用插件类，改变宿主类的默认行为：</p>	
+<pre class="prettyprint linenums">
+define(['test/baseDemo','test/pluginDemo'], function(baseDemo, pluginDemo){
+	
+	var obj = new baseDemo({});
+	
+	///////////安装plugin的两种方式//////////////////////
+	//1、动态安装
+	obj.install(pluginDemo);
+	obj.show();
+	
+	//2、初始化时安装
+	var obj2 = new baseDemo({ 
+		plugins:{ plg:pluginDemo, cfg:{}}
+	});
+	obj2.show();
+});
+</pre>			
+<p>请注意查看show方法的执行是否受到 plugin 的影响。</p>	
+			
+	
+		<h2>公共方法</h2>
+		
+		<table class="table table-striped">
+		<thead>
+			  <tr>
+			  <th class="name">方法名称</th>
+			  <th class="param">入参说明</th>
+			  <th class="return">返回值</th>
+			  <th class="function">作用说明</th>
+			  </tr>
+		  </thead>
+		  <tbody>
+				<tr>
+				  <td>setUp ( config ) </td>
+				  <td>
+				  <ul>
+					<li><b>config</b>: {Object} 插件自身的一些配置参数</li>
+				  </ul>
+				  </td>
+				  <td> /</td>
+				  <td> plugin子类的初始化入口函数，由子类自己实现 </td>
+			  </tr>
+			  
+			  <tr>
+				  <td>beforeHost ( method, fn, context ) </td>
+				  <td>
+				  <ul>
+					<li><b>method</b>: {String} 宿主对象上的某个方法名称</li>
+					<li><b>fn</b>: Function 要插入先执行的方法，将在method之后执行</li>
+					<li><b>context</b>: {Object} optional 要插入方法的执行域</li>
+				  </ul>
+				  </td>
+				  <td> handle {EventHandle} 返回AOP事件句柄 </td>
+				  <td>在宿主对象的方法 "之前" 插入插件的函数，插件的函数将先执行。若插入的函数 return false，则宿主对象的方法将不再执行。 相当于覆盖宿主对象的方法</td>
+			  </tr>
+			  <tr>
+				  <td>afterHost ( method, fn, context ) </td>
+				  <td>
+				  <ul>
+					<li><b>method</b>: {String} 宿主对象上的某个方法名称</li>
+					<li><b>fn</b>: Function 要插入执行的方法，将在method之后执行</li>
+					<li><b>context</b>: {Object} optional 要插入方法的执行域</li>
+				  </ul>
+				  </td>
+				  <td> handle {EventHandle} 返回AOP事件句柄 </td>
+				  <td>在宿主对象的方法 "之后" 插入插件的函数，宿主对象的方法将先执行</td>
+			  </tr>	
+			  
+			  <tr>
+				  <td>onHostEvent ( event, fn, context ) </td>
+				  <td>
+				  <ul>
+					<li><b>event</b>: {String | Object} event 事件名称</li>
+					<li><b>fn</b>: Function 监听回调函数</li>
+					<li><b>context</b>: {Object} 监听回调函数的执行域，默认为plugin实例自身</li>
+				  </ul>
+				  </td>
+				  <td> handle {EventHandle} 返回detach事件句柄</td>
+				  <td>监听宿主对象的自定义事件</td>
+			  </tr>	
+			  
+		 </tbody>
+	  </table>
+				
+			
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

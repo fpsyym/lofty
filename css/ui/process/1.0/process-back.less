@@ -1,0 +1,48 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @brief
+* @author yefei.niuyf 2013-05-13  created
+* @updated 
+*/
+
+.fui-process {
+	height:30px;
+	color:@processFontColor;
+	.fui-finish,.fui-current,.fui-wait {
+		float:left;
+		display:inline;
+		width:188px;
+		padding:6px 14px;
+		height:18px;
+		background-color:@processDefaultBgColor;
+		line-height:1.5;
+	}
+	.fui-current {
+		border-top:solid 1px @porcessCurrentBgColor;
+		padding:5px 14px 6px;
+		background-color:#7f9fd1;
+		color:@processCurrentFontColor;
+	}
+	.fui-finish {
+		background-color:@processFinishBgColor;
+	}
+	.fui-c-w,.fui-f-c,.fui-w-w,.fui-f-f {
+		background: @fuiSpriteUrl;
+		float:left;
+		display:inline;
+		width:16px;
+		height:30px;
+		overflow:hidden;
+		background-position:0 -290px;
+	}
+	.fui-f-c {
+		background-position:-20px -290px;
+	}
+	.fui-w-w {
+		background-position:-40px -290px;
+	}
+	.fui-f-f {
+		background-position:-60px -290px;
+	}
+}

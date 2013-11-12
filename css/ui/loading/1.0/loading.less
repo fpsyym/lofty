@@ -1,0 +1,47 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @file fui-loading.less
+* @brief 
+* @author yefniu, yefei.niuyf@alibaba-inc.com
+* @version 1.0.0
+* @date 2013-05-17
+*/
+
+.fui-loading{
+	background-color: #fff;
+	cursor: default;
+	display: none;
+	float: left;
+	height: 24px;
+	padding: 4px 20px;
+	white-space: nowrap;
+	.fui-ico{
+		display: inline;
+		float: left;
+		height: 24px;
+		width: 24px;
+		background: @loadingIcoLargeSpriteUrl;
+	}
+	.fui-txt{
+		color: #999;
+		display: inline;
+		float: left;
+		height: 18px;
+		padding: 3px 0 3px 12px;
+	}
+}
+.fui-loading-part{
+	height: 18px;
+	padding: 3px 12px;
+	.fui-ico{
+		background: @loadingIcoSpriteUrl;
+		background-position: 1px 1px;
+		border-radius: 2px;
+		height: 18px;
+		width: 18px;
+	}
+	.fui-txt{
+		padding: 0 0 0 8px;
+	}
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="http://style.c.aliimg.com/fdevlib/js/lofty/util/history/1.0/history.js"></script>
+        <script type="text/javascript">
+            window.onload = function() {
+				
+				var count = 0;
+                // function for the reference is processed when you click on the link
+                function handlerAnchors() {
+                    // keep the link in the browser history
+                    history.pushState( {state:count++}, "State " + count, this.href );
+
+                    // here can cause data loading, etc.
+
+                    // do not give a default action
+                    return false;
+                }
+
+                // looking for all the links
+                var anchors = document.getElementsByTagName( 'a' );
+
+                // hang on the event, all references in this document
+                for( var i = 0; i < anchors.length; i++ ) {
+                    anchors[ i ].onclick = handlerAnchors;
+                }
+
+                // hang on popstate event triggered by pressing back/forward in browser
+                window.onpopstate = function( e ) {
+
+                    // we get a normal Location object
+
+                    /*
+                    * Note, this is the only difference when using this library,
+                    * because the object document.location cannot be overriden,
+                    * so library the returns generated "location" object within
+                    * an object window.history, so get it out of "history.location".
+                    * For browsers supporting "history.pushState" get generated
+                    * object "location" with the usual "document.location".
+                    */
+                    var returnLocation = history.location || document.location;
+					
+					console.log(returnLocation)
+                    // here can cause data loading, etc.
+
+                    // just post
+                    alert( "We returned to the page with a link: " + returnLocation.href );
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <a href="?state=1">My Link</a>
+        <a href="?state=2">Other Link</a>
+    <!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

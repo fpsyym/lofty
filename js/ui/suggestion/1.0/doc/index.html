@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>suggestion :
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=lxdwxf&amp;site=cnalichn&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">李晓东</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								
+								{'txt':'suggestBase', 'href':'../examples/suggestion1.html'},
+								{'txt':'suggestAll', 'href':'../examples/suggestion2.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>suggestion组件基于AutoComplete组件，在AtuoCompelet基础上扩展了异步获取数据的功能，根据用户输入的内容进行智能提示</p>
+				<p>数据返回格式可以是script或者jsonp，如：var _suggest_result_={"result":[["米奇_mp3%","2318"], [" _mp3%批发","5673"], [" 苹果_mp3%","2822"]]}</p>
+				
+				<p>目前有<b>Base</b>版和<b>All</b>版</p>
+				<ul>
+					<li>Base版提供简单的suggestion功能，也可以通过renderList对结果集进行自定义扩展</li>
+					<li>All在Base版基础上增加了所有结果的特殊形式</li>
+					<li>其他版本敬请期待</li>
+				</ul>
+				
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['fui/suggestion/1.0'], function(Suggestion){
+	var suggestion = new suggestion({
+		target:'#demo1',
+		dataSource : 'http://suggest.1688.com/bin/suggest'
+	});
+
+	//绑定自定义事件
+	demo.on('select',function(){
+		console.log('select one')
+	});
+
+});
+
+</pre>			
+				
+			<h2>配置参数</h2>
+			<h3>base版参数</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="name">配置参数</th>
+						<th class="param">参数类型/可选值</th>
+						<th class="return">参数默认值</th>
+						<th class="function">作用说明</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>api </td>
+						<td>string</td>
+						<td>http://suggest.1688.com/bin/suggest</td>
+						<td>提供输入建议的API，支持script和jsonp</td>
+					</tr>
+					<tr>
+						<td>param </td>
+						<td>object</td>
+						<td>{}</td>
+						<td>自定义传入参数</td>
+					</tr>
+					<tr>
+						<td>dataType </td>
+						<td>string</td>
+						<td>script</td>
+						<td>接口返回数据类型</td>
+					</tr>
+					<tr>
+						<td>varName </td>
+						<td>string</td>
+						<td>_suggest_result_</td>
+						<td>返回结果集的变量名，针对dataType为script时有效</td>
+					</tr>
+					<tr>
+						<td>queryName </td>
+						<td>string</td>
+						<td>q</td>
+						<td>传入接口的查询串的变量名</td>
+					</tr>
+				</tbody>
+			</table>
+			<h3>All版参数</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>allWidth </td>
+						  <td>Number</td>
+						  <td>368</td>
+						  <td>显示所有结果时结果集的宽度</td>
+					  </tr>
+					  <tr>
+						  <td>oneWidth </td>
+						  <td>Number</td>
+						  <td>默认跟目标元素的宽度一致</td>
+						  <td>显示一列时结果集的宽度</td>
+					  </tr>
+					  <tr>
+						  <td>allBtnTrigger </td>
+						  <td>string</td>
+						  <td>trigger</td>
+						  <td>下拉按钮class名</td>
+					  </tr>
+					  <tr>
+						  <td>title </td>
+						  <td>string</td>
+						  <td>''</td>
+						  <td>标题文案，可在结果集上方显示的一段文案</td>
+					  </tr>
+				</tbody>
+			</table>
+			<h3>以下为AutoCompelet组件配置参数</h3>
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>target </td>
+						  <td>string</td>
+						  <td>""</td>
+						  <td>需要自动补全功能的目标元素的jQuery选择器</td>
+					  </tr>
+					  <tr>
+						  <td>width </td>
+						  <td>number</td>
+						  <td>默认跟目标元素的宽度一致</td>
+						  <td>下拉框的宽度</td>
+					  </tr>
+					  <tr>
+						  <td>disabled </td>
+						  <td>boolean</td>
+						  <td>false</td>
+						  <td>是否取消自动补全功能</td>
+					  </tr>
+					  <tr>
+						  <td>autoFocus </td>
+						  <td>boolean</td>
+						  <td>true</td>
+						  <td>是否自动选中第一个选项</td>
+					  </tr>
+					  <tr>
+						  <td>autoHide</td>
+						  <td>boolean</td>
+						  <td>true</td>
+						  <td>焦点离开target元素时，下拉选项是否自动隐藏</td>
+					  </tr>
+					  <tr>
+						  <td>dLeft </td>
+						  <td>number</td>
+						  <td>0</td>
+						  <td>下拉框的位置向左微调的像素数，负值代表向右微调</td>
+					  </tr>
+					  <tr>
+						  <td>dTop </td>
+						  <td>number</td>
+						  <td>0</td>
+						  <td>下拉框的位置向上微调的像素数，负值代表向下微调</td>
+					  </tr>
+					  <tr>
+						  <td>delay </td>
+						  <td>number</td>
+						  <td>0</td>
+						  <td>target触发keyup事件时，去采集数据的延迟时间，当数据为本地数据时，设置为0，若为异步请求时，推荐设置为200</td>
+					  </tr>
+					  <tr>
+						  <td>minLength </td>
+						  <td>number</td>
+						  <td>1</td>
+						  <td>target中字符数的最短长度,当达到minLength时触发采集数据的逻辑</td>
+					  </tr>
+					  <tr>
+						  <td>submitOnEnter </td>
+						  <td>boolean</td>
+						  <td>true</td>
+						  <td>当target是表单元素时，回车是否自动提交表单</td>
+					  </tr>
+					  <tr>
+						  <td>filter </td>
+						  <td>function</td>
+						  <td>选项中以输入内容开始的项目被显示出来</td>
+						  <td>对结果集的过滤方式，异步采集数据时，一般配置为null或空字符串</td>
+					  </tr>
+					  
+					  <tr>
+						  <td>dataSource </td>
+						  <td>array||object||function</td>
+						  <td>/</td>
+						  <td>数据源</td>
+					  </tr>
+					  <tr>
+						  <td>locator </td>
+						  <td>string</td>
+						  <td>"data"</td>
+						  <td>当dataSource返回的值为对象时，需要设置此属性来定位到数据源数组</td>
+					  </tr>
+					  <tr>
+						  <td>renderList </td>
+						  <td>function</td>
+						  <td>显示每一项的label值</td>
+						  <td>自定义下拉框内容</td>
+					  </tr>
+					  
+					  <tr>
+						  <td>itemClass </td>
+						  <td>string</td>
+						  <td>"fui-autocomplete-item"</td>
+						  <td>下拉框中每一项的默认class</td>
+					  </tr>
+					  <tr>
+						  <td>currentItemClass </td>
+						  <td>string</td>
+						  <td>"fui-autocomplete-current-item"</td>
+						  <td>当前选中的下拉框选项的默认class</td>
+					  </tr>
+					  <tr>
+						  <td>classPrefix</td>
+						  <td>string</td>
+						  <td>'fui-autocomplete'</td>
+						  <td>class前缀</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>resetPosition()</td>
+						  <td>/</td>
+						  <td>组件实例本身</td>
+						  <td>重新定位下拉框的位置</td>
+					  </tr>
+					  <tr>
+						  <td>setDisabled (boolean) </td>
+						  <td>boolean</td>
+						  <td>组件实例本身</td>
+						  <td>设置是否禁用自动补全功能</td>
+					  </tr>
+                 </tbody>
+			  </table>
+
+
+				<h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>dataReady</td>
+						  <td>组件使用者需要触发的事件，使用场景：当异步取到数据时，需要触发此事件来让组件渲染下拉框内容，参数：dataList</td>
+					  </tr>
+					  <tr>
+						  <td>select</td>
+						  <td>当选中时，组件会触发该事件，用户可以监听</td>
+					  </tr>
+					  
+					  
+                 </tbody>
+			  </table>
+				
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+					
+				<h1> 创建全局配置文件 </h1>
+								
+				<h2>介绍</h2>
+				<p>应用的 resolve 规则及 alias 定义统一放置在各 style <b>分支的根目录</b>下（如：style_search/app.config.js），并统一命名为<b> app.config.js </b>。这个文件是每个使用 lofty 框架的应用所必须的，后台的 NodeJS AMD 依赖解析程序会解析这个文件，而应用也需要将其引用到业务页面上。</p>
+					
+				<h2>一、 resolve 规则</h2>
+				<p>
+					resolve 规则并非复杂的概念：异步加载模块的情况下, 需要通过约定一种规则，完成从模块 id 到物理文件 url 的转换。这种转换规则是应用自定义的。
+				</p>
+				<p>
+					以 style_search 应用为例，searchweb 的前端应用代码放置在 style.c.aliimg.com/app/search/js/list/ 目录下，当我们定义类模块的 id 时，不必都带上 app/search/js/list/ 的前缀，而是通过 resolve 规则来解决。<br/>请仔细阅读下面示例中的 resolve 函数，并仿照实现自己应用的resolve规则。
+				</p>
+				<p>
+					<b>注：</b>框架目前已经占用了 lofty、sys、gallery 这三个关键字，所以应用的 resolve 规则不能使用这几个关键词。
+				</p>
+				<h2>二、 alias 参数</h2>
+				<p>
+					app.config.js 文件中亦可定义模块的 id 简写，可以把应用中比较公用的业务组件、工具类等，通过 alias 的方式统一定义在这里。
+				</p>
+				
+				<h2>三、 amd 参数</h2>
+				<p>
+					当 amd 值为true时，加载器将启动异步加载模式。这也是我们推荐使用方式。 此开关打开后，线下调试时页面会有多个依赖 JS 文件的异步请求，而线上页面由于 styleCombine3.0 支持对 AMD 模块依赖的自动解析合并，多个请求会被自动合并为一个，从而优化了性能，又最大程度的保持了模块化开发方式。
+				</p>
+				
+				<h2>四、 ignone 参数</h2>
+				<p>
+					igonre 是专门为 Node 程序解析使用，lofty 加载器并不识别该参数。
+				</p>
+				<p>				
+					对于有<b> fdev4 与 lofty 共存</b>应用的 style 分支，为避免线上自动合并时额外引入 lofty 默认版本的 jQuery 文件（ fdev4-min 中已有jQuery），
+					需要在ignore列表中加入 'jquery'， 如此可避免对 jquery 文件的重复引入。
+				</p>
+				<p>				
+					对于<b>纯 lofty 搭建</b>的应用，且 app.config 的 ignore 参数中已有 'jquery'，那么需要在页面上以手动的方式引入 lofty 默认版本的 jQuery 文件（gallery/jquery/jquery-latest.js）  
+				</p>
+				
+				<h2> app.config.js 文件实例 （style_search）</h2>
+<pre class="prettyprint linenums">
+
+(function( env ) {
+    'use strict';
+
+    var configs = {
+        resolve: function( id ) {
+		  var rStyle = /\.css(?:\?|$)/,
+		  parts = id.split('/'),
+                  root = parts[0],
+                  type = rStyle.test( id ) ? 'css/' : 'js/';
+        
+		switch ( root ){
+			case 'cml':
+			case 'plugins':
+			case 'plugins.others':
+			  id = 'app/search/' + type + 'list/'  + id;
+			break;
+		}
+			
+		return id;
+        },
+        alias: {
+		'Tips':'cml/widget/tip',
+		'ImageLoader':'cml/widget/imageLazyload'
+	},
+	/**	
+	* 打开 AMD 异步加载功能。
+	*/
+	amd:true,
+	
+	/**	
+	* Node程序 AMD 依赖解析专用，若分支有 fdev4 与 lofty 同时使用的应用存在的情况下，请在list中加入 'jquery'，
+	* 这样AMD依赖解析程序会排除对 jquery 框架的重复引入。
+	* 
+	* 若ignore中有‘jquery’ 项，则对于纯lofty应用而言，需要手工将 fdevlib/js/gallery/jquery/jquery-latest.js引入到项目中
+	* ！！！请慎重删除 igone中的 ‘jquery’ 项，除非能保证分支中所有使用lofty的应用都是纯lofty应用（无Fdev4）！！！！
+	*/
+	ignore:['jquery']
+
+    };
+    if( typeof env.lofty !== 'undefined' ) {
+        // for lofty
+        env.lofty.config(configs);
+    }
+    if( typeof exports !== 'undefined' && env === exports ) {
+        // for node.js
+        exports.configs = configs;
+    }
+})(this);
+</pre>	
+		
+	<h2>注意</h2>
+	
+	<p>1、请严格按照实例模板编写 app.config.js 文件，此文件为业务页面及 Node 程序所共同解析。</p>
+	
+	<p>2、应用模块的 id 命名不得以 lofty、gallery 或 sys 开始，因为已被 fdevlib、sys 分支占用。</p>
+		
+	</div>
+	<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+	<script>
+		prettyPrint();
+	</script>
+	
+</body>
+</html>

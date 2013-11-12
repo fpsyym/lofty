@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>paging : 分页
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+					</div>	
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'DPL', 'href':'../examples/dpl.html'},
+								{'txt':'动态分页1', 'href':'../examples/paging-dynamic1.html'},
+								{'txt':'静态分页', 'href':'../examples/paging-static.html'},
+								{'txt':'动态分页2', 'href':'../examples/paging-dynamic2.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>分页组件</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['fui/paging/1.0'], function(Paging){
+	//动态渲染（从空div使用JS创建分页组件）
+	var paging = new Paging({
+		container:'#dynamic_paging',
+		onRender:function(index){
+			console.log(index);
+		}
+	});
+
+	//静态态渲染（利用页面上已有Dom创建分页组件）
+	var paging = new Paging({
+		tpl:"#static_paging"
+	});
+});
+</pre>			
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>currentPage </td>
+						  <td>Number</td>
+						  <td>1</td>
+						  <td>当前页码：</td>
+					  </tr>
+					  <tr>
+						  <td>totalPage </td>
+						  <td>Number</td>
+						  <td>10</td>
+						  <td>页码总数</td>
+					  </tr>
+					  <tr>
+						  <td>listSize </td>
+						  <td>Number</td>
+						  <td>9</td>
+						  <td>页码出现省略号时，中间显示的页码个数</td>
+					  </tr>			  
+					  <tr>
+						  <td>hasForm</td>
+						  <td>Boolean</td>
+						  <td>true</td>
+						  <td>是否存在输入框以及按钮 </td>
+					  </tr>
+					  <tr>
+						  <td>showPrevNext</td>
+						  <td>Boolean</td>
+						  <td>true</td>
+						  <td>是否显示“下一页”按钮</td>
+					  </tr>
+					  <tr>
+						  <td>onRender</td>
+						  <td>Function</td>
+						  <td>NULL</td>
+						  <td>点击页码时的回调函数 </td>
+					  </tr>
+					  <tr>
+						  <td>linkUrl</td>
+						  <td>String</td>
+						  <td>NULL</td>
+						  <td>动态渲染分页时，若不传入onRender参数，则点击页码打开linkUrl，格式：http://xxx?page={page} 相对或绝对路径</td>
+					  </tr>
+					  <tr>
+						  <td>classPrefix</td>
+						  <td>String</td>
+						  <td>'fui'</td>
+						  <td>默认的class前缀 </td>
+					  </tr>
+					
+                 </tbody>
+			  </table>
+
+			<h2>公共方法</h2>
+			<table class="table table-striped">
+			<thead>
+				  <tr>
+				  <th class="name">方法名称</th>
+				  <th class="param">入参说明</th>
+				  <th class="return">返回值</th>
+				  <th class="function">作用说明</th>
+				  </tr>
+			  </thead>
+			  <tbody>
+				  <tr>
+					  <td>render (page, totalPage) </td>
+					  <td>page:当前页码 &nbsp;&nbsp; totalPage:总页码</td>
+					  <td>/</td>
+					  <td>渲染页码函数</td>
+				  </tr>
+			 </tbody>
+		  </table>
+		  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

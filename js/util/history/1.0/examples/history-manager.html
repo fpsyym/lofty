@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>lofty 前端基础框架</title>
+	
+		<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	  <link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+		
+		<!-- 组件依赖的DPL样式文件列表 (实际项目中请将$SkinType变量替换为 "back" 或 "front") --->
+		<script type="text/javascript">
+			var cssUrls = "http://style.c.aliimg.com/fdevlib/css/lofty/ui/tabs/1.0/$SkinType/tabs-min.css";
+		</script>
+		
+</head>
+
+<body>
+	<div class="demo-content">
+<div>请在独立窗口中打开Demo，观察浏览器的URL的变化。并尝试点击浏览器历史回退、前进按钮</div>	
+<div class="demo-widget">
+ <div class="demo-widget-dom">	
+  <div class="fui-tab" id="staticTab1">
+	<div class="fui-t">
+		<ul class="fui-tab-ul">
+			<li class="fui-tab-t fui-tab-current"><a href="#" target="_self">选项卡4</a></li>
+			<li class="fui-tab-t"><a href="#" target="_self">选项卡5</a></li>
+			<li class="fui-tab-t"><a href="#" target="_self">选项卡6</a></li>
+		</ul>
+	</div>
+	<div class="fui-d" style="height: 18px;">                       
+		<div class="fui-tab-b">tab1</div>
+		<div class="fui-tab-b">tab2</div>
+		<div class="fui-tab-b">tab3</div>
+	</div> 
+  </div>
+  <br/>
+  <div class="fui-tab" id="staticTab2">
+	<div class="fui-t">
+		<ul class="fui-tab-ul">
+			<li class="fui-tab-t fui-tab-current"><a href="#" target="_self">选项卡4</a></li>
+			<li class="fui-tab-t"><a href="#" target="_self">选项卡5</a></li>
+			<li class="fui-tab-t"><a href="#" target="_self">选项卡6</a></li>
+		</ul>
+	</div>
+	<div class="fui-d" style="height: 18px;">                       
+		<div class="fui-tab-b">tab1</div>
+		<div class="fui-tab-b">tab2</div>
+		<div class="fui-tab-b">tab3</div>
+	</div> 
+  </div>
+  	<script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+	
+	
+	<script type="text/javascript">
+		lofty.config({
+			amd: true
+		});
+
+		define(['fui/tabs/1.0', 'util/historyManager/1.0'], function(Tabs, HistoryManager){
+			
+			var history = new HistoryManager({
+				forceHash:true
+			});
+			
+			//var history2 = new HistoryManager({force:true});
+			
+			var tab1 = new Tabs({
+				tpl:'#staticTab1',
+				event:'click'
+			});
+			var tab2 = new Tabs({
+				tpl:'#staticTab2',
+				event:'click'
+			});
+			
+			tab1.on('switch', function(data){
+				tabSwitchCb("tab1", data.index);
+			});
+			
+			tab2.on('switch', function(data){
+				tabSwitchCb("tab2", data.index);
+			});
+			
+			// hang on mypopstate event triggered by pressing back/forward in browser
+			$( window ).bind( "popstate", function( e ) {
+
+				var state1 = history.getState('tab1');
+				var index1 = state1 || 0;
+				tab1.switchTo(index1);
+				
+				var state2 = history.getState('tab2');
+				var index2 = state2 || 0;
+				tab2.switchTo(index2);
+			});
+			
+			//单个history实例也可以订阅change事件
+			history.on('change', function (e) {
+				var state = history.getState('tab1');
+			});
+			
+			var tabSwitchCb = function( tabkey , tabIndex){
+			
+				var urlStr = '';
+				var keyVal = [];
+				var state = {};
+				state[tabkey] = tabIndex;
+				
+				//拼接 history URL
+				var preState = history.getState();
+				var newState = $.extend(preState, state);
+				$.each(newState, function (key, newVal) {
+					keyVal.push( key + "=" +  newVal);
+				});
+				urlStr = '?' + keyVal.join('&');
+				
+				var preIndex = history.getState(tabkey) || 0;
+				if(preIndex !== tabIndex){
+					history.add( state, {url: urlStr} );
+				}
+			}
+	   });
+			
+	</script>
+
+  </div>		
+</div>	
+	
+	
+
+	
+  </div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

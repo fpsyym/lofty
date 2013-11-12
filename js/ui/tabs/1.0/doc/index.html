@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>tab : 标签
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'DPL', 'href':'../examples/dpl.html'},
+								{'txt':'静态渲染Tabs', 'href':'../examples/tab2.html'},
+								{'txt':'动态渲染Tabs', 'href':'../examples/tab1.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>标签切换组件</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+//注意：若页面上有多个 Tabs 需要同时初始化，需要程序多次调用 new Tabs ({}) 来进行初始化。
+
+define(['fui/tabs/1.0'], function(Tabs){
+	//静态渲染Tabs组件（用页面上已有的Dom）
+	var tab = new Tabs({
+		tpl:'#staticTab'
+	});
+
+	//动态渲染Tabs组件
+	var tab = new Tabs({
+		container:'#dynamicTab',
+		items: [{
+			label: 'Tab1',
+			content: '&lt;p&gt; Tab1 content&lt;/p&gt; '
+		}, {
+			label: 'Tab2',
+			content: '&lt;p&gt; Tab2 content&lt;/p&gt; '
+		}, {
+			label: 'Tab3',
+			content: '&lt;p&gt; Tab3 content&lt;/p&gt; '
+		}]
+	});
+});
+</pre>			
+
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>autoPlay </td>
+						  <td>String: '' | 'line' | 'random'</td>
+						  <td>''</td>
+						  <td>是否自动进行切换 String 三个可选值：</td>
+					  </tr>
+					  <tr>
+						  <td>interval </td>
+						  <td>Number</td>
+						  <td>3000</td>
+						  <td>自动切换的时间间隔 (单位：毫秒)</td>
+					  </tr>
+					  <tr>
+						  <td>event </td>
+						  <td>String</td>
+						  <td>mouseenter</td>
+						  <td>切换的事件触发类型</td>
+					  </tr>			  
+					  <tr>
+						  <td>currentCls</td>
+						  <td>String</td>
+						  <td>fui-tab-current</td>
+						  <td>当前tab的触点class </td>
+					  </tr>
+					  <tr>
+						  <td>disableCls</td>
+						  <td>String</td>
+						  <td>disabled</td>
+						  <td>触点禁用时的class</td>
+					  </tr>
+					  <tr>
+						  <td>titleSelector</td>
+						  <td>String</td>
+						  <td>.fui-tab-t</td>
+						  <td>触点元素集 </td>
+					  </tr>
+					  <tr>
+						  <td>boxSelector</td>
+						  <td>String</td>
+						  <td>.fui-tab-b</td>
+						  <td>内容元素集</td>
+					  </tr>
+					  <tr>
+						  <td>selected</td>
+						  <td>Number</td>
+						  <td>0</td>
+						  <td>设置初始化时第几个触点为当前状态 </td>
+					  </tr>
+					  <tr>
+						  <td>effect</td>
+						  <td>String: 'default', 'updown', 'leftright', 'fade'</td>
+						  <td>'default'</td>
+						  <td>内容元素集</td>
+					  </tr>	
+					  <tr>
+						  <td>duration</td>
+						  <td>Number</td>
+						  <td>500</td>
+						  <td>切换效果的默认时间</td>
+					  </tr>
+					  <tr>
+						  <td>prev</td>
+						  <td>String</td>
+						  <td>.fui-tab-prev</td>
+						  <td>上一页选择器 </td>
+					  </tr>		
+					  <tr>
+						  <td>next</td>
+						  <td>String</td>
+						  <td>.fui-tab-next</td>
+						  <td>下一页选择器</td>
+					  </tr>
+					  <tr>
+						  <td>items</td>
+						  <td>Array</td>
+						  <td>[]</td>
+						  <td>静态渲染时不需要设置该参数<br/>动态渲染时需要设置为[{title:'tab1', content:'tab1 content'}, {}]的格式 </td>
+					  </tr>
+					  <tr>
+						  <td>classPrefix</td>
+						  <td>String</td>
+						  <td>'fui'</td>
+						  <td>默认的class前缀</td>
+					  </tr>				  
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>switchTo (index, callback) </td>
+						  <td>index:标签的序列号 &nbsp;&nbsp; callback:回调函数</td>
+						  <td>/</td>
+						  <td>选中某个标签</td>
+					  </tr>
+					  <tr>
+						  <td>prev () </td>
+						  <td>/</td>
+						  <td>Tabs对象自身</td>
+						  <td>选中并显示上一个标签</td>
+					  </tr>
+					  <tr>
+						  <td>next () </td>
+						  <td>/</td>
+						  <td>Tabs对象自身</td>
+						  <td>选中并显示下一个标签</td>
+					  </tr>			  
+					  <tr>
+						  <td>getLength()</td>
+						  <td>/</td>
+						  <td>Number</td>
+						  <td>返回Tabs组件的标签个数</td>
+					  </tr>
+					  <tr>
+						  <td>getCurrentIndex()</td>
+						  <td>/</td>
+						  <td>Number</td>
+						  <td>返回选中标签的index</td>
+					  </tr>
+					  
+                 </tbody>
+			  </table>
+
+
+				<h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>beforeSwitch </td>
+						  <td>选中标签发生变化前触发该事件</td>
+					  </tr>
+					  <tr>
+						  <td>switch </td>
+						  <td>选中标签发生变化后触发该事件</td>
+					  </tr> 
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

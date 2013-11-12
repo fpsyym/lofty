@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+					
+				<h1>使用 lofty：简单场景 </h1>
+								
+				<h2>介绍</h2>
+				<p>在一些简单的应用场景下，如一张cms运营页面、一个测试Demo等，这些页面没有复杂的模块管理和维护，不需要引入<b>应用框架</b>层面的支持。类似页面可用如下的代码组织方式使用Fdev5：<br/>
+			<p><a href="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/context/simple/simple.html" target="_blank">页面Demo</a></p>
+				</p>
+				
+				<h2>1、新建页面，并引入Fdev5种子文件、页面的入口文件 appstart.js：</h2>
+				
+<pre class="prettyprint linenums">
+  &lt;html&gt;
+   &lt;head&gt;
+	&lt;link href="http://style.c.aliimg.com/fdevlib/css/lofty/port/lofty.css" rel="stylesheet"&gt;&lt;/link&gt; 
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+     ...
+	&lt;script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"&gt;&lt;/script&gt;	
+	&lt;!--页面唯一的入口js--&gt;
+	&lt;script src="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/context/simple/appstart.js"&gt;&lt;/script&gt;
+   &lt;/body&gt;
+   ...
+  &lt;/html&gt;
+</pre>	
+		
+				<h2>2、以页面区块为单位，编写对应的JS AMD 模块：</h2>
+				<p>例如页面有三个区块，分别为热卖区、分页区、地区选择区，则新建三个 AMD 模块，分别命名为：hotsale.js、page.js、combox.js 。以 page.js 示例：</p>
+				
+<pre class="prettyprint linenums"> 
+ define("lofty/lang/doc/context/simple/page", ['fui/paging/1.0'], function(Paging){
+   var pageModule = {
+		
+	//模块的入口函数，必须
+	init:function(){
+		
+	  var self = this;
+	  var page = new Paging({
+		container:'#dynamic_paging',
+		onRender:function(page){
+		  self.otherFunc();
+		}
+	  });
+	}, 
+	otherFunc:function(){
+	  // do something
+	}	
+   }
+   return pageModule;
+ });
+
+</pre>	
+			
+			<h2>3、在 appstart.js 中组织页面的初始化逻辑</h2>
+			<p> appstart 为匿名模块，将立即执行，将页面各模块的 id 引入到 appstart.js 的依赖关系列表中，并在DomReady中显式化调用各模块的 init 函数来做初始化。 appstart.js 代码：</p>
+					
+<pre class="prettyprint linenums"> 
+// 将各个模块的id引入到依赖关系列表中，并主动调用各模块的init函数来做初始化。
+define(['lofty/lang/doc/context/simple/hotsale',
+	'lofty/lang/doc/context/simple/page',
+	'lofty/lang/doc/context/simple/combox', 
+	'jquery'],
+
+  function(SaleModule, PageModule, GeoModule, $){
+	
+	$(document).ready( function(){	
+		SaleModule.init();
+		PageModule.init();
+		GeoModule.init();
+	});
+});
+</pre>			
+
+		<h2>4、缺点：</h2>				
+		<ul>
+			<li>1、这种代码组织方式仍然存在一个集中式管理的类 appstart.js ，新增模块时需要修改这个类。</li>
+			<li>2、不适合页面模块需要随机组合的场景，若将所有的模块都列入到依赖声明列表中，会造成模块执行上的浪费。</li>
+		</ul>
+				
+				
+		<h2>5、完整的页面Demo</h2>
+		
+		<p><a href="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/context/simple/simple.html" target="_blank">完整页面Demo</a></p>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

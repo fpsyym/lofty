@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>lofty 前端基础框架</title>
+
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	<link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+		
+	<style> 
+		button{
+			padding:4px 16px;margin:0 8px;float:left;
+		}
+		.store-show{
+			width:400px;height:30px;padding:2px;border:1px solid #eee;
+		}
+	</style>
+	
+</head>
+
+<body>
+
+	<div id="store-show" class="store-show" style="">
+		时间：<strong style="font-weight:bolder;color:#ff7300;">null</strong>
+	
+	</div>
+	<div id="store-show2"  class="store-show" style="">
+		json：<strong style="font-weight:bolder;color:#ff7300;">null</strong>
+	
+	</div>
+	<button id="b-t">clear()</button><button id="b-t-t">setItem( $str, new Date() )</button><button id="b-t-t2">setJson("json",{"curTime" : new Date()} )</button>
+
+  
+   <script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+   
+	
+	<script type="text/javascript">
+		lofty.config({
+			amd: true
+		});
+		var defaultVal = 0;
+
+		define(['jquery','util/storage/1.0'],function($, Storage){
+		
+			$(function(){
+				Storage.ready(function(){
+				
+					$('#b-t').click(function (){
+						Storage.clear();
+						res();
+					});
+					
+					$('#b-t-t').click(function (){
+					
+						res( new Date(),'' );
+						
+					});   
+					
+					$('#b-t-t2').click(function (){
+					
+						res( '' , { "curTimer" : new Date() });
+					});
+
+					res();
+					
+				});
+
+			});
+			
+			function res ( str,json ){
+				
+				str && Storage.setItem('test-store-json-str',str);
+				
+				$('#store-show strong').html(Storage.getItem('test-store-json-str'));
+				
+				json && Storage.setJson('test-store-json',json);
+			
+				$('#store-show2 strong').html(JSON.stringify(Storage.getJson('test-store-json')));
+			}
+
+		});
+			
+	</script>
+
+ 
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

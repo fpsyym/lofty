@@ -1,0 +1,54 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @file fui-box.less
+* @brief
+* @author yefniu, yefei.niuyf@alibaba-inc.com
+* @version 1.0.0
+* @date 2013-04-19
+*/
+
+.fui-box{
+	border: @boxBorderWidth solid @boxBorderColor;
+	.fui-t{
+		background-color: @boxHeaderColor;
+		height: @boxHeaderHeight;
+		padding: 0 2px 0 14px;
+		h3{
+			line-height: @boxHeaderHeight;
+			font-size: 14px;
+			font-weight: bold;
+		}
+	}
+	.fui-d{
+		border-top: @boxBorderWidth solid @boxBorderColor;
+		padding: @boxContentPadding;
+		.fui-detail{
+			padding: @boxContentPadding;
+		}
+		.fui-line{
+			border-bottom: 1px solid @boxBorderColor;
+		}
+	}
+}
+.fui-box-gray{
+	background: #fafafa;
+	.fui-d{
+		border-width:0 0 1px 0;
+	}
+}
+.fui-box-s{
+	.fui-t{
+		padding:2px 8px;
+	}
+	.fui-d{
+		padding:0;
+	}
+}
+.fui-box-no-border{
+	border:none;
+	.fui-d{
+		border:none;
+	}
+}
+

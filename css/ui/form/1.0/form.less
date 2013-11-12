@@ -1,0 +1,202 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @file fui-form.less
+* @brief
+* @author yefei.niuyf 2013-05-13 created
+* @updated 
+*/
+
+
+.fui-text-calendar {
+	background: @fuiSpriteUrl;
+}
+
+.fui-text {
+	border:solid 1px @textBorderColor;
+	height: @textHeight;
+	width: @textWidth;
+	padding:3px 4px;
+	background-color:@textBgColor;
+	vertical-align:middle;
+	color:#444;
+	background-position: 98px -67px; 
+	box-shadow:inset 0 1px 1px #e6e6e6;
+	&:focus{
+		border-color:@textFocusBorderColor;
+		background-color:@textFocusBgColor;
+		box-shadow:0 0 2px @textFocusShadowColor;
+	}
+}
+.fui-text-s {
+	padding:@textSmallPadding;
+	width:126px;
+	background-position:99px -70px;
+}
+.fui-text-disable{
+	border: 1px solid #dedede;
+	background-color:#f0f0f0;
+}
+.fui-text-error {
+	border-color:@textErrorBorderColor;
+	background-color:@textErrorBgColor;
+	box-shadow: 0px 0px 2px @textErrorShadowColor;
+}
+
+.fui-text-calendar {
+	width:112px;
+	cursor:pointer;
+}
+
+
+
+.fui-form{
+	.clearFloat();
+	padding:3px 0;
+	.fui-t,.fui-d{
+		float: left;
+	}
+	.fui-t{
+		width: 140px;
+		text-align: right;
+		line-height:20px;
+	}
+	.fui-t-l{
+		line-height:24px;
+	}
+	.fui-d{
+		padding-left: 4px;
+	}
+	.fui-list{
+		float: left;
+	}
+	.icon-must{
+		padding-left: 10px;
+		background:@fuiSpriteUrl;
+		background-position: 0 -457px;
+	}
+}
+.fui-form-radio{
+	.fui-radio{
+		float: left;
+		margin: 2px 4px 0px 0px;
+		*margin-top:-2px;
+	}
+	.fui-radio-label{
+		float: left;
+		word-break: break-all;
+		margin-right: 30px;
+	}
+}
+.fui-form-checkbox{
+	.fui-checkbox{
+		float: left;
+		margin: 3px 4px 0px 0px;
+		*margin-top:-2px;
+	}
+	.fui-checkbox-label{
+		float: left;
+		word-break: break-all;
+		margin-right: 30px;
+	}
+}
+.fui-form-textarea{
+	textarea{
+		padding:8px;
+		border: 1px solid @textBorderColor;
+		box-shadow:inset 0 1px 1px @textAreaShadowColor;
+		color:@textAreaTextColor;
+	}
+	.fui-word-count{
+		margin-top:3px;
+		float:right;
+	}
+	.fui-word-have{
+		color:@ImportantFontColor;
+	}
+}
+.fui-ajust{
+	.fui-result{
+		_height: 18px;
+		display:block;
+		border: 1px solid @textBorderColor;
+		border-right: none;
+		line-height: 18px;
+		min-height: 18px;
+		padding: 2px 2px 0 4px;
+		margin-right:20px;
+		width: 50px;
+		box-shadow: inset 0 1px 1px #e6e6e6;
+		zoom: 1;
+	}
+	.fui-operation{
+	    border: solid 1px @textBorderColor;
+	    border-left: none;
+	    display: block;
+	    float: right;
+	    height: 18px;
+	    width: 17px;
+		padding:1px;
+		.fui-up,.fui-down{
+			border:1px solid #ccc;
+			width:15px;
+			height:7px;
+			float:left;
+			font-size:0;
+			background:@fuiSpriteUrl;
+		}
+		.fui-up{
+			background-position:0 -581px;
+			&:hover{
+				background-position:-80px -581px;
+			}
+		}
+		.fui-down{
+			background-position:-20px -581px;
+			&:hover{
+				background-position:-100px -581px;
+			}
+		}
+		.fui-up-disable,.fui-down-disable{
+			border:1px solid #e6e6e6;
+			cursor:default;
+		}
+		.fui-up-disable,.fui-up-disable:hover{
+			background-position:-40px -581px;
+		}
+		.fui-down-disable,.fui-down-disable:hover{
+			background-position:-60px -581px;
+		}
+	}
+}
+.fui-ajust-l{
+	.fui-result{
+		_height:22px;
+		min-height:22px;
+	}
+	.fui-operation{
+		height:22px;
+		.fui-up,.fui-down{
+			height:9px;
+		}
+		.fui-up{
+			background-position:0 -580px;
+			&:hover{
+				background-position:-80px -580px;
+			}
+		}
+		.fui-down{
+			background-position:-20px -580px;
+			&:hover{
+				background-position:-100px -580px;
+			}
+		}
+		.fui-up-disable,.fui-up-disable:hover{
+			background-position:-40px -580px;
+		}
+		.fui-down-disable,.fui-down-disable:hover{
+			background-position:-60px -580px;
+		}
+
+	}
+}

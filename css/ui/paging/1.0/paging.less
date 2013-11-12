@@ -1,0 +1,146 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @file fui-paging.less
+* @brief 
+* @author yefniu, yefei.niuyf@alibaba-inc.com
+* @version 1.0.0
+* @date 2013-05-02
+*/
+
+.fui-paging {
+	.clearFloat();
+	text-align:left;
+	color:#444;
+	span{
+		*padding-bottom:2px;
+	}
+	*{
+		vertical-align:middle;
+		display:inline-block
+	}
+	.fui-paging-list{
+		font-size:@pagingFontSize;
+		a{
+			&:link,&:visited{
+				float:left;
+				width:@pagingNumWidth;
+				height:@pagingNumHeight;
+				line-height:@pagingNumHeight;
+				overflow:hidden;
+				border:solid 1px @pagingBorderColor;
+				margin-right:@pagingNumMarginRight;
+				color:@pagingNumFontColor;
+				text-decoration:none;
+				text-align:center;
+				border-right:@pagingNumBorderRightWidth solid @pagingBorderColor;
+			}
+			&:hover{
+				border-color:@pagingCurrentBorder;
+				color:@pagingNumHoverFontColor;
+			}
+		}
+		.fui-current{
+			&:link,&:visited,&:hover{
+				border:solid 1px @pagingCurrentBorder;
+				background-color:@pagingCurrentBgColor;
+				font-weight:bold;
+				color:@pagingCurrentFontColor;
+				border-right:@pagingCurrentBorderRightWidth;
+			}
+		}
+		.fui-omit{
+			float:left;
+			height:@pagingNumHeight;
+			margin-right:@pagingOmitMarginRight;
+			padding:@pagingOmitPadding;
+			border-left:@pagingOmitBorderWidth solid @pagingBorderColor;
+			border-right:@pagingOmitBorderRightWidth;
+		}
+		.fui-prev{
+			&:link,&:visited{
+				width:@pagingPreNextWidth;
+				margin-right:@pagingPreMarginRight;
+				float:left;
+				cursor:pointer;
+				
+			}
+			&:link,&:visited{
+				border-right:1px solid @pagingBorderColor;
+			}
+			&:hover{
+				border-right:1px solid @pagingCurrentBorder;
+			}
+		}
+		.fui-prev-disabled{
+			&:link,&:visited,&:hover{
+				border-color:@pagingBorderColor;
+				color:#dcdcdc;
+				cursor:default;
+			}
+
+		}
+		.fui-next{
+			&:link,&:visited,&:hover{
+				width:@pagingPreNextWidth;
+				font-weight:normal;
+				margin-right:0;
+				float:left;
+				cursor:pointer;
+			}
+			&:link,&:visited{
+				border-right:1px solid @pagingBorderColor;
+			}
+			&:hover{
+				border-right:1px solid @pagingCurrentBorder;
+			}
+		}
+		.fui-next-disabled{
+			&:link,&:visited,&:hover{
+				border-color:@pagingBorderColor;
+				margin-right:0;
+
+				color:#dcdcdc;
+				cursor:default;
+			}
+		}
+	}
+	
+	.fui-paging-form{
+		display:inline;
+	}
+	
+	.fui-paging-total{
+		padding:2px 0;
+		margin-right:0;
+		
+		.fui-paging-num{
+			vertical-align: bottom;
+		}
+	}
+	.fui-number{
+		span{
+			padding:4px 0;
+			vertical-align:top;
+			_padding:6px 0 0;
+		}
+		input{
+			width:32px;
+			margin-top:2px;
+		}
+	}
+	.fui-paging-total,.fui-number,.fui-forward{
+		margin-left:@pagingOtherMarginLeft;
+	}
+}
+
+.fui-paging-simple{
+	.fui-paging-total{
+		margin:2px 10px 0 0;
+		_margin-right:7px;
+		float: left;
+	}
+	.fui-paging-list{
+		float: left;
+	}
+}

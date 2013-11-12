@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>misc : 公共 Util 函数</h1>
+				
+				
+				
+				<h2>介绍</h2>
+				<p>
+					misc 是将一些比较常用而 jQuery 基础库中不存在的功能函数集合起来形成的类。Fdev4 的 gears.js 中的大部分 Util 函数可以在这个类中找到。
+				</p>
+				
+				<h2>使用方法</h2>				
+<pre class="prettyprint linenums">				
+  define(['util/misc/1.0']), function(Util){
+	var html = "&lt;script&gt;"
+	var encodeHtml = Util.escapeHTML(html); 
+  });
+</pre>
+
+			<h2>公共方法</h2>
+			<table class="table table-striped">
+			<thead>
+				  <tr>
+				  <th class="name">方法名称</th>
+				  <th class="param">入参说明</th>
+				  <th class="return">返回值</th>
+				  <th class="function">作用说明</th>
+				  </tr>
+			  </thead>
+			  <tbody>
+				  <tr>
+					  <td>substitute ( str, data )  </td>
+					  <td> <b>str</b> : {String} 字符串模板<br/>
+						   <b>data</b> : {Object} 填充的数据
+					  </td>
+					  <td>返回字符串</td>
+					  <td>提供简易的模板功能，例子：
+<pre class="prettyprint linenums">
+  Util.substitute('{0}+{1}={2}', [11, 24, 35]); //return "11+24=35";
+  Util.substitute('{a} {b}!', {a:'I\'m', b:'google!'}); //return "I'm google!";
+</pre>
+					  </td>
+				  </tr>
+				  <tr>
+					  <td>escapeHTML ( str, attr ) </td>
+					  <td> <b>str</b> : {Object} 需要转义的字符串<br/>
+						   <b>attr</b> : {Bolean} 是否对属性进行额外处理
+					  </td>
+					  <td>转义后的字符串</td>
+					  <td>将字符串进行HTML转义，使字符串能作为文本插入到HTML节点中显示</td>
+				  </tr>
+				   <tr>
+					  <td>unescapeHTML ( str ) </td>
+					  <td> <b>str</b> : {Object}  需要转化的字符串</td>
+					  <td>转义后的字符串</td>
+					  <td>将字符串转化为HTML DOM结构</td>
+				  </tr>
+				  <tr>
+					  <td>unparam ( s, separator ) </td>
+					  <td> <b>s</b> : {Object} 要hash的字符串<br/>
+						   <b>separator</b> : {Object} 分隔符，默认 '&'
+					  </td>
+					  <td>转化后的对象</td>
+					  <td>将字符串转换成hash, 例如：?key1=value1&key2=value2 ==> {key1:value1, key2:value2}</td>
+				  </tr>
+				  <tr>
+					  <td>goTo ( url, target ) </td>
+					  <td> <b>url</b> : {String} 目标url <br/>
+						   <b>target</b> : {String} 新开窗口or当前窗口 _self|_blank
+					  </td>
+					  <td>/</td>
+					  <td>新开窗口或者当前窗口打开(默认新开窗口),解决IE下referrer丢失的问题</td>
+				  </tr>
+				   <tr>
+					  <td>isIE ( ) </td>
+					  <td>/</td>
+					  <td>true/false</td>
+					  <td>判断当前浏览器是否为IE浏览器</td>
+				  </tr>
+				   <tr>
+					  <td>isIE6 ( ) </td>
+					  <td>/</td>
+					  <td>true/false</td>
+					  <td>判断当前浏览器是否为 IE6 浏览器</td>
+				  </tr>
+				  
+				  <tr>
+					  <td>trim (str ) </td>
+					  <td><b>str</b> : {String} 待处理字符串</td>
+					  <td>处理后在字符串</td>
+					  <td>去除字符串前后空白</td>
+				  </tr>
+				  <tr>
+					  <td>lenB (str) </td>
+					  <td><b>str</b> : {String} 待处理字符串</td>
+					  <td>字符串长度</td>
+					  <td>计算字符串的长度，该方法对中文及全角字符按两个英文字符计算</td>
+				  </tr>
+				  <tr>
+					  <td>cut (str, len, ext ) </td>
+					  <td>
+						<b>str</b> : {String} 待处理字符串
+						<b>len</b> : {Number} 需要截取的长度
+						<b>ext</b> : {String} 对截取后的字符串追加的字符串，默认不追加
+					  </td>
+					  <td>返回截取后的新字符串</td>
+					  <td>按照".lenB()"的规则计算长度并截取字符串，根据参数配置需要追加的字符串</td>
+				  </tr>
+			 </tbody>
+		  </table>
+		  
+	</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

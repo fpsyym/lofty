@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>historyManager : 浏览器历史管理
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'History Manager', 'href':'../examples/history-manager.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+
+				<ul>
+					<li>historyManager组件是用于处理浏览器历史的组件，在单页面站点中(webapp)中有着广泛的使用场景，historyManager组件可触发浏览器URL的变化，
+				并支持浏览器的前进、后退按钮来重新定位到当前状态。</li>
+				<li>对于HTML4浏览器，对history支持的通常做法是使用hash的方式在URL中追加#及相关业务参数，而目前的一些现代浏览器，已支持HTML5的
+				<a href="http://diveintohtml5.info/history.html" target="_blank">HistoryAPI</a> (pushState、replaceState等函数), 无需增加#亦可无刷新记录浏览器历史，且对SEO更加友好。</li>
+				<li>historyManager组件提供了对HTML4、HTML5浏览器的兼容，对于不支持historyAPI的浏览器，依然使用hash的方式，而对于支持historyAPI的浏览器则自动提供
+				更高级别的支持。同时允许使用者使用forceHash=true的方式来强制所有浏览器回退到hash的方式。</li>
+				<li>historyManager组件支持多参数、多状态的处理。</li>
+				</ul>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['util/historyManager/1.0'], function( HistoryManager){
+	var history = new HistoryManager();
+	
+	history.addValue( 'tab1', '2', {url: '?tab1=2'} );
+	//监听浏览器历史改变的回调，用于处理相应逻辑
+	$( window ).bind( "popstate", function( e ) {
+		var state1 = history.getState('tab1');
+		...
+	});
+	//单个history实例也可以订阅change事件
+	history.on('change', function (e) {
+		var state = history.getState('tab1');
+	});
+	//history也可以订阅某个state对应的change事件
+	history.on('changeTab1', function (e) {
+		...
+	});
+});
+</pre>			
+				<h2>配置属性</h2>
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>forceHash </td>
+						  <td>Boolean</td>
+						  <td>false</td>
+						  <td>若 forceHash 设置为true，则无论浏览器是否支持HTML5 history API，都将使用hash的方式(#)</td>
+					  </tr>
+					  <tr>
+						  <td>forceChange </td>
+						  <td>Boolean</td>
+						  <td>false</td>
+						  <td>若 force 设置为true，则调用add或replace函数时，无论state是否有变化，popstate 事件都会被触发</td>
+					  </tr>
+					  		  
+                 </tbody>
+			  </table>
+			  
+			  <h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>addValue (key, value, options) </td>
+						  <td>key{String}:新状态的key <br/> 
+							  value{String|Object}:新状态的value<br/>
+							  options(optional):
+							  <ul>
+								<li>url:新状态对应的URL地址 (String)</li>
+								<li>title:新状态对应的页面title (String)</li>
+								<li>merge:新状态是否和历史状态合并，默认true</li>
+								
+							  </ul>
+						  </td>
+						  <td>historyManager对象自身</td>
+						  <td>增加一条历史记录，调用HTML5的 pushState API 或改变HTML4的hash</td>
+					  </tr>
+					  <tr>
+						  <td>replaceValue (key, value, options) </td>
+							 <td>key{String}:新状态的key <br/> 
+							  value{String|Object}:新状态的value<br/>
+							  options(optional):
+							  <ul>
+								<li>url:新状态对应的URL地址 (String)</li>
+								<li>title:新状态对应的页面title (String)</li>
+								<li>merge:新状态是否和历史状态合并，默认true</li>
+								
+							  </ul>
+						  </td>
+						  <td>historyManager对象自身</td>
+						  <td>替代一条历史记录，将会调用HTML5的 replaceState API 或改变HTML4的hash</td>
+					  </tr>	
+					  <tr>
+						  <td>add (state, options) </td>
+						  <td>state {JSON} 例如：{ state1: 1, state2: 2}</td>
+						  <td>historyManager对象自身</td>
+						  <td>批量增加历史记录，将会调用HTML5的 pushState API， 或改变HTML4的hash</td>
+					  </tr>		
+					  <tr>
+						  <td>replace (state, options) </td>
+						  <td>state{JSON} 例如：{ state1: 1, state2: 2}</td>
+						  <td>historyManager对象自身</td>
+						  <td>批量替代历史记录，将会调用HTML5的 replaceState API， 或改变HTML4的hash</td>
+					  </tr>						  
+					  <tr>
+						  <td>getState(key)</td>
+						  <td>key{String} (optional) 状态的id </td>
+						  <td>状态对应的当前值，若id为空，则返回所有状态值</td>
+						  <td>返回key所对应的历史状态值</td>
+					  </tr>
+
+					  
+                 </tbody>
+			  </table>
+			  
+			  <h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>popstate </td>
+						  <td>浏览器历史状态发生变化时触发该事件，请给window对象绑定该事件</td>
+					  </tr>
+					  <tr>
+						  <td>change </td>
+						  <td>浏览器历史状态发生变化时触发该事件，针对单个history实例，history.on('change',callback)</td>
+					  </tr> 
+					  <tr>
+						  <td>changeMystate </td>
+						  <td>某个状态的值发生时触发该事件，用于单独监听某个状态值的变化，事件规则： change + 状态值首字母改为大写。 history.on('changeMystate', callback)</td>
+					  </tr> 
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>lofty 前端基础框架</title>
+	
+		<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	  <link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+		
+		<!-- 组件依赖的DPL样式文件列表 (实际项目中请将$SkinType变量替换为 "back" 或 "front") --->
+		<script type="text/javascript">
+			var cssUrls = "http://style.c.aliimg.com/fdevlib/css/lofty/ui/tabs/1.0/$SkinType/tabs-min.css";
+		</script>
+
+</head>
+
+<body>
+	<div class="demo-content">
+	
+<div class="demo-widget">
+ <div class="demo-widget-dom">	
+  <div class="fui-tab" id="staticTab">
+	<div class="fui-t">
+		<ul class="fui-tab-ul">
+			<li class="fui-tab-t fui-tab-current"><a href="#" target="_self">选项卡4</a></li>
+			<li class="fui-tab-t"><a href="#" target="_self">选项卡5</a></li>
+			<li class="fui-tab-t"><a href="#" target="_self">选项卡6</a></li>
+		</ul>
+	</div>
+	<div class="fui-d" style="height: 18px;">                       
+		<div class="fui-tab-b">tab1</div>
+		<div class="fui-tab-b">tab2</div>
+		<div class="fui-tab-b">tab3</div>
+	</div> 
+  </div>
+  
+  	<script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+	
+	
+	<script type="text/javascript">
+		lofty.config({
+			amd: true
+		});
+
+		define(['fui/tabs/1.0', 'util/history/1.0'], function(Tabs, history){
+			
+			var tab = new Tabs({
+				tpl:'#staticTab',
+				event:'click'
+			});
+			
+			tab.on('switch', function(data){
+				var index = data.index;
+
+				var state = history.state;
+				var preIndex = state ? state.tab : 0;
+				if(preIndex !== index){
+					history.pushState( {tab:index}, "State " + index, "?tab=" + index );
+				}
+			});
+			
+			// hang on popstate event triggered by pressing back/forward in browser
+			$( window ).bind( "popstate", function( e ) {
+
+				var returnLocation = history.location || document.location;
+				var state = history.state;
+				var index = state ? state.tab : 0;
+				tab.switchTo(index);
+			});
+	   });
+			
+	</script>
+
+  </div>		
+</div>	
+	
+	
+
+	
+  </div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

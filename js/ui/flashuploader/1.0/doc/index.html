@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>flashuploader : 文件上传组件
+					<div class="authorInfo">
+						<a href="aliim:sendmsg?touid=cntaobaoqcp%E5%B1%88%E4%BC%A0%E9%B9%8F&amp;siteid=cntaobao&amp;fenliu=1&amp;status=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">屈传鹏</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'Demo', 'href':'../examples/config.html'},								
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>提供文件上传的功能</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['fui/flashuploader/1.0'], function(FlashUploader){
+	//所有的参数配置都将反映到flash的param上
+	var flash = new FlashUploader({
+		container:"#test"
+	});
+});
+</pre>			
+
+				<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>width</td>
+						  <td>number</td>
+						  <td>65</td>
+						  <td>flash对象的宽度</td>
+					  </tr>
+					  <tr>
+						  <td>height</td>
+						  <td>number</td>
+						  <td>22</td>
+						  <td>flash对象的高度</td>
+					  </tr>
+					  
+					  <tr>
+						  <td>flashvars</td>
+						  <td>object</td>
+						  <td>/</td>
+						  <td>
+								传给flash的一些参数配置<br />
+								enable:设置flash功能初始激活状态，默认为激活
+								buttonSkin:按钮皮肤，需要从上至下提供“normal”“hover”“active”“disabled”四种状态图，且高度一致
+						  </td>
+					  </tr>			  
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>uploadAll( url, param, fileFieldName)</td>
+						  <td>
+							url : String 文件上传的接口URL<br/>
+							param : Object 随文件上传的post参数<br/>
+							fileFieldName : String 文件字段名称
+						  </td>
+						  <td>返回flash组件本身</td>
+						  <td>上传所有文件</td>
+					  </tr>
+					  <tr>
+						  <td>getFileStatuses() </td>
+						  <td>/</td>
+						  <td>array</td>
+						  <td>
+							返回当前所有上传文件状态,具体返回值说明如下<br/>
+							[{<br/>
+								id: "file0",    //由Flash生成的文件id<br/>
+								name: "screenshot.png",    //文件名<br/>
+								size: 340345,    //文件大小<br/>
+								/**<br/>
+								 *文件状态<br/>
+								 *'refused'            已被客户端检测到不符合上传条件，处于被拒绝状态<br/>
+								 *'ready'             准备被处理 <br/>
+								 *'cs_processing'     正在客户端处理文件 <br/>
+								 *'cs_processed'      已经完成文件在客户端的处理 <br/>
+								 *'not_transfered'    不符合上传条件,没有传输到服务器  <br/>
+								 *'transfering'       正传往服务器 <br/>
+								 *'transfer_fail'     传输过程中发生失败 <br/>
+								 *'transfer_canceled' 传输过程中被取消 <br/>
+								 *'transfered'        已传至服务器，等待服务器返回结果 <br/>
+								 *'done'              上传成功，服务器端返回正确接收的响应  <br/>
+								 */ <br/>
+								status: "done",<br/>
+								finished: true,    //上传是否结束<br/>
+								failed: false,    //上传是否失败<br/>
+								status	msg 含义<br/>
+								/**<br/>
+								 * 不同status对应的msg情况说明<br/>
+								 * refused            --    不符合上传条件的原因<br/>
+								 * ready              --    N/A<br/>
+								 * csProcessing       --    进度(0-1的数值)<br/>
+								 * csProcessed        --    N/A<br/>
+								 * notTransfered      --    通过客户端处理但是为被上传的原因，目前只有 "COMPRESS_FAIL"<br/>
+								 * transfering        --    进度(0-1的数值)<br/>
+								 * transferFail       --    上传出错的原因日志<br/>
+								 * transferCanceled   --    N/A<br/>
+								 * transfered         --    N/A<br/>
+								 * done               --    服务器返回的response<br/>
+								 */<br/>
+								msg: "upload accepeted!"    //对应当前status的message<br/>
+							},{<br/>
+								id: "file1",<br/>
+								name: "bear.png",<br/>
+								size: 2048345,<br/>
+								status: "transfering",<br/>
+								finished: false,<br/>
+								failed: false,<br/>
+								msg: 1.68345734         //progress<br/>
+							}, ...<br/>
+							]<br/>
+						  </td>
+					  </tr>
+					  <tr>
+						  <td>getFileStatus (id) </td>
+						  <td>string:文件的ID</td>
+						  <td>object</td>
+						  <td>上传的文件的状态</td>
+					  </tr>			  
+					  <tr>
+						  <td>disable()</td>
+						  <td>/</td>
+						  <td>flash组件本身</td>
+						  <td>禁用组件</td>
+					  </tr>
+					  <tr>
+						  <td>enable()</td>
+						  <td>/</td>
+						  <td>flash组件本身</td>
+						  <td>激活组件</td>
+					  </tr>
+					  <tr>
+						  <td>isEnabled()</td>
+						  <td>/</td>
+						  <td>boolean</td>
+						  <td>返回组件激活状态</td>
+					  </tr>
+					  <tr>
+						  <td>enableMultiple()</td>
+						  <td>/</td>
+						  <td>flash组件本身</td>
+						  <td>允许用户一次选择多个文件</td>
+					  </tr>
+					  <tr>
+						  <td>disableMultiple()</td>
+						  <td>/</td>
+						  <td>flash组件本身</td>
+						  <td>调用这个方法后，用户一次只能选择1个文件</td>
+					  </tr>
+					  <tr>
+						  <td>isMultiple()</td>
+						  <td>/</td>
+						  <td>boolean</td>
+						  <td>返回当前用户目前是否可以选择多个文件</td>
+					  </tr>
+					  <tr>
+						  <td>clear()</td>
+						  <td>/</td>
+						  <td>flash组件本身</td>
+						  <td>清空上传队列。默认情况下，每次上传完毕后，原先的上传队列会保留。可以调用该方法清空上传队列。</td>
+					  </tr>
+					  <tr>
+						  <td>setBrowseFilter(a)</td>
+						  <td>array</td>
+						  <td>flash组件本身</td>
+						  <td>
+							设置浏览文件的类型过滤<br/>
+							[	<br/>
+								{  <br/>
+									description: 'word文件(*.doc; *.docx)',<br/>
+									extensions: '*.doc; *.docx;'<br/>
+								},<br/>
+								{<br/>
+									description: '所有文件',<br/>
+									extensions: '*.*'<br/>
+								}	<br/>
+							]<br/>
+						  </td>
+					  </tr>
+					  <tr>
+						  <td>setFileCountLimit(n)</td>
+						  <td>number</td>
+						  <td>flash组件本身</td>
+						  <td>一次选择的文件个数,多出的文件将会被排除在上传队列之外，文件状态是refused</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  <h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>swfReady </td>
+						  <td>Flash插入成功，并初始化完毕后，触发此事件</td>
+					  </tr>
+					  <tr>
+						  <td>fileSelect </td>
+						  <td>文件选择后触发</td>
+					  </tr>
+					  <tr>
+						  <td>processStart </td>
+						  <td>在客户端对文件进行处理，开始后触发</td>
+					  </tr>
+					  <tr>
+						  <td>processProgress </td>
+						  <td>在客户端对文件进行处理</td>
+					  </tr>
+					  <tr>
+						  <td>processFinish </td>
+						  <td>在客户端对文件处理结束</td>
+					  </tr>
+					  <tr>
+						  <td>transferStart </td>
+						  <td>文件开始网络传输</td>
+					  </tr>
+					  <tr>
+						  <td>transferProgress </td>
+						  <td>网络传输进度事件</td>
+					  </tr>
+					  <tr>
+						  <td>transferError </td>
+						  <td>网络传输发生错误，通常是超时、服务器端返回非HTTP 200响应、连接中断</td>
+					  </tr>
+					  <tr>
+						  <td>transferComplete </td>
+						  <td>网络上行传输完毕</td>
+					  </tr>
+					  <tr>
+						  <td>transferCompleteData </td>
+						  <td>网络下行传输完毕，已收到服务器响应</td>
+					  </tr>
+					  <tr>
+						  <td>finish </td>
+						  <td>所有文件都处理完毕。队列中已经不存在需要处理的文件</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  <h2>后台设置要点</h2>
+				<div>后台上传接口文档<div>
+				<a href="http://b2b-doc.alibaba-inc.com/pages/viewpage.action?pageId=51839646" target="_blank">http://b2b-doc.alibaba-inc.com/pages/viewpage.action?pageId=51839646</a>
+				<div>中文站后台应用需要配置相对应的文件上传服务，需要参考如下代码<div>
+<pre class="prettyprint language-java"><span class="com">
+/**
+ * 支持flash压缩并上传的uploadService，由于flash10压缩图片后被目前的flashPlayer限制，不能按照RFC 1867的规范来提交文件数据，头信息：
+ * 
+ * &lt;pre&gt;
+ * 正常： Content-Disposition: form-data; name="imgFile"; filename="JFBQ00226070619A.gif"
+ * 实际： Content-Disposition: attachment; name="imgFile"; fname="JFBQ00226070619A.gif"
+ * &lt;/pre&gt;
+ * 
+ * 即缺少了RFC中规定的filename字眼，目前与前端开发工程师约定，使用
+ * 'fname'代替，此service调用ServletFileUploadWithFlashSupport在兼容正常的表单上传的同时也支持'fname'作为'filename'的上传
+ * 
+ * @author yue.weny 2009-4-1 下午04:59:33
+ */</span><span class="pln">
+ </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">UploadServiceWithFlashSupport</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">DefaultUploadService</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+	</span><span class="lit">@Override</span><span class="pln">
+	</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> init</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">ServiceInitializationException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+		</span><span class="typ">ResourceLoaderService</span><span class="pln"> resourceLoader </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">ResourceLoaderService</span><span class="pun">)</span><span class="pln"> getService</span><span class="pun">(</span><span class="typ">ResourceLoaderService</span><span class="pun">.</span><span class="pln">SERVICE_NAME</span><span class="pun">);</span><span class="pln">
+
+		</span><span class="com">// 取得暂存文件的目录</span><span class="pln">
+		</span><span class="typ">String</span><span class="pln"> repositoryPath </span><span class="pun">=</span><span class="pln"> getConfiguration</span><span class="pun">().</span><span class="pln">getString</span><span class="pun">(</span><span class="pln">REPOSITORY_KEY</span><span class="pun">);</span><span class="pln">
+		</span><span class="typ">File</span><span class="pln"> repositoryDir</span><span class="pun">;</span><span class="pln">
+
+		</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="typ">StringUtil</span><span class="pun">.</span><span class="pln">isEmpty</span><span class="pun">(</span><span class="pln">repositoryPath</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+			repositoryDir </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="typ">SystemUtil</span><span class="pun">.</span><span class="pln">getUserInfo</span><span class="pun">().</span><span class="pln">getTempDir</span><span class="pun">());</span><span class="pln">
+		</span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+			</span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+				repositoryDir </span><span class="pun">=</span><span class="pln"> resourceLoader</span><span class="pun">.</span><span class="pln">getResourceAsFile</span><span class="pun">(</span><span class="pln">repositoryPath</span><span class="pun">,</span><span class="pln"> </span><span class="typ">ResourceOption</span><span class="pun">.</span><span class="pln">NEED_NOT_EXIST</span><span class="pun">);</span><span class="pln">
+			</span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">ResourceNotFoundException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+				</span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ServiceInitializationException</span><span class="pun">(</span><span class="str">"Upload repository "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> REPOSITORY_KEY </span><span class="pun">+</span><span class="pln"> </span><span class="str">" must be an directory"</span><span class="pun">,</span><span class="pln"> e</span><span class="pun">);</span><span class="pln">
+			</span><span class="pun">}</span><span class="pln">
+		</span><span class="pun">}</span><span class="pln">
+
+		</span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">repositoryDir</span><span class="pun">.</span><span class="pln">mkdirs</span><span class="pun">()</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> </span><span class="pun">!</span><span class="pln">repositoryDir</span><span class="pun">.</span><span class="pln">exists</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+			</span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ServiceInitializationException</span><span class="pun">(</span><span class="str">"Could not create target directory "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> repositoryDir</span><span class="pun">);</span><span class="pln">
+		</span><span class="pun">}</span><span class="pln">
+
+		</span><span class="com">// 设置file upload对象</span><span class="pln">
+		</span><span class="typ">DiskFileItemFactory</span><span class="pln"> factory </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">DiskFileItemFactory</span><span class="pun">();</span><span class="pln">
+
+		factory</span><span class="pun">.</span><span class="pln">setRepository</span><span class="pun">(</span><span class="pln">repositoryDir</span><span class="pun">);</span><span class="pln">
+		factory</span><span class="pun">.</span><span class="pln">setSizeThreshold</span><span class="pun">(</span><span class="pln">getConfiguration</span><span class="pun">().</span><span class="pln">getInt</span><span class="pun">(</span><span class="pln">SIZE_THRESHOLD_KEY</span><span class="pun">,</span><span class="pln"> SIZE_THRESHOLD_DEFAULT</span><span class="pun">));</span><span class="pln">
+
+		fileUpload </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ServletFileUploadWithFlashSupport</span><span class="pun">(</span><span class="pln">factory</span><span class="pun">);</span><span class="com">// 换成支持'fname的'FileUpload</span><span class="pln">
+
+		fileUpload</span><span class="pun">.</span><span class="pln">setSizeMax</span><span class="pun">(</span><span class="pln">getConfiguration</span><span class="pun">().</span><span class="pln">getLong</span><span class="pun">(</span><span class="pln">SIZE_MAX_KEY</span><span class="pun">,</span><span class="pln"> SIZE_MAX_DEFAULT</span><span class="pun">));</span><span class="pln">
+
+		getLogger</span><span class="pun">().</span><span class="pln">info</span><span class="pun">(</span><span class="str">"Upload Path is now "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> getRepository</span><span class="pun">());</span><span class="pln">
+		getLogger</span><span class="pun">().</span><span class="pln">info</span><span class="pun">(</span><span class="str">"Threshold Size "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> getSizeThreshold</span><span class="pun">());</span><span class="pln">
+		getLogger</span><span class="pun">().</span><span class="pln">info</span><span class="pun">(</span><span class="str">"Max Size "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> getSizeMax</span><span class="pun">());</span><span class="pln">
+
+		setInitialized</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="com">// 跳过DefaultUploadService的init，直接设置initialized</span><span class="pln">
+		</span><span class="com">// super.init();</span><span class="pln">
+	</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span></pre>
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

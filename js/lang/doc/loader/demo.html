@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+        <title>Lofty Hello World</title>
+        <script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+		<script>
+			lofty.config({
+				amd:true,	
+				resolve: function( id ) {
+					var rStyle = /\.css(?:\?|$)/,
+						rFdevlib = /^(lofty|gallery)(\/\w+)+/;
+
+					var type = rStyle.test( id ) ? 'css/' : 'js/';
+
+					if ( rFdevlib.test( id ) ){
+						id = 'fdevlib/' + type + id;
+					}
+					return id;
+				}
+			});
+		</script>
+    </head>
+    <body>
+		<p>
+			请打开 firebug 看http请求 及 console
+		</p>
+        <script>
+        define(['lofty/lang/doc/loader/myModule'], function( myModule ){
+			myModule.say( 'hello world!!!!!!!!!!!!!!' );
+		} );
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>lofty 前端基础框架</title>
+
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	<link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+	
+	<!-- 组件依赖的DPL样式文件列表 (实际项目中请将$SkinType变量替换为 "back" 或 "front") --->
+	<script type="text/javascript">
+		var cssUrls = ["http://style.c.aliimg.com/fdevlib/css/lofty/ui/combobox/1.0/$SkinType/combobox-min.css"];
+	</script>
+	
+	<script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+	
+	<style>
+		input[type=button]{
+			padding:6px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="demo-content">
+	
+<div class="demo-title">下拉框组件</div>
+
+<div class="demo-widget">
+ <div class="demo-widget-dom">	
+	<div id="test" style="width:30%;margin-bottom:50px;"></div>
+	<b>对外接口:</b>
+	<div style="margin:10px 0">
+		<input type="button" value="更新下拉选项.updateItemList(array)" onclick="update()"></input>
+		<input type="button" value="增加一项(默认追加到最后).addItem(object)" onclick="addItem()"></input>
+		<input type="button" value="增加一项(指定位置).addItem(index,object)" onclick="addItemToPos()"></input>
+	</div>
+	<div style="margin:10px 0">
+		<input type="button" value="删除指定位置的项目.removeItem(index)" onclick="removePos()"></input>
+		<input type="button" value="获取所有的下拉框选项.getItemList()" onclick="getItemList()"></input>
+		<input type="button" value="获取当前选中的text值.getText()" onclick="getText()"></input>
+	</div>
+	<div style="margin:10px 0">
+		<input type="button" value="获取当前选中的value值.getValue()" onclick="getValue()"></input>
+		<input type="button" value="设置当前选中的项目.setIndex(index)" onclick="setCurrentIndex()"></input>
+		<input type="button" value="监听change事件" onclick="change()"></input>
+	</div>
+	<div style="margin:10px 0">
+		<input type="button" id="readonlyBtn" value="设置只读.setReadonly(true)" onclick="setReadonly()"></input>
+		<input type="button" id="disableBtn" value="设置禁用.setDisabled(true)" onclick="setDisabled()"></input>
+	</div>
+	
+	<script type="text/javascript">
+		lofty.config({
+			amd: true
+		});
+		var combobox;
+		define(['fui/combobox/1.0'], function(Combobox){
+			combobox = new Combobox({
+				container:"#test",
+				//readonly:true,
+				//disabled:true,
+				height:26,
+				name:"aaa",
+				itemList:[
+					{
+						val:"1",
+						txt:"111",
+						selected:"selected"
+					},
+					{
+						val:"2",
+						txt:"222"
+					},
+					{
+						val:"3",
+						txt:"333"
+					}
+				]
+			});
+			combobox.on("change",function(){
+				console.log(arguments);
+			})
+		});
+		var disabled = true;
+		function setDisabled(){
+			combobox.setDisabled(disabled);
+			
+			if(disabled)
+			{
+				$("#disableBtn").val("设置启用.setDisabled(false)");
+			}
+			else
+			{
+				$("#disableBtn").val("设置禁用.setDisabled(true)");
+			}
+			disabled = !disabled;
+		}
+		var readonly = true;
+		function setReadonly(){
+			combobox.setReadonly(readonly);
+			if(readonly)
+			{
+				$("#readonlyBtn").val("设置可编辑.setReadonly(false)");
+			}
+			else
+			{
+				$("#readonlyBtn").val("设置只读.setReadonly(true)");
+			}
+			readonly = !readonly;
+		}
+		function update(){
+			var newList = [
+				{
+					val:"a",
+					txt:"aaa"
+				},
+				{
+					val:"b",
+					txt:"bbb",
+					selected:"selected"
+				},
+				{
+					val:"c",
+					txt:"ccc"
+				},
+				{
+					val:"d",
+					txt:"ddd"
+				},
+			];
+			combobox.updateItemList(newList);
+		}
+		function addItem(){
+			var item = {val:"100",txt:"追加到最后"};
+			combobox.addItem(item);
+		}
+		function addItemToPos(){
+			var item = {val:"200",txt:"追加到第2项"};
+			combobox.addItem(1,item);
+		}
+		function removePos(){
+			combobox.removeItem(1);
+		}
+		function getItemList(){
+			console.log(combobox.getItemList());
+		}
+		function getText(){
+			console.log(combobox.getText());
+		}
+		function getValue(){
+			console.log(combobox.getValue());
+		}
+		function setCurrentIndex(){
+			combobox.setIndex(2);
+		}
+		
+		var listened = false;
+		function change(){
+			if(listened) return;
+			combobox.on("change",function(){
+				alert("changed");
+				console.log(arguments);
+			})
+			listened =true;
+		}
+	</script>
+	
+  </div>		
+</div>	
+
+
+	
+  </div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

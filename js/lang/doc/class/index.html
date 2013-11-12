@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+
+					
+				<h1> Class : 类
+				</h1>
+								
+				<h2>介绍</h2>
+				<p> 面向对象类的实现。可以通过 class 快速创建一个新类，也可以快速的继承另一个类。</p>
+				
+				
+				<h2>使用方法</h2>	
+创建一个新类：				
+<pre class="prettyprint linenums"> 
+define(['lofty/lang/class'], function(Class) {
+   var myClass = Class ({
+	options: {
+	  isAutoPlay: true,
+	  countNum: {
+		value:99,
+	  }
+	},
+	init:function (config){
+	  // do somthing
+	}
+  });
+  return myClass;
+});
+</pre>
+<br/>			
+ 创建一个继承自其它类的新类：			
+<pre class="prettyprint linenums"> 
+// myClass将拥有 base 的所有方法，若有重名则覆盖。
+define(['lofty/lang/class', 'lofty/lang/base'], function(Class, Base) {
+   var myClass = Class ( Base, {
+	options: {
+	  isAutoPlay: true,
+	  countNum: {
+		value:99,
+	  }
+	},
+	init:function (config){
+	  // do somthing
+	}
+  });
+  return myClass;
+});
+</pre>
+
+<br/>
+
+<p>对于通过 Class 创建的类，若类中有 initialize 或者 init 函数，那么实例化类对象时，initialize 或 init 函数会被自动调用，通常我们选其一作为类的入口函数。</p>
+
+		 
+
+
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

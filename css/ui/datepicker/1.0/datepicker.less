@@ -1,0 +1,346 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @brief
+* @author terence.wangt 2013-05-13  created
+* @updated 
+*/
+
+
+.fui-datepicker-multi1 {
+	width: 179px !important;
+}
+.fui-datepicker-multi2 {
+	width: 380px !important;
+	_width: 373px;
+}
+.fui-datepicker-multi3 {
+	width: 568px !important;
+	_width: 560px;
+}
+
+
+.fui-datepicker {
+	background: @calendarBgColor !important;
+	height: auto;
+	border: @calendarBorderWidth solid @calendarBorderColor;
+	font-size: 12px;
+	font-family: Tahoma;
+	box-shadow: 0 0 0;
+
+	.box {
+		margin:4px;
+		_margin:4px 2px;
+		height:auto;
+		width:auto;
+		float:left;
+		*padding-bottom:5px;
+		_padding-bottom:3px;
+		position:relative;
+	}
+	.hd {
+		 background-image: none;
+		 width:171px;
+		 height:24px;
+		 background-color:@calendarHeaderColor;
+		 position:relative;
+	}
+
+	.prev {
+		overflow:hidden;
+		text-indent:-100em;
+		background:url('http://img.china.alibaba.com/cms/upload/work/dpl/work-dpl.png') no-repeat -20px 3px; 
+		height:1;
+		width:10px;
+		float:left;
+		position:absolute;
+		left:3px;
+		top:3px;
+		font-size:10px;
+		text-decoration:none;
+		color:white;
+	}
+
+	.next {
+		overflow:hidden;
+		text-indent:-100em;
+		background:url('http://img.china.alibaba.com/cms/upload/work/dpl/work-dpl.png') no-repeat -42px 3px; 
+		height:1;
+		width:10px;
+		position:absolute;
+		right:3px;
+		top:3px;
+		font-size:10px;
+		text-decoration:none;
+		color:white;
+	}
+	.title,
+	.title:link,
+	.title:visited {
+		color:@calendarTitleColor;
+		text-decoration:none;
+		position:relative;
+		margin-left:auto;
+		margin-right:auto;
+		width:77px;
+		height:17px;
+		line-height:17px;
+		display:block;
+		top:3px;
+		text-align:center; 
+		font-weight: bold;
+	}
+	.title:hover {
+		border:1px solid #fff;
+		top:2px;
+		color:@calendarTitleColor;
+		background-image: none;
+	}
+	.bd {
+		width:171px;
+	}
+	.whd {
+		width:auto;
+		height:19px;
+		overflow:hidden;
+		margin-top:4px;
+		*padding-left:2px;
+		*width:179px;
+		padding-left: 2px;
+	}
+	.whd span {
+		float:left;
+		width:23.6px;
+		text-align:center;
+		line-height:19px;
+	}
+	.whd span, x:-moz-any-link {
+		width:25px;
+	}
+	.whd span, x:-moz-any-link, x:default {
+		width:23.6px;
+	}
+	.dbd {
+		width:166px;
+		height:auto;
+		background-color:@calendarBodyColor;
+		margin:4px 0 0 2px;
+		*padding-left:2px;
+		*width:163px;
+		border-top: @calendarBorderWidth solid @calendarBorderColor;
+		border-right: @calendarBorderWidth solid @calendarBorderColor;
+	}
+	.dbd a,
+	.dbd a:link,
+	.dbd a:visited {
+		color:@DefaultFontColor;
+		float:left;
+		width:22.5px;
+		text-align:center;
+		line-height:22px;
+		text-decoration:none;
+		font-weight: bold;
+		border-left: @calendarBorderWidth solid @calendarBorderColor;
+		border-bottom: @calendarBorderWidth solid @calendarBorderColor;
+	}
+	.dbd a:hover {
+		background-color: transparent;
+		color:@LinkHoverColor;
+	}
+	.dbd a, x:-moz-any-link {
+		width:25px;
+	}
+	.dbd a:link, x:-moz-any-link {
+		width:25px;
+	}
+	.dbd a:visited, x:-moz-any-link {
+		width:25px;
+	}
+	.dbd a,
+	.dbd a:link,
+	.dbd a:visited, 
+	x:-moz-any-link, x:default {
+		width:22.5px;
+	}
+	a.null,
+	a.null:link,
+	a.null:visited {
+		background-color:@calendarNullDateColor;
+		color:#fff;
+		cursor:default;
+	}
+	a.today,
+	a.today:link,
+	a.today:visited {
+		color:@calendarCurrentDateColor;
+		font-weight:bold;
+	}
+	a.selected,
+	a.selected:link,
+	a.selected:visited {
+		background-color:@calendarSelectDateColor;
+	}
+	a.disabled,
+	a.disabled:link,
+	a.disabled:visited{
+		color:@calendarDisabledDateColor;
+		cursor:default;
+		background-color:@calendarDisabledDateBgColor;
+	}
+	a.range,
+	a.range:link,
+	a.range:visited {
+		background-color:@calendarRangeDateColor;
+	}
+	.ft {
+		width:181px;
+	}
+	.ft .ok,
+	.ft .clear{
+		width: 30px;
+	 	text-align:center;
+	 }
+	.time {
+		background-color:#e5e5e5;
+		display:inline-block;
+		*display:inline;
+		*zoom:1;
+		padding:1px 10px 1px 0;
+		width:98px;
+		margin: 5px 0;
+		position:relative;
+		*top:-2px;
+		_top:-1px;
+	}
+	.time .cta {
+		width:13px;
+		height:20px;
+		position:absolute;
+		right:0;
+		top:0;
+		line-height:0;
+	}
+	.time button {
+		width:16px;
+		height:10px;
+		border:0;
+		overflow:hidden;
+		background:url("http://img.china.alibaba.com/cms/upload/2011/928/020/20829_548721671.gif") no-repeat;
+		cursor:pointer;
+	}
+	.time button.u {
+		background-position:0 0;
+	}
+	.time button.d {
+		background-position:-16px 0;
+	}
+	.time span {
+		cursor:pointer;
+	}
+	.time span.on {
+		padding:0 1px;
+		background-color:#333;
+		color:white;
+	}
+	.setime {
+		position: absolute;
+		left: 2px;
+		top: 28px;
+		right: 0px;
+		width: 165px;
+		background: #f2f2f2;
+		border: 1px solid #9bc0e0;
+		vertical-align: middle;
+		height: auto;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.setime p {
+		height:30px;
+		margin:0;
+		padding:0 0 0 30px;
+	}
+	.setime select{
+		width:90px;
+		margin-left: 2px;
+	}
+	.setime input {
+		width:84px;
+		margin-left: 2px;
+	}
+	.selectime {
+		position:absolute;
+		left:0px;
+		bottom:28px;
+		*bottom:32px;
+		right:0px;
+		width:180px;
+		background:@calendarSelectPanelBgColor;
+		border:@calendarSelectPanelBorderWidth solid @calendarSelectPanelBorderColor;
+		text-align:center;
+		vertical-align:middle;
+		height:auto;
+		padding-top:10px;
+		padding-bottom:10px;
+	}
+	.selectime a,
+	.selectime a:link,
+	.selectime a:visited {
+		margin-left:10px;
+		display:inline-block;
+		*display:inline;
+		float:left;
+		text-decoration:none;
+		color:#004499;
+	}
+	.selectime a:hover {
+		text-decoration:underline;
+	}
+	a.x {
+		position:absolute;
+		right:3px;
+		bottom:2px;
+		font-weight:bold;
+		font-family:"comic Sans MS"
+	}
+	.selectime select,
+	.selectime input {
+		width:80px;
+	}
+	.ok{
+		margin-left: 14px;
+	}
+	.cancel {
+		margin-left:2px;
+	}
+
+	.ok, 
+	.clear,
+	.cancel{
+		display: inline-block;
+		border: 1px solid #b3b3b3;
+		border-bottom-color: #9a9a9a;
+		padding: 3px 13px;
+		color: #444444;
+		vertical-align: middle;
+		cursor: pointer;
+		overflow: visible;
+		background-color: #f6f6f6;
+		background-image: -moz-linear-gradient(top, #fafafa, #f2f2f2);
+		background-image: -ms-linear-gradient(top, #fafafa, #f2f2f2);
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fafafa), to(#f2f2f2));
+		background-image: -webkit-linear-gradient(top, #fafafa, #f2f2f2);
+		background-image: -o-linear-gradient(top, #fafafa, #f2f2f2);
+		background-image: linear-gradient(top, #fafafa, #f2f2f2);
+		border-radius: 3px;
+		padding: 1px 9px;
+		border-radius: 2px;
+	}
+
+	.ft .ok,
+	.ft .clear{
+		margin-left: 3px;
+		padding: 1px 2px;
+	}
+
+}

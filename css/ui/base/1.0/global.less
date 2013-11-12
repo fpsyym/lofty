@@ -1,0 +1,72 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @brief
+* @author yefei.niuyf 2013-05-13 created
+* @update terence.wangt 2013-05-23 get global variables
+* @updated 
+*/
+
+
+/* common */
+@DefaultFontColor: #444;
+@HelpFontColor: #888;
+@ImportantFontColor: #ff7300;
+@LinkFontColor: #1e50a2;
+@LinkHoverColor: #ff7300;
+@LinkFontColor2: #225588;
+
+@fuiSpriteUrl:url(http://img.china.alibaba.com/cms/upload/2013/166/837/1738661_523143985.png) no-repeat;
+@fuiAlitalkSpriteUrl:transparent url(http://img.china.alibaba.com/cms/upload/search/common/20120724/alitalk.gif) no-repeat;
+@fuiCommonIconSpriteUrl:transparent url(http://img.china.alibaba.com/cms/upload/search/common/20130525/icon.png) no-repeat;
+
+.linear-graident(@colorStart, @colorEnd){
+    background-color: (@colorEnd + @colorStart) / 2;
+    background-image: -moz-linear-gradient(top, @colorStart, @colorEnd);
+    background-image: -ms-linear-gradient(top, @colorStart, @colorEnd);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@colorStart), to(@colorEnd));
+    background-image: -webkit-linear-gradient(top, @colorStart, @colorEnd);
+    background-image: -o-linear-gradient(top, @colorStart, @colorEnd);
+    background-image: linear-gradient(top, @colorStart, @colorEnd);
+}
+
+.clearFloat(){ 
+    zoom:1;
+    &:after{
+        clear: both;
+        content: " ";
+        display: block;
+        height: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

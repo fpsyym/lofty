@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+
+					
+				<h1>log : 日志类
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=weiqijun2010&amp;site=cnalichn&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">魏琪君</span>
+						</a>
+				    </div>
+				</h1>
+								
+				<h2>介绍</h2>
+				<p>日志类，从 butterfly 迁移而来，高级浏览器下直接在控制台输出日志，IE 浏览器在可以把日志打印到页面上。</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums">define(['lofty/lang/log'], function(Log){
+	var log = new Log('widget.Tabs');
+	log.info('log info demo');
+	log.warn('log warn demo');
+	log.error('log error demo');
+ });
+</pre>			
+
+			<h2>配置方法</h2>
+				
+			 在 URL 中可以添加参数来查看不同等级、不同模块的日志：
+<pre class="prettyprint linenums"> &debug-log-level=info | error | warn | debug
+ &debug-log-filter=...
+ &debug-console=true | false
+</pre>	
+
+
+			<h2>示例</h2>
+			<p><a href="http://sz99and1.cn.1688.com/?debug-log-level=info" target="_blank"> http://sz99and1.cn.1688.com/?debug-log-level=info </a></p>
+			<p>也可以单独将某个模块的日志打印出来，需要在 URL 后增加类似 debug-log-filter=widget.Tabs 的参数</p>
+			
+			<h2>IE下示例</h2>
+			<p>追加参数 debug-console=true 会在页面结尾渲染出日志内容，同时出现一个textarea可以允许我们在IE下运行js</p>
+			<p><a href="http://sz99and1.cn.1688.com/?debug-console=true&debug-log-level=info" target="_blank"> http://sz99and1.1688.com/?debug-console=true&debug-log-level=info </a></p>
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

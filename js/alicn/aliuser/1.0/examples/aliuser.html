@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>lofty 前端基础框架</title>
+	
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	<link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+
+	<script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+</head>
+
+<body>
+<p>请打开 console 看程序输出值:</p>
+<div class="demo-content">
+  <div class="demo-widget">
+	 <div class="demo-widget-dom">	
+		<script>
+			lofty.config({
+				amd: true
+			});
+			define(['alicn/aliuser/1.0'],function(AliUser){
+				console.log( "islogin:" + AliUser.isLogin());
+				console.log( "LoginId:" + AliUser.getLoginId());
+				console.log( "LastLoginId:" + AliUser.getLastLoginId());
+				console.log( "LastMerberId:" + AliUser.getLastMemberId());
+			});
+		</script>
+	 </div>		
+  </div>
+</div>  
+		
+		
+	<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+
+</html>

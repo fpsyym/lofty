@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>sortable : 排序组件
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'默认排序', 'href':'../examples/sortable.html'},
+								{'txt':'横向排序', 'href':'../examples/sortable-horiztal.html'},
+								{'txt':'多列排序', 'href':'../examples/sortable-multi.html'},
+								{'txt':'Grid排序', 'href':'../examples/sortable-grid.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>排序组件，给一组Dom元素添加排序功能，通过鼠标拖拽的方式来实现。</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+
+define(['fui/sortable/1.0'], function(Sortable){
+			
+	var sort = new Sortable({
+		tpl:'#demo1',
+		items: '>li',
+		placeholder: 'placeholder',
+		cursorAt: {
+			top: 5,
+			left: 5
+		},
+		opacity: .5
+	});
+});
+
+</pre>			
+
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>axis </td>
+						  <td>String: 'x' | 'y'</td>
+						  <td>false</td>
+						  <td>如果被定义了，则选项只能被水平或者垂直托动,可选的值："x","y"</td>
+					  </tr>
+					  <tr>
+						  <td>orientation </td>
+						  <td>String</td>
+						  <td>vertical</td>
+						  <td>该配置的作用是辅助排序算法，指定模块的排序方向。当出现模块全部位于水平时需要使用"horizontal"</td>
+					  </tr>
+					  <tr>
+						  <td>handle </td>
+						  <td>Boolean</td>
+						  <td>false</td>
+						  <td>限制排序的动作只能在item元素的某个元素开始</td>
+					  </tr>			  
+					  <tr>
+						  <td>items</td>
+						  <td>String</td>
+						  <td>'> *'</td>
+						  <td>该配置为选择器，提供排序模块的节点条件</td>
+					  </tr>
+					  <tr>
+						  <td>helper</td>
+						  <td>String</td>
+						  <td>'original'</td>
+						  <td>设置是否在拖拽元素时，显示一个辅助的元素。可选值： 'original','clone'</td>
+					  </tr>
+					  <tr>
+						  <td>appendTo</td>
+						  <td>String</td>
+						  <td>'parent'</td>
+						  <td>指定helper追加在哪个元素后面 </td>
+					  </tr>
+					  <tr>
+						  <td>opacity</td>
+						  <td>Number</td>
+						  <td>无</td>
+						  <td>0 - 1 之间的数值，设置"helper"的透明度</td>
+					  </tr>
+					  <tr>
+						  <td>placeholder</td>
+						  <td>String</td>
+						  <td>false</td>
+						  <td>设置当排序动作发生时，空白占位符的CSS样式 </td>
+					  </tr>
+					  <tr>
+						  <td>dropOnEmpty</td>
+						  <td>Function | Boolean</td>
+						  <td>true</td>
+						  <td>当"columns"有多个的情况下，出现某个"column"中没有"item"，是否允许从其他"column"拖拽"item"到空的"column"内</td>
+					  </tr>	
+					  <tr>
+						  <td>scroll</td>
+						  <td>Boolean</td>
+						  <td>true</td>
+						  <td>拖拽过程中是否进行智能滚屏</td>
+					  </tr>
+					  <tr>
+						  <td>scrollSensitivity</td>
+						  <td>Number</td>
+						  <td>20</td>
+						  <td>设置当元素移动至边缘多少像素时，便开始滚动页面 </td>
+					  </tr>		
+					  <tr>
+						  <td>scrollSpeed</td>
+						  <td>Number</td>
+						  <td>20</td>
+						  <td>设置页面的滚动速度</td>
+					  </tr>
+					  <tr>
+						  <td>revert</td>
+						  <td>Number</td>
+						  <td>0</td>
+						  <td>拖拽结束，释放鼠标后，"helper"到"placeholder"的一个动画效果的时长(毫秒) </td>
+					  </tr>
+					  <tr>
+						  <td>zIndex</td>
+						  <td>Number</td>
+						  <td>1000</td>
+						  <td>拖拽时"helper"的"z-index"样式属性</td>
+					  </tr>		
+					  <tr>
+						  <td>classPrefix</td>
+						  <td>String</td>
+						  <td>'fui'</td>
+						  <td>默认的class前缀</td>
+					  </tr>				  
+                 </tbody>
+			  </table>
+			  
+
+				<h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>capture </td>
+						  <td>当鼠标在"item"的"handle"区域点下(未释放)时，触发的事件。事件传递对象有：<br/>
+<pre class="prettyprint linenums">
+ o:{
+	currentItem: currentItem    //当前的"item"
+  }
+ e:event
+</pre>
+						  </td>
+					  </tr>
+					  <tr>
+						  <td>start </td>
+						  <td>当鼠标在"item"的"handle"区域点下(未释放)并开始移动时触发。事件传递对象有：<br/>
+<pre class="prettyprint linenums">
+ o:{
+    columns: self.columns,  //当前所有的column。假如未配置，则为初始化的容器本身
+    items: self.items,  //当前的所有item
+    currentItem: self.currentItem,  //当前被拖拽的item
+    currentColumn: self.currentColumn,  //"placeholder"所在的column
+    originalColumn: self.originalColumn,   //被拖拽的item在拖拽开始时所在的column 
+    helper: self.helper,    //"helper"节点引用
+    placeholder: self.placeholder   //"placeholder"节点引用
+ }
+ e:event
+</pre>	
+						  </td>
+					  </tr> 
+					  <tr>
+						  <td>over </td>
+						  <td>在拖拽过程中，切换column时触发。事件传递对象有：(同start事件)</td>
+					  </tr>
+					  <tr>
+						  <td>change </td>
+						  <td>在拖拽过程中，placeholder位置发生变化时触发。事件传递对象有：(同start事件)</td>
+					  </tr> 
+					  <tr>
+						  <td>stop </td>
+						  <td>当拖拽结束并释放鼠标时触发。事件传递对象有：(同start事件)</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

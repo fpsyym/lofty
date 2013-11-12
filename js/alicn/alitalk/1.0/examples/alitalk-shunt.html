@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>lofty 前端基础框架</title>
+	
+	 	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	    <link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+		
+		<!-- 组件依赖的DPL样式文件列表 (实际项目中请将$SkinType变量替换为 "back" 或 "front") --->
+		<script type="text/javascript">
+			var cssUrls = "http://style.c.aliimg.com/fdevlib/css/lofty/alicn/alitalk/1.0/alitalk.css";
+		</script>
+
+	<script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+	
+	<script type="text/javascript">
+		lofty.config({
+			amd: true
+		});	
+	</script>
+</head>
+
+<body>
+
+<p>旺旺分流组件，用于首页的alibar、诚信通等业务，当客户点击该旺旺时，会分流到不同的客服人员回答客户的问题。</p>
+<br/>
+	<div class="demo-content">
+	
+<div class="demo-widget">
+ <div class="demo-widget-dom">	
+	
+	
+    <div id="demo1">
+		<a rel="nofollow" class="order-online alitalk alitalk-mb" href="javascript:;" data-alitalk-shunt="{'positionId':'Top_Banner'}" title="在线订购申请" data-trace="cn_alibar_cxt_alitalk">在线订购申请</a>
+	</div>
+	
+	<script type="text/javascript">
+		define(['alicn/alitalk-shunt/1.0'], function(AliShunt){
+			AliShunt.init($('a.order-online', "#demo1"), {
+				attr: 'alitalk-shunt',
+				ruleId: 'ALITALK_INCALL_ROLE_CTP01'			// 默认分流positionid
+			})	
+	   });
+	</script>
+
+ </div>		
+</div>	
+
+  </div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

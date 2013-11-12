@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>flashclipboard : 剪切板复制组件
+					<div class="authorInfo">
+						<a href="aliim:sendmsg?touid=cntaobaoqcp%E5%B1%88%E4%BC%A0%E9%B9%8F&amp;siteid=cntaobao&amp;fenliu=1&amp;status=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">屈传鹏</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'Demo', 'href':'../examples/config.html'},								
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>本组件使用flash来完成复制剪贴板功能。兼容绝大多数浏览器</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['fui/clipboard/1.0'], function(FlashClipboard){
+		
+	//所有的参数配置都将反映到flash的param上
+	var flash = new FlashClipboard({
+		container:"#test"
+	});
+
+	flash.on("swfReady",function(){
+		debugStr("#debug_1","swfReady");
+	}).on("mouseDown",function(){
+		flash.setText($("#input_1").val())
+	}).on("complete",function(e,data){
+		console.log("copy text:"+data.text);
+	});
+});					
+</pre>			
+
+				<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>width</td>
+						  <td>number</td>
+						  <td>30</td>
+						  <td>flash对象的宽度</td>
+					  </tr>
+					  <tr>
+						  <td>height</td>
+						  <td>number</td>
+						  <td>18</td>
+						  <td>flash对象的高度</td>
+					  </tr>
+					  
+					  <tr>
+						  <td>flashvars</td>
+						  <td>object</td>
+						  <td>/</td>
+						  <td>
+								传给flash的一些参数配置<br />
+								默认情况下，flash 按钮的文字为"复制",透明背景。<br />
+                    
+                    flashvars中的style可以根据需要进行自定义设置，可以设置的属性为：<br />
+<pre>
+flashvars:{
+	style:'clipboard{ //style的名字必须为clipboard
+		text:复制我吧;//按钮的文本
+		fontSize:19;//按钮文字的大小
+		color:#FF0000;//按钮文字的颜色
+		bgColor:#B1DDF8;//默认的背景色
+		bgColor.hover:#E1F3FD;//hover状态的背景色
+		bgColor.active:#E5F1F7;//鼠标按下时的背景色
+		bgAlpha:1;//背景的透明度
+	}'
+}
+                  
+</pre>
+						  </td>
+					  </tr>			  
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>setText(text:string)</td>
+						  <td>
+							text：需要复制的文本
+						  </td>
+						  <td>/</td>
+						  <td>确定复制的文本</td>
+					  </tr>
+					  <tr>
+						  <td>setHandCursor(b:boolean) </td>
+						  <td>b:true|false</td>
+						  <td>/</td>
+						  <td>
+							当鼠标hover到组件时，样式是否是手型
+						  </td>
+					  </tr>
+					  
+                 </tbody>
+			  </table>
+			  <h2>事件</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">事件名称</th>
+					  <th class="function">事件说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>swfReady </td>
+						  <td>Flash插入成功，并初始化完毕后，触发此事件</td>
+					  </tr>
+					  <tr>
+						  <td>mouseOver </td>
+						  <td>鼠标移动到flash按钮上分发的事件</td>
+					  </tr>
+					  <tr>
+						  <td>mouseOut </td>
+						  <td>鼠标离开flash按钮分发的事件</td>
+					  </tr>
+					  <tr>
+						  <td>mouseDown </td>
+						  <td>鼠标按下flash按钮分发的事件</td>
+					  </tr>
+					  <tr>
+						  <td>mouseUp </td>
+						  <td>鼠标抬起flash按钮分发的事件</td>
+					  </tr>
+					  <tr>
+						  <td>complete </td>
+						  <td>
+							完成复制分发的事件,该事件会回传数据，结构为:<br/>
+							<pre>
+数据结构为
+{
+	swfid: "clipboard_2"//flash的id
+	text: "copy me!"//复制的文本
+	type: "complete"//事件名
+}
+							</pre>
+						  </td>
+					  </tr>
+					  
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>tip : 提示框
+					<div class="authorInfo">
+						<a href="aliim:sendmsg?touid=cntaobaoqcp%E5%B1%88%E4%BC%A0%E9%B9%8F&amp;siteid=cntaobao&amp;fenliu=1&amp;status=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">屈传鹏</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'tip浮层属性配置', 'href':'../examples/config.html'},
+								{'txt':'tip浮层对外接口', 'href':'../examples/interface.html'},
+								{'txt':'普通信息提示DPL', 'href':'../examples/tip.html'},
+								{'txt':'操作信息提示DPL', 'href':'../examples/tip-action.html'}
+								
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>提示框</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['fui/tip/1.0'], function(Tip){
+	var tip = new Tip({
+		target:"#test1",
+		content:"message"
+	});
+});
+</pre>			
+
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>target </td>
+						  <td>String:jQuery选择器</td>
+						  <td>''</td>
+						  <td>tip作用的目标元素</td>
+					  </tr>
+					  <tr>
+						  <td>isRoundedCorner </td>
+						  <td>boolean</td>
+						  <td>true</td>
+						  <td>tip是否有圆角</td>
+					  </tr>
+					  <tr>
+						  <td>hasCloseButton </td>
+						  <td>boolean</td>
+						  <td>false</td>
+						  <td>是否有关闭按钮</td>
+					  </tr>			  
+					  <tr>
+						  <td>onCloseButtonClick</td>
+						  <td>function</td>
+						  <td>空方法</td>
+						  <td>当有关闭按钮，并且点击关闭按钮时的回调方法，回调方法返回false的话会阻止tip的关闭</td>
+					  </tr>
+					  <tr>
+						  <td>content</td>
+						  <td>String</td>
+						  <td>""</td>
+						  <td>tip显示的内容</td>
+					  </tr>
+					  <tr>
+						  <td>local</td>
+						  <td>number</td>
+						  <td>1</td>
+						  <td>tip提示框相对目标元素的方位： 1:top left 2:top right 3:bottom left 4:bottom right 5:left top 6:left bottom 7:right top 8:right bottom</td>
+					  </tr>
+					  <tr>
+						  <td>arrow</td>
+						  <td>number</td>
+						  <td>9</td>
+						  <td>箭头相对tip提示框的方位：0:null 1:top left 2:top right 3:bottom left 4:bottom right 5:left top 6:left bottom 7:right top 8:right bottom 9:default</td>
+					  </tr>
+					  <tr>
+						  <td>width</td>
+						  <td>Number</td>
+						  <td>150</td>
+						  <td>设置提示框的宽度 </td>
+					  </tr>
+					  <tr>
+						  <td>dLeft</td>
+						  <td>number</td>
+						  <td>0</td>
+						  <td>提示框向左微调的像素数，当为负数时表示向右微调</td>
+					  </tr>	
+					  <tr>
+						  <td>dTop</td>
+						  <td>Number</td>
+						  <td>0</td>
+						  <td>提示框向上微调的像素数，当为负数时表示向下微调</td>
+					  </tr>
+					  <tr>
+						  <td>isAnim</td>
+						  <td>boolean</td>
+						  <td>true</td>
+						  <td>提示框在显示和隐藏时是否有动画效果</td>
+					  </tr>		
+					  <tr>
+						  <td>animTime</td>
+						  <td>number</td>
+						  <td>50</td>
+						  <td>动画效果持续的时间，单位毫秒</td>
+					  </tr>
+					  <tr>
+						  <td>isHoverHold</td>
+						  <td>boolean</td>
+						  <td>true</td>
+						  <td>鼠标经过tip提示框时，提示框是否保持显示状态</td>
+					  </tr>
+					  <tr>
+						  <td>hideDelay</td>
+						  <td>number</td>
+						  <td>200</td>
+						  <td>当需要隐藏tip时，设置隐藏的延迟时间，单位毫秒，默认为200毫秒，当设置为0时，不延迟</td>
+					  </tr>	
+					  <tr>
+						  <td>isOnloadShow</td>
+						  <td>boolean</td>
+						  <td>false</td>
+						  <td>页面加载完成，是否自动显示tip</td>
+					  </tr>	
+					  <tr>
+						  <td>onloadHold</td>
+						  <td>number</td>
+						  <td>一直显示</td>
+						  <td>页面加载完成后显示tip的时间</td>
+					  </tr>
+					  <tr>
+						  <td>overflowChange</td>
+						  <td>boolean</td>
+						  <td>true</td>
+						  <td>当tip提示框溢出页面时，是否在目标元素的反方向显示（例：tip显示在目标元素上方，当溢出时，自动显示在目标元素的下方）</td>
+					  </tr>
+					  <tr>
+						  <td>isAutoHide</td>
+						  <td>boolean</td>
+						  <td>true</td>
+						  <td>是否自动隐藏，默认true（滚动条滚动，document其他元素点击时，tip会消失）</td>
+					  </tr>
+					  <tr>
+						  <td>showListener</td>
+						  <td>string</td>
+						  <td>'mouseenter'</td>
+						  <td>显示tip的触发事件,当配置为空时，需要调用.show()方法来显示tip</td>
+					  </tr>
+					  <tr>
+						  <td>hideListener</td>
+						  <td>string</td>
+						  <td>'mouseleave'</td>
+						  <td>隐藏tip的触发事件,当配置为空时，需要调用.hide()方法来隐藏tip</td>
+					  </tr>
+					  <tr>
+						  <td>beforeShow</td>
+						  <td>function</td>
+						  <td>空方法</td>
+						  <td>设置在tip显示之前的自定义处理，当方法返回false时，将阻止tip框显示</td>
+					  </tr>
+					  <tr>
+						  <td>classPrefix</td>
+						  <td>string</td>
+						  <td>'fui-tip'</td>
+						  <td>组件中class的默认前缀</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>show()</td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>显示tip</td>
+					  </tr>
+					  <tr>
+						  <td>hide () </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>隐藏tip</td>
+					  </tr>
+					  <tr>
+						  <td>getCurrentTarget () </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>获取tip作用的当前的目标元素</td>
+					  </tr>			  
+					  <tr>
+						  <td>setCurrentTarget(o)</td>
+						  <td>当前的目标元素</td>
+						  <td>/</td>
+						  <td>由于jQury选择的元素是数组，此参数需要穿特定的元素，不能为数组。合法的例子：$("...")[0]或者document.getElementById("...")</td>
+					  </tr>
+					  <tr>
+						  <td>setContent()</td>
+						  <td>string</td>
+						  <td>/</td>
+						  <td>设置tip提示框的内容</td>
+					  </tr>
+					  <tr>
+						  <td>setLocal()</td>
+						  <td>number</td>
+						  <td>/</td>
+						  <td>设置tip提示框相对目标元素的方位</td>
+					  </tr>
+					  <tr>
+						  <td>setArrow()</td>
+						  <td>number</td>
+						  <td>/</td>
+						  <td>设置箭头相对提示框的方位</td>
+					  </tr>
+					  <tr>
+						  <td>setWidth()</td>
+						  <td>number</td>
+						  <td>/</td>
+						  <td>设置提示框的宽度</td>
+					  </tr>
+					  <tr>
+						  <td>setDLeft()</td>
+						  <td>number</td>
+						  <td>/</td>
+						  <td>设置提示框向左微调的像素数</td>
+					  </tr>
+					  <tr>
+						  <td>setDTop()</td>
+						  <td>number</td>
+						  <td>/</td>
+						  <td>设置提示框向上微调的像素数</td>
+					  </tr>
+					  
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

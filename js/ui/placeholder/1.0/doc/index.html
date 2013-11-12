@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>placeholder : 输入提示
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=lishijunlll&amp;site=cnalichn&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">李世君</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'demo', 'href':'../examples/placeholder.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>在html5中有个placeholder属性，供可描述输入字段预期值的提示信息，该提示会在输入字段为空时显示，并会在字段获得焦点时消失。</p>
+				<p>placeholder 属性适用于以下的input类型：text, search, url, telephone, email 以及 password。当然也适用于textarea。</p>
+				<p>可惜的是IE9及其以下版本都不支持该属性，还有部分浏览器如Safari，Opera，IE10等尽管支持，但是展现形式又与firefox、chrome等常用浏览器不一致。</p>
+				<p>该组件就是为了这个问题而生，具体解决方案如下：</p>
+				<p>方案一：在支持placeholder的浏览器上，使用原生的placeholder， 不支持的浏览器使用该组件模拟。</p>
+				<p>方案二：因为有浏览器支持的形式不一致，为了统一，可以屏蔽浏览器默认属性placeholder，选择全部使用该组件来模拟。</p>
+				<h2>使用方法</h2>
+				
+				<pre class="prettyprint linenums"> 
+	define(['fui-placeholder'], function(placeholder){
+		//初始化
+		var pld = new placeholder({
+			elemArr: [document.getElementsByTagName('input')[0], document.getElementsByTagName('textarea')[0]],
+			shield: true
+		});
+
+		//全部对象重置位置
+		pld.reset();
+
+		//全部对象重置样式和位置
+		pld.reset({
+			color: 'red'
+		})
+
+		//部分对象重置样式和位置
+		pld.reset({
+			elemArr: [document.getElementsByTagName('input')[0]],
+			color: 'red'
+		});
+   	});
+				</pre>			
+
+				<h2>注意点</h2>
+				<p>elemArr里放置一个或多个需要使用该模拟功能的input或者textarea节点对象。</p>
+				<p>中间层中的提示语来源于input或者textarea中设置的placeholder属性值，字体颜色默认是#A9A9A9，可自定义。</p>
+				<p>中间层的样式采用input或者textarea中设置的样式，如：padding、line-height、font-family、font-size，垂直高度z-index值默认为2，可自定义。</p>
+
+			  <h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>elemArr </td>
+						  <td>Array</td>
+						  <td>[]</td>
+						  <td>一个或多个input、textarea节点对象组成的数组</td>
+					  </tr>
+					  <tr>
+						  <td>shield </td>
+						  <td>Boolean</td>
+						  <td>false</td>
+						  <td>shield设置为true，表示所有浏览器都使用该组件模拟；默认为false，只在不支持placeholder属性的浏览器中使用</td>
+					  </tr>
+					  <tr>
+						  <td>color </td>
+						  <td>String</td>
+						  <td>#A9A9A9</td>
+						  <td>color用来设置中间层中的提示语字体颜色</td>
+					  </tr>			  
+					  <tr>
+						  <td>zIndex</td>
+						  <td>Number</td>
+						  <td>2</td>
+						  <td>zIndex用来设置中间层垂直高度</td>
+					  </tr>
+					  <tr>
+						  <td>disableCls</td>
+						  <td>String</td>
+						  <td>disabled</td>
+						  <td>触点禁用时的class</td>
+					  </tr>
+					  <tr>
+						  <td>titleSelector</td>
+						  <td>String</td>
+						  <td>.fui-tab-t</td>
+						  <td>触点元素集 </td>
+					  </tr>		  
+                 </tbody>
+			  </table>
+
+			  <h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>reset()</td>
+						  <td>config</td>
+						  <td>无</td>
+						  <td>可以重新调整某些placeholder模拟层的样式和位置，默认重置所有模拟层的样式和位置</td>
+					  </tr>
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

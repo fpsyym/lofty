@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>progressbar doc</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+	
+		
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>progressbar : 进度条
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=yefniu&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">钮也非</span>
+						</a>
+				    </div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'progressbar', 'href':'../examples/progressbar.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>进度条组件，如果展示方式不同，请覆盖tpl方法,并用css覆盖默认的css</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['fui/progressbar/1.0'], function(Progressbar){
+	var progressbar = new Progressbar({
+		container:'#progressbar',
+		maxValue: 100
+	});
+});
+</pre>			
+				
+			  <h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>maxValue </td>
+						  <td>Number</td>
+						  <td>100</td>
+						  <td>最大值</td>
+					  </tr>
+					  <tr>
+						  <td>initValue </td>
+						  <td>Number</td>
+						  <td>0</td>
+						  <td>s初始值</td>
+					  </tr>
+					  <tr>
+						  <td>enableAnim </td>
+						  <td>Boolean</td>
+						  <td>true</td>
+						  <td>enable动画</td>
+					  </tr>			  
+					  <tr>
+						  <td>duration</td>
+						  <td>Number</td>
+						  <td>2</td>
+						  <td>动画持续时间</td>
+					  </tr>
+					  <tr>
+						  <td>height</td>
+						  <td>Number</td>
+						  <td>12</td>
+						  <td>Processbar默认高度</td>
+					  </tr>
+					  <tr>
+						  <td>create</td>
+						  <td>Function</td>
+						  <td>NULL</td>
+						  <td>progressbar初始时调用的回调函数 </td>
+					  </tr>		
+					  <tr>
+						  <td>ready</td>
+						  <td>Function</td>
+						  <td>NULL</td>
+						  <td>如果有动画，在动画结束后调用的回调函数 </td>
+					  </tr>	
+					  <tr>
+						  <td>change</td>
+						  <td>Function</td>
+						  <td>NULL</td>
+						  <td>当进度条的值改变时触发的回调函数 </td>
+					  </tr>	
+					  <tr>
+						  <td>complete</td>
+						  <td>Function</td>
+						  <td>NULL</td>
+						  <td>当进度条的值达到最大值时触发的回调函数 </td>
+					  </tr>						  
+                 </tbody>
+			  </table>
+				
+
+			<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>getValue ()  </td>
+						  <td>/</td>
+						  <td>Number</td>
+						  <td>获得进度条当前数值</td>
+					  </tr>
+					  <tr>
+						  <td>getPercentValue ()  </td>
+						  <td>/</td>
+						  <td>Number</td>
+						  <td>获得进度条当前数值(百分比)</td>
+					  </tr>
+					  <tr>
+						  <td>getMaxValue () </td>
+						  <td>/</td>
+						  <td>Number</td>
+						  <td>获得最大数值</td>
+					  </tr>			  
+					  <tr>
+						  <td>setValue(value)</td>
+						  <td>Number</td>
+						  <td>/</td>
+						  <td>进度的绝对百分比。例如87%,则传入87</td>
+					  </tr>
+					  <tr>
+						  <td>setPercentValue(percent)</td>
+						  <td>Number</td>
+						  <td>/</td>
+						  <td>进度的百分比。例如87%,则传入87</td>
+					  </tr>
+					  
+                 </tbody>
+			  </table>		
+				
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

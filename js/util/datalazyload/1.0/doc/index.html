@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>datalazyload : 懒加载工具
+					<div class="authorInfo">
+						<a href="aliim:sendmsg?touid=cntaobaoqcp%E5%B1%88%E4%BC%A0%E9%B9%8F&amp;siteid=cntaobao&amp;fenliu=1&amp;status=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">屈传鹏</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'普通的图片和DOM', 'href':'../examples/ImageDom.html'},
+								{'txt':'textArea中包含懒加载元素', 'href':'../examples/digui.html'},
+								{'txt':'注册多个懒加载区块', 'href':'../examples/multi.html'},
+								{'txt':'元素曝光时回调方法', 'href':'../examples/addExposeCallback.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>页面中DOM结构或图片懒加载，提高页面性能</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+//1、图片懒加载：将页面上的<img>标签的src属性名以"data-lazyload-src"代替
+//2、Dom懒加载：将需要被懒加载的DOM放到 class为"lazyload-textarea"的'&lt;textarea&gt;'中，textarea的样式需要自行定义，设置class名称为lazyload-textarea
+.lazyload-textarea{
+	visibility: hidden;
+	height: 0;
+	width: 0;
+	padding: 0;
+	border: none;
+	margin: 0;
+}
+
+define(['util/datalazyload/1.0']), function(Datalazyload){
+  var lazy = new Datalazyload({
+	container:"xxx"
+  });
+});
+
+</pre>			
+
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">配置参数</th>
+					  <th class="param">参数类型/可选值</th>
+					  <th class="return">参数默认值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>container </td>
+						  <td>String: 容器的选择器</td>
+						  <td>'body'</td>
+						  <td>懒加载区块的容器</td>
+					  </tr>
+					  <tr>
+						  <td>autoLoad </td>
+						  <td>boolean</td>
+						  <td>true</td>
+						  <td>当new出组件的实例时，是否立即执行懒加载机制，默认为true，当设置为false时，需要调用接口.start()来启动</td>
+					  </tr>
+					  <tr>
+						  <td>threshold </td>
+						  <td>number</td>
+						  <td>200</td>
+						  <td>阈值，懒加载的元素到可视区域的距离，当小于这个距离时，立刻加载</td>
+					  </tr>			  	  
+                 </tbody>
+			  </table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>start()</td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>开始执行加载，使用场景：<br/>1.当autoLoad配置为false时，需要调用此方法启动<br/>2.当需要懒加载的元素的位置发生变化时(不是由window的resize和scroll引起的变化，比如查询区域折叠起来导致下面的元素上移)，调用此接口手动执行加载<br/>3.暂停后需要调用此方法重新启动</td>
+					  </tr>
+					  <tr>
+						  <td>pause() </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>暂停监控懒加载，使用场景：当需要懒加载的区域不可见时，此时监控它属于性能浪费，应该暂停监控</td>
+					  </tr>
+					  <tr>
+						  <td>isPause()</td>
+						  <td>/</td>
+						  <td>boolean</td>
+						  <td>判断是否暂停监控</td>
+					  </tr>			  
+					  <tr>
+						  <td>addCallBack(selector,callback) || addCallBack({"xx":fn,...}])</td>
+						  <td>
+							单个添加回调时，两个参数：selector懒加载元素的选择器，callback,当元素曝光时回调方法<br/>
+							同时添加多个时格式为{"选择器":"回调方法","选择器":"回调方法"..}
+						  </td>
+						  <td>/</td>
+						  <td>当元素加载时，回调的方法，一般讲autoLoad设置为false，在start()之前添加回调方法</td>
+					  </tr>
+					  
+					  
+                 </tbody>
+			  </table>
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

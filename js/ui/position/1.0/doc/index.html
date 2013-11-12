@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>position : 定位
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=quincy0609&amp;site=cnalichn&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王倩</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var noDPL = true;
+							var demoArray = [
+								{'txt':'属性配置', 'href':'../examples/config.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>定位</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['fui/position/1.0', 'jquery'],function(Position, $){
+	var position = new Position({
+		targetNode:'.target',
+		baseNode:'.base',
+		offsetX:'left',             
+		offsetY:'top'   
+	});
+});
+</pre>			
+			<h2>使用说明</h2>
+			<p>target元素css中的position属性为<b>relative</b>时，target元素相对base元素定位后，<b>占位空间保留</b>;非relative时，占位空间消失</p>
+			<h2>配置参数</h2>
+				
+			  <table class="table table-striped">
+				<thead>
+					<tr>
+					<th class="name">配置参数</th>
+					<th class="param">参数类型/可选值</th>
+					<th class="return">参数默认值</th>
+					<th class="function">作用说明</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+					  <td>winListen</td>
+					  <td>boolean:false|true</td>
+					  <td>false</td>
+					  <td>被定位元素是否随窗口大小的变化而重新定位</td>
+					</tr>
+					<tr>
+					  <td>targetNode</td>
+					  <td>String:jQuery选择器</td>
+					  <td>无默认值，为必填项</td>
+					  <td>需要定位的元素</td>
+					</tr>
+					<tr>
+					  <td>baseNode</td>
+					  <td>String:jQuery选择器</td>
+					  <td>'body'</td>
+					  <td>定位参照元素</td>
+					</tr>
+					<tr>
+					  <td>offsetX</td>
+					  <td>String：'left'|'right'|'center'|'50%'|'20px'|'-10'|'100%+20px'|'left+10px'</td>
+					  <td>'left'</td>
+					  <td>targetNode相对于baseNode的水平方向的偏移</td>
+					</tr>			  
+					<tr>
+					  <td>offsetY</td>
+					  <td>String:'top'|'bottom'|'center'|'50%'|'20px'|'-10'|'100%+20px'|'top+10px'</td>
+					  <td>'top'</td>
+					  <td>targetNode相对于baseNode的垂直方向的偏移</td>
+					</tr>
+				</tbody>
+			</table>
+			  
+				<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>setOffsetX()</td>
+						  <td>offsetX</td>
+						  <td>/</td>
+						  <td>targetNode的水平方向的偏移量的设置</td>
+					  </tr>
+					  <tr>
+						  <td>setOffsetY</td>
+						  <td>offsetY</td>
+						  <td>/</td>
+						  <td>targetNode的垂直方向的偏移量的设置</td>
+					  </tr>
+					  <tr>
+						  <td>locate() </td>
+						  <td>/</td>
+						  <td>/</td>
+						  <td>设置targetNode的left和top属性</td>
+					  </tr>			   
+                 </tbody>
+			  </table>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

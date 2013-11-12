@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="content">
+				<h1>Base : 基础类
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+					</div>
+				</h1>
+				<h2 id="position">简介</h2>
+				<p>
+					<a target="_blank" href="http://style.c.aliimg.com/fdevlib/js/lofty/lang/base.js">Base</a> 基础类扩展了 Observer、Attribute、PluginHost 三个类的所有方法， 
+					是 widget、plugin 的父类。一些无需 UI 支持，并使用到 Observer 或是 Attribute 的 Util 工具类可以直接继承自它。
+					<a href="../examples/demos.html" target="_blank">Base 类功能集合Demo</a>
+				</p>
+
+				<h2 id="relation">创建一个继承自 Base 的类</h2>
+				<p><a target="_blank" href="../examples/websocket.js">继承Base的新类模板</a></p>
+
+<pre class="prettyprint language-js">
+
+  define('mytest/myClass', ['lofty/lang/class', 'lofty/lang/base'], function(Class, Base){
+	  var myClass = Class ( Base, {
+		options: {
+			isAutoPlay: true,		//普通的属性
+			countNum: {		   //复杂的属性
+				value:99,
+				getter:function(s){
+					console.log('属性读取之前会调用 getter');
+					return s + 1;
+				},
+				setter:function(val, key){
+					console.log('属性设置之前会调用 setter');
+				}
+			}
+		},
+		init:function (config){
+			Base.prototype.init.call(this, config || {});
+			...
+		}
+	  });
+	  return myClass;
+  });			
+  
+</pre>
+
+		<h2>Base 扩展自 lofty/lang/Observer 的方法</h2>
+					
+		<p style="text-indent:5px"><b>on：</b>给实例对象添加自定义事件</p>			
+<pre class="prettyprint language-js">
+
+  object.on('myCustomEvent', callback, context);
+  
+  //支持多事件同时绑定
+  object.on(['myCustomEvent1', 'myCustomEvent2'], callback, context);
+  
+</pre>
+<br/>			
+		<p style="text-indent:5px"><b>trigger：</b>触发自定义事件</p>		
+
+<pre class="prettyprint language-js">
+
+  object.trigger('myCustomEvent', data);
+  
+  //支持多事件同时触发
+  object.trigger(['myCustomEvent1', 'myCustomEvent2'], data);
+  
+</pre>				
+<br/>				
+		<p style="text-indent:5px"><b>off：</b>解绑事件</p>	
+			
+<pre class="prettyprint language-js">
+
+  object.off('myCustomEvent', callback，context);
+  
+  //若参数为空，则解绑 object 对象的所有自定义事件
+  object.off();
+  
+</pre>						
+					
+			<h2>Base 扩展自 lofty/lang/Attribute 的方法</h2>
+			<p style="text-indent:5px">这些方法主要用于处理类的属性，提供属性的读取、更改、并在更改时触发 change 事件。</p>	
+			
+		<p style="text-indent:5px"><b>get：</b>获取属性</p>			
+<pre class="prettyprint language-js">
+
+  //获取默认参数 options或 用户自定义参数 config 中 countNum 的值。 见上述 myClass 的类定义
+  object.get ( 'countNum' );
+  
+</pre>
+<br/>			
+		<p style="text-indent:5px"><b>set：</b>设置属性</p>		
+
+<pre class="prettyprint language-js">
+
+   //若属性 countNum 的值发生变化，则触发会 CountNumChanged 事件
+   //若属性 countNum 设置有 setter 回调，则先会执行setter
+   object.set ( 'countNum', 9999 );
+  
+</pre>				
+<br/>				
+		<p style="text-indent:5px"><b> xxxChanged：</b>当属性 xxx 的值发生变化时，自动触发回调函数</p>	
+			
+<pre class="prettyprint language-js">
+
+  // 事件名称规则： 属性名称 + Changed 固定后缀
+  object.on ( 'countNumChanged', callback，context);
+  
+</pre>					
+			
+	
+	<h2>Base 扩展自 lofty/lang/PluginHost 的方法</h2>
+	<p style="text-indent:5px"> Base 类同时也是一个宿主对象，提供了 install、uninstall 方法来安装或是卸载插件。<a href="http://wd.alibaba-inc.com/fdevlib/#fui.basicjs.plugin" target="_blank">什么是插件？</a></p>					
+	
+	<p style="text-indent:5px"> 插件安装的两种方式：  <a target="_blank" href="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/plugin/examples/plugin.html"> 插件 Demo </a></p>	
+<pre class="prettyprint language-js">
+
+  // 1、动态安装：
+  object.install ( pluginClass );
+  
+  // 2、初始化安装：
+  var object2 = new myClass({ 
+	plugins:{ plg:pluginClass, cfg:{}}
+ });
+ 
+  // 卸载插件：
+  object.uninstall ( pluginClass );
+  
+</pre>	
+	
+	<br/>
+	<br/>
+			</div>
+			</div>
+		</div>
+		
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+
+    </body>
+</html>

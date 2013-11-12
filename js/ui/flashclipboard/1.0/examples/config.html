@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>lofty 前端基础框架</title>
+
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	<link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+		
+</head>
+
+<body>
+
+	<input id="input_1" value="copy me1!">
+	<div id="test" style="margin-bottom:30px;"></div>
+	<input id="input_2" value="copy me2!">
+	<div id="test2"></div>	
+	
+<div class="demo-content">
+	<div class="demo-widget">
+		<div class="demo-widget-dom">
+		
+	<script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+	
+	<script type="text/javascript">
+		lofty.config({
+			amd: true
+		});
+	
+		define(['fui/clipboard/1.0'], function(FlashClipboard){
+			
+			var flash = new FlashClipboard({
+				container:"#test"
+			});
+			
+			flash.on("swfReady",function(){
+				console.log("swfReady");
+			})
+			flash.on("mouseDown",function(){
+				flash.setText($("#input_1").val());
+			});
+			flash.on("complete",function(data){
+				console.log("copy text:"+data.text);
+			});
+			
+			var styleObj = 'clipboard{\
+				text:复制我吧;\
+				fontSize:19;\
+				color:#FF0000;\
+				bgColor:#B1DDF8;\
+				bgColor.hover:#E1F3FD;\
+				bgColor.active:#E5F1F7;\
+				bgAlpha:1;\
+			}';
+			var flash2 = new FlashClipboard({
+				container:"#test2",
+				width:200,
+				height:50,
+				flashvars:{
+					style:encodeURIComponent(styleObj)
+				}
+			});
+			
+			flash2.on("swfReady",function(){
+				console.log("swfReady");
+				
+			})
+			flash2.on("mouseDown",function(){
+				flash2.setText($("#input_2").val());
+			});
+			flash2.on("complete",function(data){
+				console.log("copy text:"+data.text);
+			});
+		});
+		
+	</script>
+		</div>		
+	</div>	
+</div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

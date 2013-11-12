@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>progressbar demo</title>
+
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	<link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+
+	<style>
+	.fui-progressbar{
+		border:1px solid #CBA892;
+		padding: 1px;
+	}
+	.fui-progressbar-value{
+		background: url("http://img.china.alibaba.com/cms/upload/member/club/2013-bgv2.png");
+	}
+	</style>
+</head>
+
+<body>
+	<div class="demo-content">
+	
+<div id="demo">
+	
+</div>	
+<button class="change-value" data-value="50">进度到50</button>
+<button class="change-value" data-value="100">进度到100</button>
+	
+	
+	<script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+	<script type="text/javascript">
+		lofty.config({
+			amd: true
+		});
+
+		define(['fui/progressbar/1.0', 'jquery'], function(Progressbar, $){
+			
+			///////////初始化方式1：JS动态渲染页面空标签，模板来自tabs.js内部的tpl变量//////////////////////////
+			var progressbar = new Progressbar({
+				container:'#demo',
+				initValue:10,
+				width:'500px',
+				create: function() {
+					console.log('fui-progressbar: create');
+				}
+			});
+
+			progressbar.on('ready', function() {
+				console.log('fui-progressbar: ready');
+			});
+
+			progressbar.on('change', function() {
+				console.log('fui-progressbar: change');
+			});
+
+			progressbar.on('complete', function() {
+				console.log('fui-progressbar: complete');
+			});
+
+			$('.change-value').on('click', function() {
+				progressbar.setValue($(this).data('value'));
+			});
+	   });
+			
+	</script>
+
+	
+  </div>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

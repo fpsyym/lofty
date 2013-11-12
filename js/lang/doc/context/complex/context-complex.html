@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<h1>使用 lofty：复杂场景（与应用框架结合） </h1>
+								
+				<h2>介绍</h2>
+				<p>旺铺、搜索等复杂应用场景下，构成页面的模块比较多，某个模块是否在页面上展示是随机、由业务逻辑控制的。简单场景中的模块集中化管理的开发方式在这些场景下就不太适用了。<br/>我们需要一种更适合模块化开发的模块代码管理组织方式，通常这是由<b>应用框架</b>来完成的，我们以中文站 butterfly 应用框架使用 lofty 举例：<br/>
+			<p><a href="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/context/complex/complex.html" target="_blank">页面Demo</a></p>
+				</p>
+				
+				<h2>1、新建页面，并引入Fdev5种子文件、页面的入口文件 appstart.js（与简单场景相同）：</h2>
+				
+<pre class="prettyprint linenums">
+  &lt;html&gt;
+   &lt;head&gt;
+	&lt;link href="http://style.c.aliimg.com/fdevlib/css/lofty/port/lofty.css" rel="stylesheet"&gt;&lt;/link&gt; 
+   &lt;/head&gt;
+   
+   &lt;body&gt;
+     ...
+	&lt;script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"&gt;&lt;/script&gt;	
+	&lt;!--页面唯一的入口js--&gt;
+	&lt;script src="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/context/complex/appstart.js"&gt;&lt;/script&gt;
+   &lt;/body&gt;
+   ...
+  &lt;/html&gt;
+</pre>	
+		
+				<h2>2、以页面区块为单位，编写对应的JS AMD 模块（与简单场景相同）：</h2>
+				<p>例如页面有三个区块，分别为热卖区、分页区、地区选择区，则新建三个 AMD 模块，分别命名为：hotsale.js、page.js、combox.js 。以 page.js 示例：</p>
+				
+<pre class="prettyprint linenums"> 
+ define("lofty/lang/doc/context/complex/page", ['fui/paging/1.0'], function(Paging){
+   var pageModule = {
+		
+	//模块的入口函数，必须
+	init:function(){
+		
+	  var self = this;
+	  var page = new Paging({
+		container:'#dynamic_paging',
+		onRender:function(page){
+		  self.otherFunc();
+		}
+	  });
+	}, 
+	otherFunc:function(){
+	  // do something
+	}	
+   }
+   return pageModule;
+ });
+
+</pre>	
+			
+			<h2>3、在 appstart.js 中组织页面的初始化逻辑</h2>
+			<p> appstart 为匿名模块，将立即执行，与简单场景下引入所有模块的依赖列表不同，我们只是引入了 butterfly 应用框架的 application 模块，并调用 Application 类的功能来完成整个应用的初始化逻辑。</p>
+								
+<pre class="prettyprint linenums"> 
+ define(['jquery', 'lofty/lang/log', 'context.Application'], 
+  function($, Log, Application) {
+
+	var log = new Log('ComplexApp');
+	var app = new Application({
+		id: 'postoffer',	
+		loader: {
+			root: 'http://style.c.aliimg.com/app/offer/js',
+			path: {
+			  'widget': 'module/widget',
+			  'unit': 'module/unit',
+			  'mod': 'module/mod'
+			}
+		},
+
+		pageContext: true,
+
+		modContext: {
+			queryMods: function() {
+			  return $('.mod', 'body');
+			},
+			resolve: function(node) {
+			  var name = (/\bmod-([^\s]+)/.exec(node[0].className) || [])[1];
+			  if (!name) {
+			    return;
+			  }
+			  name = name.replace(/-(\w)/g, function(m, m1) {
+			    return m1.toUpperCase();	
+			  });
+			  name = name.substr(0, 1).toUpperCase() + name.substr(1);
+			  name = 'postoffer.mod.' + name;
+			  log.info('resove node:', name);
+			  return name;
+			}
+		},
+		error: function(e) {
+			log.error(e);
+		}
+  });
+	
+  app.start();
+ });
+</pre><br/>			
+			<p>
+				Application 类隐藏的一些逻辑：
+				<ul>
+					<li>1、每个业务模块的 id 需要符合一定的命名规则。</li>
+					<li>2、Application 类监听 loader 的 define 事件，并匹配模块的 id 命名规则，自动将符合规则的模块注册到模块管理器（context）中。</li>
+					<li>3、页面 domReady 后，遍历所有注册到 context 中的模块进行初始化。</li>
+				</ul>
+			</p>
+			
+		<h2>4、优点：</h2>				
+		<ul>
+			<li>1、应用框架的引入让页面具备了灵活模块化的能力，一个模块的引入和删除，无需修改 appstart.js 中的代码。模块之间无直接耦合。</li>
+			<li>2、页面使用哪些了模块，就初始化哪些模块，不会有执行性能上的浪费。</li>
+		</ul>
+				
+				
+		<h2>5、页面Demo</h2>
+		
+		<p><a href="http://style.c.aliimg.com/fdevlib/js/lofty/lang/doc/context/complex/complex.html" target="_blank">完整页面Demo</a></p>
+			  
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

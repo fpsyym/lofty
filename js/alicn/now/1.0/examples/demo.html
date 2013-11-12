@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>Fdev5 util-now</title>
+	
+	<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	<link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+
+</head>
+<body>
+
+   <div id="result"></div>
+
+   <script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+
+   <script type="text/javascript">
+     lofty.config({
+       amd: true
+     });
+
+     define(['jquery', 'alicn/now/1.0'], function ( $, Now ) {
+
+       var result = $('#result');
+
+       function handler (serverTimeMillis) {
+         // 取时间不成功
+         if (!serverTimeMillis) {
+           result.append('取服务器时间失败，请重试！');
+           return;
+         }
+
+         var offset = serverTimeMillis - (new Date()).getTime();
+
+         result.append('您电脑的时间比服务器时间' + (offset > 0 ? '慢' : '快') + '了' + offset + '毫秒。');
+       }
+
+       Now.now(handler);
+     });
+
+   </script>
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

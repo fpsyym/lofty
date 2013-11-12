@@ -1,0 +1,165 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @brief
+* @author yefei.niuyf 2013-05-13 created
+* @updated 
+*/
+
+.fui-combobox{
+	.clearFloat();
+	position:relative;
+	.hidden-select{
+		display:none;
+	}
+	.result{
+		border: solid 1px @comboboxBorderColor;
+		border-right:none;
+		float: left;
+		line-height: 16px;
+		height: 18px;
+		padding: 2px 2px 0 6px;
+		width: 95px;
+		background-color: @comboboxBgColor; 
+		zoom: 1;
+		li{
+			_overflow: hidden;
+			background-color: #efefef;
+			border: solid 1px #c0c3c3;
+			cursor: default;
+			float: left;
+			height: 14px;
+			line-height: 14px;
+			margin: 0 2px 2px 0;
+			padding: 0 2px;
+			white-space: nowrap;
+		}
+		a{
+			background: url(http://img.china.alibaba.com/cms/upload/2011/752/152/251257_548721671.gif) no-repeat;
+			display: inline-block;
+			font-size: 1;
+			height: 12px;
+			line-height: 12px;
+			margin-left: 2px;
+			overflow: hidden;
+			vertical-align: middle;
+			width: 15px;
+			&:hover{
+				background-position: 0 -12px;
+			}
+		}
+	}
+	.result[readonly="readonly"]{
+		cursor:pointer;
+	}
+	.trigger{
+		background: @fuiSpriteUrl;
+		border: solid 1px @comboboxBorderColor;
+		background-color: @comboboxBgColor; 
+		border-left:none;
+		display: block;
+		float: left;
+		height: 20px;
+		width: 17px;
+		background-position: 5px -492px;
+		&:active{
+			background-position: -34px 0;
+		}
+	}
+	.trigger:hover,.tirgger:focus,.triggerActive{
+		background-position: 0px -542px;
+		width:16px;
+		border:1px solid @comboboxBorderColor;
+	}
+}
+
+.fui-combobox-panel{
+	display:none;
+	background-color: @comboboxPanelBgColor;
+	border: @comboboxPanelBgBorderWidth solid @comboboxPanelBgBorderColor;
+	overflow: hidden;
+	position: absolute;
+	z-index:1000;
+	top: 22px;
+	left:0;
+	.close{
+		background: url(http://img.china.alibaba.com/images/common/icon_v02/close3.gif) no-repeat;
+		display: block;
+		font-size: 1px;
+		height: 13px;
+		position: absolute;
+		right: 8px;
+		top: 8px;
+		width: 13px;
+		&:hover{
+			background-position: 0 -13px;
+		}
+	}
+	.list{
+		clear: both;
+		overflow-x: hidden;
+		overflow-y: auto;
+		width: 120px;
+		li{
+			height:14px;
+			line-height:14px;
+		}
+	}
+}
+.fui-combobox-item{
+	_display: inline-block;
+	cursor: pointer;
+	overflow-y: hidden;
+	padding: 2px 2px 2px 6px;
+	width: auto;
+	input{
+		margin: 0 2px;
+		vertical-align: -2px;
+	}
+}
+.fui-combobox-selected,.fui-combobox-hover
+{
+	background-color: @comboboxLiBgColor;
+	color: @comboboxLiTxtColor;
+}
+.fui-combobox-disabled{
+	.trigger,.trigger:hover,.tirgger:focus,.triggerActive{
+		background-position: -68px 0 !important;
+		border-color: #cbcbcb!important;
+		cursor: default !important;
+		width:17px !important;
+		border-left-width:0 !important;
+	}
+	.result{
+		border-color: #cbcbcb!important;
+		li{
+			border-color: #cbcbcb!important;
+			color: #ccc!important;
+		}
+		a{
+			background-position: 0 -24px!important;
+		}
+	}
+}
+.fui-combobox-l{
+	.result{
+		height:22px;
+	}
+	.trigger{
+		height:24px;
+		background-position:5px -490px;
+	}
+	.fui-combobox-panel{
+		top:26px;
+	}
+	.trigger:hover,.tirgger:focus,.triggerActive{
+		background-position: 0px -540px;
+	}
+	.list{
+		li{
+			height:16px;
+			line-height:16px;
+		}
+	}
+}
+

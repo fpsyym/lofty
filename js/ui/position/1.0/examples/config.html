@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>lofty 前端基础框架</title>
+
+		<!-- Demo页面自身所需的基本样式，全局Reset文件在demo.min.css中引入 --->
+	<link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+	
+	<script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+	
+	<style>
+		div.screen{
+		    margin:30px auto;
+		}
+		.base{
+			height: 200px;
+			background-color:#fbca93;			
+            text-align:center;
+            border:1px solid #ddd;	  			
+		}
+		.base p{
+			padding-top:80px;
+		}
+		.target{
+			width: 100px;
+			height: 100px;
+			border: 1px solid #888;
+			background-color:#bcd5e6;
+			opacity:0.6;
+			filter:Alpha(opacity=60);
+			position:relative;
+			border:1px solid #ddd;
+		}
+		#offsetx,#offsety,input{
+			display:inline-block;
+			width:100px;
+			height:22px;
+			margin-top:20px;
+		}
+		.demo,.obj{
+			width:990px;
+			margin:10px auto -15px
+		}
+		.demo h2{
+			font-weight:bold;
+			font-size:14px;
+		}
+		.obj p{
+			margin-bottom:10px;
+		}
+		.obj p b,div>b{
+			width:100px;
+			display:inline-block;
+		}
+		.offsetx label,.offsety label{
+			margin-left: 20px;
+			color:#888;
+		}
+		a.watch{
+			color:#888;
+			display:inline-block;
+			height:50px;
+			font-weight:bold;
+			font-size:14px;
+			text-align:center;
+			margin-top:20px;
+		}
+		.targetParent{
+			position:fixed;
+			left:50px;
+			top:100px;
+			width:200px;
+			height:200px;
+			background-color: #f1f1f1;
+		}
+		.parentNode input{
+		   height:15px;
+		   width:30px;
+		}
+		 b.plus{
+		   margin-left:15px;
+		   width:5px;
+		   display:inline-block;
+		   margin-right:15px;
+		}
+	</style>
+	
+</head>
+
+<body>
+<script>
+    lofty.config({
+		amd: true
+	});
+</script>
+<div class="demo-content">
+	<div class="demo-widget">
+	    <div class="baseParent">
+			<div class="base"><p>参照元素baseNode</p></div>
+		</div>
+		<div class="target">被定位元素targetNode</div>
+		<div class="demo">
+			<h2>改变参数，查看定位</h2>
+			<div class="obj">
+				<p><b>targetNode:</b><input type="text" value=".target" disabled></p>
+				<p><b>baseNode:</b><input type="text" value=".base" disabled></p>
+			</div>
+			<div class="offsetx">
+				<b>offsetX:</b>
+				<select name="offsetx" id="offsetx">
+					<option value="left">left</option>
+					<option value="center">center</option>
+					<option value="right">right</option>
+				</select> 
+				<b class="plus">+</b>
+				<input type="text" id="offsetxx"><label for="">支持  'left','left+20px','20','100%'等多种形式</label>
+			</div>
+			<div class="offsety">
+				<b>offsetY:</b>
+				<select name="offsety" id="offsety">
+					<option value="top">top</option>
+					<option value="center">center</option>
+					<option value="bottom">bottom</option>
+				</select> 
+				<b class="plus">+</b>
+				<input type="text" id="offsetyy"><label for="">支持  'top','top + 20%','50%',50%+left</label>
+			</div>
+			<div><a href="javascript:void(0);" class="watch">修改配置，点击查看效果</a></div>
+		</div>
+		<div class="demo-widget-dom">
+			<script type="text/javascript">
+		
+				define(['fui/position/1.0', 'jquery'],function(Position, $){
+					var position1 = new Position({
+						targetNode:'.target',   
+						baseNode:'.base',  
+						offsetX:'left',             
+						offsetY:'top'           
+					});
+					
+					$('a.watch').on('click', function() {
+					
+						var offsetx = $('#offsetx').val(),
+							offsetxx = $('#offsetxx').val(),
+							offsety = $('#offsety').val(),
+							offsetyy = $('#offsetyy').val();
+							
+						if(offsetxx==''){
+							offsetxx=0;
+						}
+						
+						if(offsetyy==''){
+							offsetyy=0;
+						}
+						
+						var offset_x =offsetx +"+"+ offsetxx,
+							offset_y =offsety +"+"+ offsetyy;
+							
+						position1.setOffsetX(offset_x);
+						position1.setOffsetY(offset_y);
+						position1.locate();
+					});
+				});
+
+			</script>
+		</div>
+	</div>		
+</div>	
+<!-- Demo页面自身所需的JS，实际项目中无需引入 --->
+<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>	
+</body>
+</html>

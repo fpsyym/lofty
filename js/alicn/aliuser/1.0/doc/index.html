@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+		<title>lofty 前端基础框架</title>
+        <link rel="shortcut icon" href="favicon.ico" />
+		<link href="http://wd.alibaba-inc.com/ui/static/css/item.min.css" rel="stylesheet" />
+    </head>
+    <body>
+		<div class="doc" id="doc">
+			<div class="main">
+				<div class="style-menu" id="dpl_style_menu">
+					
+				</div>
+					
+				<h1>aliuser: 阿里用户登录信息
+					<div class="authorInfo">
+						<a href="http://amos.im.alisoft.com/msg.aw?v=2&amp;uid=wtxidian&amp;site=cntaobao&amp;s=1" target="_blank">
+							<img width="17" border="0" align="absMiddle" height="16" src="http://img.china.alibaba.com/cms/upload/search/fdevlib/alitalk.png">
+							<span class="author">王涛</span>
+						</a>
+					</div>
+				</h1>
+				
+				<div class="row-fluid">
+					<div class="span19 demo-container">
+					  <iframe id="dpl_demo" class="demo-frame" width="100%" height="100%" frameborder="0"></iframe>
+					</div>
+					<div class="span4 nav-list">
+					  <h2 class="nav-title">示例</h2>
+					  <div id="dpl_menubar">
+					  
+					    <!--demo页面的路径统一放在这个json变量里面定义-->
+						<script type="text/javascript">
+							var demoArray = [
+								{'txt':'Demo', 'href':'../examples/aliuser.html'}
+							];
+						</script>
+					  </div>
+					</div>
+				</div>
+				
+				<h2>介绍</h2>
+				<p>aliuser 组件是获取阿里巴巴网站用户登录状态及历史登录信息的组件，同时含有与淘宝会员打通的相关函数的支持。该组件是从 fdev4-min.js 中的 web.js 迁移而来，不再混入到框架的代码，而独立为 alicn 下的组件。</p>
+				
+				<h2>使用方法</h2>
+				
+<pre class="prettyprint linenums"> 
+define(['alicn/aliuser/1.0'],function(AliUser){
+   var bLogin = AliUser.isLogin();		 //判断用户是否登录
+   var loginId = AliUser.getLoginId()		 //提供当前登陆的用户Id，如果取不到则返回null
+   var lastId  = AliUser.getLastLoginId();  //提供最近一次登陆过的用户Id，如果没有获取到则返回nul
+})
+
+</pre>			
+			<h2>公共方法</h2>
+				
+				<table class="table table-striped">
+				<thead>
+					  <tr>
+					  <th class="name">方法名称</th>
+					  <th class="param">入参说明</th>
+					  <th class="return">返回值</th>
+					  <th class="function">作用说明</th>
+					  </tr>
+				  </thead>
+				  <tbody>
+					  <tr>
+						  <td>isLogin ( )  </td>
+						  <td>/</td>
+						  <td>Boolean</td>
+						  <td>判断用户是否登录</td>
+					  </tr>
+					  <tr>
+						  <td>getLoginId ( ) </td>
+						  <td>/</td>
+						  <td>String</td>
+						  <td>提供当前登陆的用户Id，如果取不到则返回null</td>
+					  </tr>
+					  <tr>
+						  <td>getLastLoginId ( ) </td>
+						  <td>/</td>
+						  <td>String</td>
+						  <td>提供最近一次登陆过的用户Id，如果没有获取到则返回null</td>
+					  </tr>
+					  <tr>
+						  <td>getLastMemberId ( ) </td>
+						  <td>/</td>
+						  <td>String</td>
+						  <td>取得上一次登录的memberId</td>
+					  </tr>
+					  <tr>
+						  <td>updateLoginInfo ( ) </td>
+						  <td>{configs}</td>
+						  <td>deferred对象</td>
+						  <td>从阿里集团的各个网站同步登录信息。 <br/>AliUser.updateLoginInfo({ source: ['b2b', 'taobao'] })</td>
+					  </tr>
+                 </tbody>
+			  </table>		
+				
+			</div>
+		</div>
+		<script src="http://wd.alibaba-inc.com/ui/static/js/item.min.js"></script>
+		<script>
+			prettyPrint();
+		</script>
+</body>
+</html>

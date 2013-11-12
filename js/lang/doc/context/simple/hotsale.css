@@ -1,0 +1,266 @@
+.clearfix {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  float: none;
+}
+.lazyload-textarea {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  padding: 0;
+  border: none;
+  margin: 0;
+}
+.hot-sale-container {
+  padding: 0 15px;
+  width: 555px;
+  margin:0 auto;
+}
+.hot-sale-container:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  float: none;
+}
+.hot-sale-container .left-area {
+  width: 532px;
+  height: 408px;
+  float: left;
+}
+.hot-sale-container .left-area .title {
+  height: 37px;
+  line-height: 37px;
+}
+.hot-sale-container .left-area .title:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  float: none;
+}
+.hot-sale-container .left-area .title h4 {
+  font-size: 12px;
+  color: #333;
+  font-weight: 700;
+  float: left;
+}
+.hot-sale-container .left-area .title b {
+  font-weight: normal;
+  color: #ccc;
+  margin: 0 10px;
+  float: left;
+}
+.hot-sale-container .left-area .title ul {
+  float: left;
+  height: 37px;
+  width: 360px;
+  overflow: hidden;
+}
+.hot-sale-container .left-area .title ul li {
+  float: left;
+  margin-right: 12px;
+}
+.hot-sale-container .left-area .title ul li a {
+  display: block;
+  color: #666;
+  font-size: 12px;
+}
+.hot-sale-container .left-area .title ul li a:hover {
+  color: #f60;
+}
+.hot-sale-container .left-area .title a.more {
+  color: #6c8eb8;
+  float: right;
+  margin-right: 13px;
+}
+.hot-sale-container .left-area .title a.more:hover {
+  color: #f60;
+}
+.hot-sale-container .left-area .offer-list-tabs .offer-float-layer {
+  display: none;
+  background-color: #000;
+  background: rgba(0, 0, 0, 0.7);
+  filter: alpha(opacity=70);
+  position: absolute;
+  text-decoration: none;
+  overflow: hidden;
+  text-align: center;
+  width: 114px;
+  padding: 33px 3px;
+  color: #fff;
+}
+.hot-sale-container .left-area .offer-list-tabs .offer-float-layer div {
+  line-height: 18px;
+  height: 54px;
+  overflow: hidden;
+  *cursor: pointer;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content {
+  font-size: 0;
+  height: 336px;
+  background: url("http://img.china.alibaba.com/cms/upload/work/dpl/loading-w24.gif") no-repeat;
+  background-position: 50% 50%;
+  _margin-right: -13px;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content .tab-b ul {
+  zoom: 1;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content .tab-b ul:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  float: none;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content .tab-b ul li {
+  zoom: 1;
+  margin: 0 13px 12px 0;
+  float: left;
+  width: 120px;
+  height: 156px;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content .tab-b ul li div.offer-img {
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content .tab-b ul li div.offer-img a {
+  display: table-cell;
+  width: 120px;
+  height: 120px;
+  font: 12px/1 Tahoma, Helvetica, Arial;
+  text-align: center;
+  vertical-align: middle;
+  *display: block;
+  *font-family: Arial;
+  *font-size: 104px;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content .tab-b ul li div.offer-img a img {
+  vertical-align: middle;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content .tab-b ul li div.price {
+  text-align: left;
+  height: 18px;
+  overflow: hidden;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content .tab-b ul li div.price a {
+  text-decoration: none;
+  display: block;
+  height: 18px;
+  line-height: 18px;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  color: #e11212;
+  padding-left: 14px;
+  background-image: url(http://img.china.alibaba.com/cms/upload/search/list/offerresult/main.default.offerresult.20130829.png);
+  background-repeat: no-repeat;
+  background-position: 0 3px;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content .tab-b ul li div.sales-volume {
+  text-align: left;
+  height: 18px;
+  overflow: hidden;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content .tab-b ul li div.sales-volume a {
+  display: block;
+  text-decoration: none;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
+  color: #999;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-content .tab-b ul li div.sales-volume a .num {
+  color: #ea650c;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-title .tabs-title-ul {
+  font-size: 0;
+  text-align: center;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-title .tabs-title-ul li {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 8px 5px 0 0;
+  cursor: pointer;
+  background: url('http://img.china.alibaba.com/cms/upload/search/searchweb/rpc/hot-sale.png') no-repeat;
+  overflow: hidden;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-title .tabs-title-ul li {
+  *display: inline;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-title .tabs-title-ul li.last-tab-t {
+  margin: 0;
+}
+.hot-sale-container .left-area .offer-list-tabs .tabs-title .tabs-title-ul li.tab-current {
+  background-position: 0 -16px;
+}
+.hot-sale-container .right-area {
+  float: right;
+  width: 135px;
+  font-size: 0;
+}
+.hot-sale-container .right-area h4 {
+  font-size: 12px;
+  color: #333;
+  font-weight: 700;
+  height: 37px;
+  line-height: 37px;
+}
+.hot-sale-container .right-area .hot-offer .img1 {
+  width: 135px;
+  height: 175px;
+  overflow: hidden;
+}
+.hot-sale-container .right-area .hot-offer .img1 a {
+  display: table-cell;
+  width: 135px;
+  height: 175px;
+  font: 12px/1 Tahoma, Helvetica, Arial;
+  text-align: center;
+  vertical-align: middle;
+  *display: block;
+  *font-family: Arial;
+  *font-size: 152px;
+}
+.hot-sale-container .right-area .hot-offer .img1 a img {
+  vertical-align: middle;
+}
+.hot-sale-container .right-area .hot-offer .info {
+  margin: 4px 0;
+}
+.hot-sale-container .right-area .hot-offer .info a {
+  color: #666;
+  font-size: 12px;
+  display: block;
+  height: 20px;
+  line-height: 20px;
+  overflow: hidden;
+  width: 135px;
+}
+.hot-sale-container .right-area .hot-offer .info a:hover {
+  color: #f60;
+}
+.hot-sale-container .right-area .hot-offer .img2 {
+  font-size: 0;
+  width: 135px;
+  height: 77px;
+  overflow: hidden;
+  font: 12px/1 Tahoma, Helvetica, Arial;
+}
+.hot-sale-container .right-area .hot-offer .img2 a {
+  display: table-cell;
+  width: 135px;
+  height: 77px;
+  text-align: center;
+  vertical-align: middle;
+  *display: block;
+  *font-family: Arial;
+  *font-size: 65px;
+}
+.hot-sale-container .right-area .hot-offer .img2 a img {
+  vertical-align: middle;
+}

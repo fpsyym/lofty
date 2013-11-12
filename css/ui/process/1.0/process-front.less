@@ -1,0 +1,166 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @brief
+* @author terence.wangt 2013-05-13 created
+* @updated 
+*/
+
+
+.fui-process .fui-node,
+.fui-process .fui-bar,
+.fui-process .fui-far{
+    background:@processSpriteUrl;
+}
+
+.fui-process-orange .fui-node,
+.fui-process-orange .fui-bar,
+.fui-process-orange .fui-far{
+    background:@processOrangeSpriteUrl
+}
+
+
+.fui-process {
+    color: #888;
+
+
+    ul{
+        display:block;
+        height:20px;
+        padding:25px;
+        margin:0;
+        list-style-type:none;
+    }
+
+    .fui-first-current,
+    .fui-current,
+    .fui-last-current{
+        color: #444;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .fui-node,
+    .fui-bar,
+    .fui-far
+    {
+        height:20px;
+        clear:none !important;
+    }
+
+    .fui-node{
+        float:left;
+        display:block;
+        width:20px;
+        position:relative;  
+    }
+
+    .fui-finish{
+        background-position:-71px -120px;
+    }
+
+    .fui-wait{
+        background-position:-71px 0px;
+    }
+
+    .fui-current{
+        background-position:-71px -60px;
+    }
+
+    .fui-first-finish{  
+        background-position:1px -120px;
+    }
+
+    .fui-first-wait{
+        background-position:1px 0px;
+    }
+
+    .fui-first-current{
+        background-position:1px -60px;
+    }
+
+    .fui-last-finish{
+        background-position:-139px -60px;
+    }
+
+    .fui-last-wait{
+        background-position:-139px 0px;
+    }
+
+    .fui-last-current{
+        background-position:-139px -60px;
+    }
+
+    .step-one-wait{
+        background-position:-123px -120px;
+    }
+
+    .step-one-current{
+        background-position:-161px -120px;
+    }
+
+    .step-one-finish{
+        background-position:-161px -120px;
+    }
+
+    .fui-bar{
+        float:left;
+        display:block;
+        width:120px;
+    }
+
+    .fui-bar-finish{
+        background-repeat:repeat-x;
+        background-position:0px -176px;
+    }
+
+    .fui-bar-wait{
+        background-repeat:repeat-x;
+        background-position:0px -236px;
+    }
+
+    .fui-bar-current{
+        background-repeat:repeat-x;
+        background-position:0px -176px;
+    }
+
+    .fui-far{
+       display:none;
+    }
+
+    .fui-bar-current .fui-far{
+        float:right;
+        display:block;
+        width:50%;
+        background-position:0px -236px;
+        background-repeat:repeat-x;
+    }
+
+    .fui-process-label{
+        display:block;
+        height:15px;
+        width:130px;
+        position:absolute;
+        top:-23px;
+        left:-55px;
+        white-space:nowrap;
+        text-align:center;
+    }
+
+    .fui-label-down{
+        top:20px;
+        color:#999;
+        font-size: 12px;
+        font-weight: normal;
+     }
+
+    .four-steps .fui-bar{
+        width:163px;
+    }
+
+    .five-steps .fui-bar{
+        width:117px;
+    }
+
+}
+

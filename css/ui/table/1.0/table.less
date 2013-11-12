@@ -1,0 +1,105 @@
+/*!!cmd:lessbuild=false*/
+
+/**
+* @file table.less
+* @brief
+* @author terence.wangt 2013-05-13 created
+* @updated 
+*/
+
+
+
+.fui-table{
+	width: 100%;
+	max-width: 100%; 
+	border-collapse: collapse; 
+	border-spacing: 0; 
+	color: #444;
+
+	th,
+	td{
+		border: solid 1px @tableBorderColor; 
+		height: 18px; 
+		padding: 3px 2px; 
+		text-align: center; 
+		vertical-align: middle;
+	}
+	th{
+		background-color: @tableHeaderColor;
+	}
+
+	.fui-a-l{
+		text-align: left;
+	}
+
+	.fui-a-r{
+		text-align: right;
+	}
+	.fui-a-c{
+		text-align: center;
+	}	
+	.fui-odd td{
+		background-color: @tableRowOddColor;
+	}
+	.fui-table-h{
+		font-weight: bold;
+		background-color: @tableLeftHeadColor;
+	}
+}
+
+.fui-table-align-left th,
+.fui-table-align-left td{
+	text-align: left;
+}
+
+.fui-table-align-right th,
+.fui-table-align-right td{
+	text-align: right;
+}
+
+
+.fui-table-hover tr:hover td{
+	background-color: @tableRowHoverColor;
+}
+
+.fui-table-s th,
+.fui-table-s td{
+	padding: 1px 2px;
+}
+
+.fui-table-l th,
+.fui-table-l td{padding: @tableLargePadding 2px;}
+
+.fui-table-striped th{
+	border-width: 1px 0;
+}
+.fui-table-striped td{
+	border-width: 1px 0;
+}
+
+
+.fui-table-action{
+	th,
+	td{
+		border-width: 1px 0; 
+		padding: 8px; 
+		text-align: left;
+	}
+	.fui-img{
+		padding: 8px 12px; 
+		width: 64px;
+	}
+	.fui-img img{
+		display: block; 
+		padding: 0; 
+		margin: 0;
+	}
+	.fui-txt{
+		vertical-align: top;
+	}
+	.fui-act{
+		padding: 8px 12px;
+	 	text-align: right;
+	 	white-space: nowrap;
+	}
+}

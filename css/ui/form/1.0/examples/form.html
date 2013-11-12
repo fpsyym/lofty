@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk">
+	<title>lofty 前端基础框架</title>
+
+	<link rel="stylesheet" rev="stylesheet" href="http://wd.alibaba-inc.com/ui/static/css/demo.min.css" />
+	
+	<!-- 实际使用时将 $SkinType 替换为 "back" 或 "front" --->
+	<script type="text/javascript">
+		var cssUrls = ["http://style.c.aliimg.com/fdevlib/css/lofty/ui/tip/1.0/$SkinType/tip-min.css",
+					   "http://style.c.aliimg.com/fdevlib/css/lofty/ui/combobox/1.0/$SkinType/combobox-min.css",
+					   "http://style.c.aliimg.com/fdevlib/css/lofty/ui/button/1.0/$SkinType/button-min.css",
+					   "http://style.c.aliimg.com/fdevlib/css/lofty/ui/form/1.0/$SkinType/form-min.css"];
+	</script>		
+	
+	<script src="http://style.c.aliimg.com/fdevlib/js/lofty/port/lofty.js"></script>
+
+</head>
+
+<body>
+	<div class="demo-content">
+	
+<div class="demo-widget">
+  <div class="demo-widget-dom">	
+	  <input type="text" class="fui-text fui-text-s fui-text-error" />
+	  <span class="fui-tip-inline fui-tip-inline-warning" style="margin-left: 6px;">
+		<i class="fui-ico-serious"></i>
+		<span class="fui-txt">出错提示</span>
+	  </span>
+	</div>		
+ </div>	
+ 
+<div class="demo-widget">
+  <div class="demo-widget-dom">	
+	  <input type="text" class="fui-text fui-text-s" />
+	  <span class="fui-tip-inline" style="margin-left: 6px;">
+		<i class="fui-ico-success"></i>
+		<span class="fui-txt">成功提示</span>
+	  </span>
+	</div>		
+ </div>	
+	
+<div class="demo-widget">
+  <div class="demo-widget-dom">	
+	   <input type="text" class="fui-text fui-text-s" />
+	   <span class="fui-tip-inline" style="margin-left: 6px;">
+		<i class="fui-ico-general"></i>
+		<span class="fui-txt">关注消息提示条</span>
+	   </span>
+	</div>		
+ </div>	
+ 
+<div class="demo-widget">
+  <div class="demo-widget-dom">	
+		<input type="text" class="fui-text fui-text-s fui-text-disable" disabled/>
+	</div>		
+ </div>	
+ 
+<div class="demo-widget">
+  <div class="demo-widget-dom">	
+		<input type="text" class="fui-text fui-text-s" />
+		<a href="#" target="_self" class="fui-btn fui-btn-s">按钮</a>
+	</div>		
+ </div>	
+	
+<div class="demo-widget">
+  <div class="demo-widget-dom">	
+	<div class="fui-form">
+		<div class="fui-t">
+			<span>单选项：</span>
+		</div>
+		<div class="fui-d fui-form-radio">
+			<ul>
+				<li class="fui-list">
+					<input type="radio" name"test-radio" class="fui-radio" />
+					<label class="fui-radio-label">选项</label>
+				</li>
+				<li class="fui-list">
+					<input type="radio" name"test-radio" class="fui-radio" />
+					<label class="fui-radio-label">选项</label>
+				</li>
+			</ul>
+		</div>
+	</div>
+  </div>		
+ </div>	
+ 
+<div class="demo-widget">
+  <div class="demo-widget-dom">
+	<div class="fui-form">
+		<div class="fui-t">
+			<span>单选项：</span>
+		</div>
+		<div class="fui-d fui-form-checkbox">
+			<ul>
+				<li class="fui-list">
+					<input type="checkbox" name"test-checkbox" class="fui-checkbox" />
+					<label class="fui-checkbox-label">选项</label>
+				</li>
+				<li class="fui-list">
+					<input type="checkbox" name"test-checkbox" class="fui-checkbox" />
+					<label class="fui-checkbox-label">选项</label>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>		
+ </div>	
+ 
+<div class="demo-widget">
+  <div class="demo-widget-dom">
+	<div class="fui-form">
+		<div class="fui-t">
+			<span class="icon-must">输入框：</span>
+		</div>
+		<div class="fui-d">
+			<input class="fui-text fui-text-s" name="" />
+			<a href="#" target="_self" class="fui-btn fui-btn-s">按钮</a>
+		</div>
+	</div>
+	</div>		
+ </div>	
+ 
+<div class="demo-widget">
+  <div class="demo-widget-dom">
+	<div class="fui-form">
+		<div class="fui-t fui-t-l">
+			<span class="icon-must">输入框：</span>
+		</div>
+		<div class="fui-d">
+			<input class="fui-text" name="" />
+		</div>
+	</div>
+	</div>		
+ </div>	
+
+<div class="demo-widget">
+  <div class="demo-widget-dom">
+	<div class="fui-form">
+		<div class="fui-t">
+			<span class="icon-must">下拉框：</span>
+		</div>
+		<div class="fui-d">
+			<div class="combobox fui-combobox-l">
+				<select name="aaa" id="comboboxId">
+					<option value="1">111</option>
+					<option value="2" selected="selected">222</option>
+					<option value="3">333</option>
+					<option value="4">444</option>
+				</select>
+			</div>
+		</div>
+	</div>
+  </div>		
+ </div>	
+
+<div class="demo-widget">
+  <div class="demo-widget-dom" id="fui-ajust">
+		<div class="fui-form">
+			<div class="fui-t">
+				<span class="icon-must">微调控件：</span>
+			</div>
+			<div class="fui-d">
+				<div class="fui-ajust">
+					<div class="fui-operation">
+						<a href="#" class="fui-up"></a>
+						<a href="#" class="fui-down"></a>
+					</div>
+					<input class="fui-result" type="text" autocomplete="off" maxlength="50">
+					
+				</div>
+			</div>
+		</div>
+	</div>		
+ </div>	
+ 
+<div class="demo-widget">
+  <div class="demo-widget-dom">
+	<div class="fui-form">
+		<div class="fui-t fui-t-l">
+			<span class="icon-must">微调控件：</span>
+		</div>
+		<div class="fui-d">
+			<div class="fui-ajust fui-ajust-l">
+				<div class="fui-operation">
+					<a href="#" class="fui-up"></a>
+					<a href="#" class="fui-down"></a>
+				</div>
+				<input class="fui-result" type="text" autocomplete="off" maxlength="50">
+				
+			</div>
+		</div>
+	</div>
+   </div>		
+ </div>	
+
+<div class="demo-widget noborder">
+  <div class="demo-widget-dom">
+	<div class="fui-form">
+		<div class="fui-t fui-t-l">
+			<span class="icon-must">文本域：</span>
+		</div>
+		<div class="fui-d fui-form-textarea" placeholder="我是默认文本">
+			<textarea style="height:85px;width:485px"></textarea>
+			<p class="fd-clr">
+				<div class="fui-word-count">
+					<span class="fui-word-have">80</span>/1000
+				</div>
+			</p>
+		</div>
+	</div>
+  </div>		
+ </div>	
+	<script type="text/javascript">
+		lofty.config({
+			amd: true
+		});
+		define(['fui/combobox/1.0'], function(Combobox){
+			var combobox = new Combobox({
+				container:".fui-combobox-l",
+				itemList:"#comboboxId"
+			});
+			
+		});
+	</script>
+	<script type="text/javascript">
+	
+		define(['jquery'], function($){
+		
+			var div = $('#fui-ajust .fui-ajust');
+
+			var ajust = {
+				
+				init: function() {
+					this.div = div;
+					this.result = $('input.fui-result', div);
+					this._initResult();
+					this._initEvent();
+				},
+
+				_initResult: function() {
+					if(!$.isNumeric(this.result.val())) {
+						this._setValue(0);
+					}
+				},
+
+				_initEvent: function() {
+					var self = this;
+
+					$('a.fui-up', this.div).on('click', function(e) {
+						e.preventDefault();
+
+						if($(this).hasClass('fui-up-disable')) {
+							return ;
+						}
+						var result = parseInt(self.result.val());
+						self._setValue(result + 1);
+					});
+
+					$('a.fui-down', this.div).on('click', function(e) {
+						e.preventDefault();
+
+						if($(this).hasClass('fui-down-disable')) {
+							return ;
+						}
+						var result = parseInt(self.result.val());
+						self._setValue(result - 1);
+					});
+
+					$('input.fui-result', this.div).on('keyup', function(e) {
+						var result = parseInt(self.result.val());
+						if(!$.isNumeric(result)) {
+							result = 0;
+						}
+						self._setValue(result);
+					});
+				},
+
+				_setValue: function(value) {
+					this.result.val(value);
+					if(value === 0) {
+						$('a.fui-down', this.div).addClass('fui-down-disable');
+					} else {
+						$('a.fui-down', this.div).removeClass('fui-down-disable');
+					}
+				}
+			}
+			ajust.init(div);
+		});
+
+	</script>
+			
+</div>
+	<script src="http://wd.alibaba-inc.com/ui/static/js/demo.min.js" type="text/javascript"></script>
+
+</body>
+</html>
