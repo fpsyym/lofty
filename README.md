@@ -1,131 +1,19 @@
-# documentation
+#简介
 
-fangdeng.org
+lofty（fdev5）是 1688 前端共建而成的新一代前端基础框架，它集加载器、DPL 实现、组件框架、配套工具为一体，为前端模块化编程及效率提升提供了强有力支持。
 
-    club.fangdeng.org
-    weekly.fangdeng.org
+#我们的特色
 
-    work.fangdeng.org
-    
-    wiki.fangdeng.org
-    
-    lib.fangdeng.org
-        fdev4
-        fdev3
-        
-        lofty.fangdeng.org
-            docs
-            api
-        
+轻量级的 AMD 加载器，符合 AMD 标准语法规范。
+丰富的前端通用组件，并配套 DPL 默认实现，降低业务开发成本。
+基于 Less 的底层架构，提供组件肤色个性化定制功能，满足更多场景的需求。
+框架层面支持全局 JS 异常监控，帮助应用将线上故障消灭于萌芽之中。
+强大的 AMD 模块在线自动合并工具（StyleCombine 3.0）支持，摆脱线下打包烦恼，提升开发、发布效率。前端性能优化朝向自动化发展。
 
-# classify
+#参与共建
 
+lofty 框架来自于各业务线前端同学的共建，他的成长亦离不开大家的持续浇灌，如果你希望完善或是增加某部分功能，欢迎加入 lofty 开发者乐园，旺旺群号：1282221333 
 
-lofty/kernel 核心模块
+#疑问和建议
 
-lofty/port 核心出口文件
-
-lofty/alicn 中文站专用模块
-
-    web-alitalk
-    web-addons
-    util-cookie
-    web-suggestion
-    
-lofty/adapter 适配fdev4专用模块
-
-lofty/ecma 语言相关
-
-    deferred
-    callbacks
-    observer 观察者 ok
-    class 类 ok
-    
-    util-date
-    util-json
-    web-websocket
-    
-lofty/device 设备相关，浏览器，鼠标，键盘，屏幕，and etc.
-
-    ui-mouse
-    util-histroy 浏览器历史
-    web-browser
-    util-storage
-    exposure 曝光 ok
-    
-lofty/solutions 解决方案
-    
-    simplemvc 简易的mvc ok
-
-lofty/dhtml 
-
-    ui-draggable 拖动
-    ui-droppable 拖放
-    ui-portlets 模块排序
-    ui-sortable 排序
-    ui-tabs 切换
-    ui-scrollto 平滑滚动
-    ui-position 定位
-    
-gallery 三方库
-
-    jquery
-    jasmine
-    web-sweet 模板语言
-    jcrop 圈图
-
-其他待定
-
-    ui-autocomplete
-    ui-colorbox 取色盒
-    ui-combobox 模拟下拉
-    ui-datepicker 日历
-    ui-dialog 浮层
-    ui-progressbar 进度条
-    ui-timer 计时器
-
-
-    web-stylesheet
-    web-dataLazyload
-
-
-
-    web-pca 省市区三级联动
-    web-valid 验证
-
-
-    util-debug del
-
-
-
-#pre
-
-1. src、doc、ut同步进行
-1. 文档可以外网访问，http://lib.fangdeng.org/ http://5.lib.fangdeng.org/ http://fdev5.fangdeng.org/
-1. alicn
-
-#模块分级
-
-lang -> unit -> zone -> mod -> region -> grid -> layout -> district -> layer
-
-# lang
-
-1. domready.js del
-1. 常用函数：extendIf、substitute etc. 从fdev4移植
-
-1. exposure.js 曝光 去掉one
-1. observer.js 观察者 不提供全局
-1. class.js 类     ok  必须写new
-
-1. mvc.js MVC 改个名字
-
-1. log.js 日志打印，由各应用框架按需扩展
-
-1. module.js/widget.js    初稿
-1. context.js   模块上下文处理，名字待定？
-
-
-# 考虑
-
-1. 如果有节点的时候， 入参只两个，首为节点，次为options
-
+在使用 lofty 的过程中，有任何问题及建议，欢迎入群讨论，旺旺群号：151890529  
