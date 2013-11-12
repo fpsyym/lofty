@@ -17,3 +17,8 @@ lofty 框架来自于各业务线前端同学的共建，他的成长亦离不�
 #疑问和建议
 
 在使用 lofty 的过程中，有任何问题及建议，欢迎入群讨论，旺旺群号：151890529  
+
+
+#文档库链接
+
+http://wd.alibaba-inc.com/fdevlib/#lofty.homes
